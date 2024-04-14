@@ -1,0 +1,62 @@
+// @import "bootstrap/scss/mixins/buttons";
+
+.bpv-input-group {
+  // $validation-messages: "";
+  // @each $state in map-keys($form-validation-states) {
+  //   $validation-messages: $validation-messages + ":not(." + unquote($state) + "-tooltip)" + ":not(." + unquote($state) + "-feedback)";
+  // }
+
+  // &.bpv-input-group-vertical {
+  //   flex-direction: column;
+  //
+  //   > :not(.dropdown-menu)#{$validation-messages} {
+  //     margin-left: 0;
+  //
+  //     &.form-control {
+  //       width: 100%;
+  //       text-align: center;
+  //       border-top: none;
+  //       border-bottom: none;
+  //       margin-left: 0;
+  //       margin-right: 0;
+  //     }
+  //
+  //     &.bpv-input-group-text-btn {
+  //       margin-left: 0 !important;
+  //       margin-right: 0 !important;
+  //
+  //       &:first-child {
+  //         border-radius: $btn-border-radius $btn-border-radius 0 0 !important;
+  //       }
+  //
+  //       &:last-child {
+  //         border-radius: 0 0 $btn-border-radius $btn-border-radius !important;
+  //       }
+  //     }
+  //   }
+  // }
+
+  .bpv-input-group-text {
+    &.bpv-input-group-text-input-number {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+
+      > .bpv-btn {
+        padding: 0;
+        flex: 1 1 auto;
+        line-height: 1;
+        width: 2.5rem;
+
+        &:active {
+          border-color: transparent;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  // > .bpv-input-group-text-btn {
+  //   @include button-variant($body-tertiary-bg, $border-color);
+  // }
+}

@@ -1,0 +1,114 @@
+.bpv-carousel {
+  $carousel-indicator-transition: opacity, background-color 0.6s ease;
+  $carousel-indicator-height: 7px;
+  $carousel-control-color: $gray-600;
+
+  .bpv-carousel-content {
+    .bpv-carousel-container {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+
+      .bpv-carousel-inner {
+        .bpv-carousel-items-container {
+          display: flex;
+          flex-direction: row;
+          height: 100%;
+
+          .bpv-carousel-item {
+            margin-right: 0;
+            display: flex;
+            height: 100%;
+            flex: 0 0 var(--computed-item-width, 100%);
+            max-width: 0 0 var(--computed-item-width, 100%);
+          }
+        }
+      }
+    }
+  }
+
+  .bpv-carousel-indicators {
+    position: relative;
+    padding: 1rem 0;
+    list-style: none;
+
+    .bpv-carousel-indicator {
+      margin-right: $carousel-indicator-spacer;
+      margin-left: $carousel-indicator-spacer;
+      height: $carousel-indicator-height;
+      flex: 0 1 auto;
+      //line-height: $carousel-indicator-height;
+      font-size: 0;
+
+      .bpv-carousel-indicator-btn {
+        box-sizing: content-box;
+        width: $carousel-indicator-width;
+        height: $carousel-indicator-height;
+        padding: 0;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: $secondary;
+        background-clip: padding-box;
+        border: 0;
+        // Use transparent borders to increase the hit area by 10px on top and bottom.
+        //border-top: $carousel-indicator-hit-area-height solid transparent;
+        //border-bottom: $carousel-indicator-hit-area-height solid transparent;
+        opacity: $carousel-indicator-opacity;
+        border-radius: $card-border-radius;
+        @include transition($carousel-indicator-transition);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.active {
+        .bpv-carousel-indicator-btn {
+          opacity: 1;
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  .bpv-carousel-control-prev, .bpv-carousel-control-next {
+    color: $carousel-control-color;
+    position: static;
+    width: auto;
+    padding: 0 0.5rem;
+
+    &[disabled] {
+      cursor: default;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.bpv-carousel-vertical {
+    .bpv-carousel-content {
+      .bpv-carousel-container {
+        flex-direction: column;
+
+        .bpv-carousel-inner {
+          .bpv-carousel-items-container {
+            flex-direction: column;
+
+            .bpv-carousel-item {
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+
+    .bpv-carousel-control-prev, .bpv-carousel-control-next {
+      padding: 0.5rem 0;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.bpv-form-control {
+  &.bpv-form-control-filled {
+    background-color: $input-filled-bg;
+
+    &:focus {
+      background-color: $input-bg;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.bpv-accordion {
+  .bpv-accordion-item {
+    .bpv-accordion-header {
+      .bpv-accordion-button {
+        text-decoration: none;
+
+        &:disabled, &[disabled]:not([disabled="false"]) {
+          cursor: default;
+          opacity: 0.6;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
+    .bpv-accordion-collapse {
+      &.bpv-accordion-collapse-enter-from,
+      &.bpv-accordion-collapse-leave-to {
+        max-height: 0;
+      }
+
+      &.bpv-accordion-collapse-enter-to,
+      &.bpv-accordion-collapse-leave-from {
+        max-height: 1000px;
+      }
+
+      &.bpv-accordion-collapse-leave-active {
+        overflow: hidden;
+        transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+      }
+
+      &.bpv-accordion-collapse-enter-active {
+        overflow: hidden;
+        transition: max-height 1s ease-in-out;
+      }
+    }
+  }
+}

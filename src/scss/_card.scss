@@ -1,0 +1,15 @@
+.bpv-card {
+  .bpv-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: $card-body-gap;
+  }
+
+  .bpv-card-title {
+    margin-bottom: 0;
+  }
+
+  .bpv-card-subtitle {
+    --#{$prefix}card-subtitle-color: #{$card-subtitle-color};
+  }
+}

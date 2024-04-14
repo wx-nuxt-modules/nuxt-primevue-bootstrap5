@@ -1,0 +1,7 @@
+{
+  "name": "primevue-bootstrap-nuxt",
+  "configKey": "primevueBootstrap",
+  "compatibility": {
+    "nuxt": "^3.0.0"
+  }
+}

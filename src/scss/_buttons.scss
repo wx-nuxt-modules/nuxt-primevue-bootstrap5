@@ -1,0 +1,60 @@
+.bpv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.bpv-btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  &.bpv-btn-shadow {
+    #{map-get($utilities, shadow, property)}: map-get($utilities, shadow, values, null);
+  }
+
+  &.bpv-btn-pill {
+    #{map-get($utilities, rounded, property)}: map-get($utilities, rounded, values, pill);
+  }
+
+  @each $name, $value in $theme-colors {
+    &.bpv-btn-text-#{$name} {
+      --#{$prefix}text-opacity: 1;
+      color: $value;
+    }
+  }
+
+  .bpv-btn-icon {
+    &.bpv-btn-icon-left, &.bpv-btn-icon-loading {
+      order: 0;
+
+      + .bpv-btn-label:not(.bpv-btn-label-hidden) {
+        order: 1;
+        margin-left: map-get($spacers, 2);
+      }
+    }
+
+    &.bpv-btn-icon-right {
+      order: 1;
+
+      + .bpv-btn-label:not(.bpv-btn-label-hidden) {
+        order: 0;
+        margin-right: map-get($spacers, 2);
+      }
+    }
+
+    &.bpv-btn-icon-loading {
+      animation: 0.75s linear infinite spinner-border;
+    }
+  }
+
+  .bpv-btn-label {
+    &.bpv-btn-label-hidden {
+      width: 0;
+      visibility: hidden;
+    }
+
+    + .bpv-badge {
+      margin-left: map-get($spacers, 1);
+    }
+  }
+}

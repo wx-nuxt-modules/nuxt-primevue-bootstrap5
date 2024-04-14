@@ -1,0 +1,12 @@
+.bpv-breadcrumb {
+  .bpv-breadcrumb-item {
+    > .active {
+      color: var(--#{$prefix}breadcrumb-item-active-color);
+      text-decoration: none;
+    }
+  }
+
+  .bpv-breadcrumb-separator {
+    padding: 0 var(--#{$prefix}breadcrumb-item-padding-x);
+  }
+}

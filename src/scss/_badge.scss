@@ -1,0 +1,57 @@
+.bpv-badge {
+  @each $color, $value in $theme-colors {
+    &.bpv-badge-#{$color} {
+      color: color-contrast($value);
+      background-color: rgba(var(--#{$prefix}#{$color}-rgb), var(--#{$prefix}bg-opacity, 1));
+    }
+  }
+
+  &.bpv-badge-lg {
+    --#{$prefix}badge-padding-x: #{$badge-padding-x-lg};
+    --#{$prefix}badge-padding-y: #{$badge-padding-y-lg};
+    @include rfs($badge-font-size-lg, --#{$prefix}badge-font-size)
+  }
+
+  &.bpv-badge-xl {
+    --#{$prefix}badge-padding-x: #{$badge-padding-x-xl};
+    --#{$prefix}badge-padding-y: #{$badge-padding-y-xl};
+    @include rfs($badge-font-size-xl, --#{$prefix}badge-font-size)
+  }
+
+  &.bpv-badge-rounded, &.bpv-badge-dot {
+    border-radius: map-get($utilities, rounded, values, circle);
+  }
+
+  &.bpv-badge-rounded {
+    min-width: calc(var(--#{$prefix}badge-font-size) * 2.5);
+    height: calc(var(--#{$prefix}badge-font-size) * 2.5);
+    line-height: calc(var(--#{$prefix}badge-font-size) * 2.5);
+    padding: 0 map-get($spacers, 1);
+  }
+
+  &.bpv-badge-pill {
+    border-radius: map-get($utilities, rounded, values, pill);
+  }
+
+  &.bpv-badge-dot {
+    display: block;
+    min-width: map-get($spacers, 2);
+    height: map-get($spacers, 2);
+    padding: map-get($spacers, 1);
+    #{map-get($utilities, border, property)}: map-get($utilities, border, values, null);
+    #{map-get($utilities, border-color, property)}: map-get($utilities, border-color, values, light);
+  }
+}
+
+*[data-p-overlay-badge="true"] {
+  position: relative;
+
+  .bpv-badge {
+    font-family: var(--#{$prefix}body-font-family);
+    font-size: 0.75rem;
+    position: absolute;
+    #{map-get($utilities, top, property)}: map-get($utilities, top, values, 0);
+    #{map-get($utilities, start, property)}: map-get($utilities, start, values, 100);
+    #{map-get($utilities, translate-middle, property)}: map-get($utilities, translate-middle, values, null);
+  }
+}

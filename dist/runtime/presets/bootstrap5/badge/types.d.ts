@@ -1,0 +1,12 @@
+import { BadgeProps, BadgeSlots, BadgeEmits } from 'primevue/badge';
+import { ClassComponent } from 'primevue/ts-helpers';
+import { BPVSeverity, BPVBadgeSize } from '../../../types';
+
+export interface BPVBadgeProps extends BadgeProps {
+  severity?: BPVSeverity | undefined | null;
+  size?: BPVBadgeSize | undefined | null;
+  pill?: boolean;
+  rounded?: boolean;
+}
+
+export default class BPVBadge extends ClassComponent<BPVBadgeProps, BadgeSlots, BadgeEmits> {}
