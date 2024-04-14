@@ -1,0 +1,3 @@
+export const BPV_OFFCANVAS_LAYOUT_SIZE_SM = 'sm' as const;
+export const BPV_OFFCANVAS_LAYOUT_SIZE_LG = 'lg' as const;
+export const BPV_OFFCANVAS_LAYOUT_SIZES = <const>[BPV_OFFCANVAS_LAYOUT_SIZE_SM, BPV_OFFCANVAS_LAYOUT_SIZE_LG];

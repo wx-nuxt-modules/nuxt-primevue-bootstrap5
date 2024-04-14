@@ -1,4 +1,4 @@
-import { defineNuxtModule, installModule, createResolver, useLogger, addComponent, addTemplate } from '@nuxt/kit';
+import { defineNuxtModule, installModule, createResolver, useLogger, addComponent, addImportsDir } from '@nuxt/kit';
 import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
 import { parse, relative } from 'pathe';
@@ -71,6 +71,8 @@ export default defineNuxtModule<ModuleOptions>({
         priority: 10
       });
     }
+
+    addImportsDir(resolve('runtime/composables'));
 
     logger.success('Setup end');
   }

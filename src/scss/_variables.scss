@@ -11,3 +11,10 @@ $card-title-font-size: $h5-font-size !default;
 $card-subtitle-color: map-get($theme-colors, secondary) !default;
 
 $input-filled-bg: var(--#{$prefix}light) !default;
+
+$offcanvas-layout-width-sm: $offcanvas-horizontal-width * 0.5 !default;
+$offcanvas-layout-width-lg: $offcanvas-horizontal-width !default;
+$offcanvas-layout-border-width: $offcanvas-border-width !default;
+$offcanvas-layout-border-color: $offcanvas-border-color !default;
+$offcanvas-layout-bg-color: $offcanvas-bg-color !default;
+$offcanvas-layout-color: $offcanvas-color !default;

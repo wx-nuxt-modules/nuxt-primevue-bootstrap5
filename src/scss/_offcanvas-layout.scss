@@ -1,0 +1,52 @@
+%offcanvas-layout-css-vars {
+  // scss-docs-start offcanvas-layout-css-vars
+  --#{$prefix}offcanvas-width-sm: #{$offcanvas-layout-width-sm};
+  --#{$prefix}offcanvas-width-lg: #{$offcanvas-layout-width-lg};
+  --#{$prefix}offcanvas-border-width: #{$offcanvas-layout-border-width};
+  --#{$prefix}offcanvas-border-color: #{$offcanvas-layout-border-color};
+  --#{$prefix}offcanvas-bg: #{$offcanvas-layout-bg-color};
+  --#{$prefix}offcanvas-color: #{$offcanvas-layout-color};
+  --#{$prefix}offcanvas-transition: #{width $offcanvas-transition-duration ease-in-out};
+  // scss-docs-end offcanvas-layout-css-vars
+}
+
+.bpv-offcanvas-layout {
+  @extend %offcanvas-layout-css-vars;
+
+  display: flex;
+
+  .bpv-offcanvas-layout-aside {
+    @extend %offcanvas-layout-css-vars;
+
+    flex: 0 0 auto;
+    max-width: 100%;
+    position: static;
+    visibility: visible;
+    border-right: var(--#{$prefix}offcanvas-border-width) solid var(--#{$prefix}offcanvas-border-color);
+    transition: var(--#{$prefix}offcanvas-transition);
+    background-color: var(--#{$prefix}offcanvas-bg);
+    color: var(--#{$prefix}offcanvas-color);
+
+    &.bpv-offcanvas-layout-aside-sm {
+      width: var(--#{$prefix}offcanvas-width-sm);
+    }
+
+    &.bpv-offcanvas-layout-aside-lg {
+      width: var(--#{$prefix}offcanvas-width-lg);
+    }
+
+    .bpv-offcanvas-layout-aside-size-trigger {
+      padding: calc(var(--#{$prefix}offcanvas-padding-y) * .5) calc(var(--#{$prefix}offcanvas-padding-x) * .5);
+      margin: calc(-.5 * var(--#{$prefix}offcanvas-padding-y)) calc(-.5 * var(--#{$prefix}offcanvas-padding-x)) calc(-.5 * var(--#{$prefix}offcanvas-padding-y)) auto;
+      color: inherit;
+      line-height: 0;
+    }
+  }
+
+  .bpv-offcanvas-layout-body {
+    flex: 1 0 0;
+    max-width: 100%;
+    position: relative;
+    transition: $transition-base;
+  }
+}
