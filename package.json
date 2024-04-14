@@ -1,6 +1,7 @@
 {
   "name": "nuxt-primevue-bootstrap5",
-  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev playground",
