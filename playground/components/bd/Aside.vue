@@ -17,7 +17,10 @@ const menu = reactive<MenuItem[]>([
       { title: 'Кнопки', to: '/components/button' },
       { title: 'Карточки', to: '/components/card' },
       { title: 'Карусели', to: '/components/carousel' },
-      { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' }
+      { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' },
+      { title: 'Меню', to: '/components/menu' },
+      { title: 'Многоуровневое меню', to: '/components/tiered-menu' },
+      { title: 'Панельное меню', to: '/components/panel-menu' }
     ]
   },
   {

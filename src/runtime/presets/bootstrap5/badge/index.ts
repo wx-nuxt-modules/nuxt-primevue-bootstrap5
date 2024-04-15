@@ -31,8 +31,6 @@ export const badgePT = <BadgePassThroughOptions>{
 
 export const badgeDirectivePT = <BadgeDirectivePassThroughOptions>{
   root: ({ context }: any) => {
-    console.log(context);
-
     const severity = BPV_SEVERITY.find((val) => context[val]);
 
     const classes = [

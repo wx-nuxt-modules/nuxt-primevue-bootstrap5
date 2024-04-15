@@ -1,0 +1,12 @@
+.bpv-panelmenu {
+  .bpv-menu-item {
+    .bpv-menu {
+      padding-left: var(--#{$prefix}list-group-item-padding-x);
+      margin-bottom: var(--#{$prefix}list-group-item-padding-y);
+
+      .bpv-menu-item {
+        border: none;
+      }
+    }
+  }
+}
