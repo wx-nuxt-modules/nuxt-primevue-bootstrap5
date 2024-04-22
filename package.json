@@ -16,7 +16,9 @@
       "require": "./dist/module.cjs",
       "types": "./dist/module.d.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./scss/bootstrap-primevue": "./scss/bootstrap-primevue.scss",
+    "./scss/bootstrap-primevue.scss": "./scss/bootstrap-primevue.scss"
   },
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
