@@ -23,6 +23,7 @@
   "types": "./dist/types.d.ts",
   "files": [
     "dist",
+    "scss",
     "LICENSE"
   ],
   "peerDependencies": {
