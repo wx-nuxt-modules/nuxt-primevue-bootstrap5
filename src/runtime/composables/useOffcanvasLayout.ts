@@ -1,3 +1,5 @@
+import { useState, computed } from '#imports';
+
 import type { BPVOffcanvasSizes } from '../types';
 import { BPV_OFFCANVAS_LAYOUT_SIZE_SM, BPV_OFFCANVAS_LAYOUT_SIZE_LG, BPV_OFFCANVAS_LAYOUT_SIZES } from '../constants';
 
