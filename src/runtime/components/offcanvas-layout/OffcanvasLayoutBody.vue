@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useOffcanvasLayout } from '../../composables/useOffcanvasLayout';
+
 const { size } = useOffcanvasLayout();
 </script>
 
