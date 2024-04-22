@@ -8,7 +8,7 @@
     "prepare": "nuxi prepare playground",
     "build": "nuxt-build-module build",
     "prepack": "pnpm build",
-    "build:push": "pnpm build && mkdir ./.gh-release && cp LICENSE package.json ./.gh-release && mv dist src/scss ./.gh-release && push-dir --dir=.gh-release --branch=release --cleanup && rm -rf ./.gh-release"
+    "build:push": "pnpm build && mkdir ./.gh-release && cp LICENSE package.json src/scss ./.gh-release && mv dist ./.gh-release && push-dir --dir=.gh-release --branch=release --cleanup && rm -rf ./.gh-release"
   },
   "exports": {
     ".": {
