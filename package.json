@@ -22,7 +22,7 @@
   "types": "./dist/types.d.ts",
   "files": [
     "dist",
-    "templates"
+    "LICENSE"
   ],
   "peerDependencies": {
     "@nuxt/kit": "^3.0.0"
