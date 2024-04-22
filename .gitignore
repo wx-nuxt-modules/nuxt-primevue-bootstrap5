@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+.gh-release
 
 # Node dependencies
 node_modules
