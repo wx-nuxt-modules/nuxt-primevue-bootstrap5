@@ -14,6 +14,7 @@
   @extend %offcanvas-layout-css-vars;
 
   display: flex;
+  height: 100%;
 
   .bpv-offcanvas-layout-aside {
     @extend %offcanvas-layout-css-vars;
