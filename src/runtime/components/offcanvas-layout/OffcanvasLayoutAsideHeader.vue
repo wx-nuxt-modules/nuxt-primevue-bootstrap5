@@ -19,7 +19,13 @@ export default defineComponent({
       let link;
 
       if (props.to) {
-        link = h(NuxtLink, { to: props.to, class: 'offcanvas-header-link' }, content);
+        link = h(
+          NuxtLink,
+          { to: props.to, class: 'offcanvas-header-link' },
+          {
+            default: () => content
+          }
+        );
       } else {
         link = h('a', { class: 'offcanvas-header-link', href: props.href }, content);
       }
