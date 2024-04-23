@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router';
+import OffcanvasLayoutAsideHeader from './OffcanvasLayoutAsideHeader.vue';
+
 interface Props {
   body?: string;
   title?: string;
+  headerHref?: string;
+  headerTo?: RouteLocationRaw;
 }
 
 const props = withDefaults(defineProps<Props>(), {});
@@ -19,16 +24,17 @@ function getId(postfix?: string) {
 
 <template>
   <div class="offcanvas bpv-offcanvas-layout-aside" tabindex="-1" :id="getId()" :aria-labelledby="getId('LABEL')">
-    <div class="offcanvas-header">
-      <slot name="header">
-        <div class="offcanvas-brand">
+    <slot name="header">
+      <OffcanvasLayoutAsideHeader :href="headerHref" :to="headerTo" :title-id="getId('LABEL')">
+        <template #brand>
           <slot name="brand" />
-        </div>
-        <h5 class="offcanvas-title">
+        </template>
+
+        <template #title="slotProps">
           <slot name="title">{{ title }}</slot>
-        </h5>
-      </slot>
-    </div>
+        </template>
+      </OffcanvasLayoutAsideHeader>
+    </slot>
 
     <div class="offcanvas-body">
       <slot>

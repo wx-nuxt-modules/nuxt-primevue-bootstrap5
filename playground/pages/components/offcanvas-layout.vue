@@ -84,7 +84,7 @@ const items = reactive({
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0 py-0 ps-0">
         <BOffcanvasLayout>
-          <BOffcanvasLayoutAside title="FooBar">
+          <BOffcanvasLayoutAside title="FooBar" header-to="/">
             <template #brand>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@ const items = reactive({
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0 py-0 ps-0">
         <BOffcanvasLayout>
-          <BOffcanvasLayoutAside title="FooBar">
+          <BOffcanvasLayoutAside title="FooBar" header-href="/">
             <template #brand>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -37,6 +37,19 @@
 
     .offcanvas-header {
       width: var(--#{$prefix}offcanvas-width-lg);
+      display: block;
+
+      .offcanvas-header-link {
+        color: inherit;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: $transition-base;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
 
       .offcanvas-brand {
         width: calc(var(--#{$prefix}offcanvas-width-sm) - var(--#{$prefix}offcanvas-padding-x) * 2);
