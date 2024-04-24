@@ -1,0 +1,19 @@
+.bpv-table-column {
+  &.bpv-table-column-sortable {
+    cursor: pointer;
+
+    &:hover, &.bpv-table-column-sorted {
+      --#{$prefix}table-color-state: var(--#{$prefix}table-hover-color);
+      --#{$prefix}table-bg-state: var(--#{$prefix}table-hover-bg);
+
+      .bpv-table-column-sort {
+        color: var(--#{$prefix}table-color-state);
+      }
+    }
+  }
+
+  .bpv-table-column-sort {
+    margin-left: $table-cell-padding-x;
+    color: $table-caption-color;
+  }
+}

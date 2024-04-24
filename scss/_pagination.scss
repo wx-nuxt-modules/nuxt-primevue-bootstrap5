@@ -36,4 +36,13 @@
 
 .bpv-page-item-input {
   margin-left: var(--#{$prefix}pagination-padding-x);
+  margin-right: var(--#{$prefix}pagination-padding-x);
+}
+
+.bpv-page-item-start {
+  margin-right: auto;
+}
+
+.bpv-page-item-end {
+  margin-left: auto;
 }

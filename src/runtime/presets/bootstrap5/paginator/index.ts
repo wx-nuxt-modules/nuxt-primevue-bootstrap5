@@ -57,5 +57,15 @@ export const paginatorPT = <PaginatorPassThroughOptions>{
       const classes = [...base.class, 'bpv-page-item-input'];
       return { ...base, class: classes };
     }
+  },
+  start: () => {
+    const classes = ['bpv-page-item-start'];
+
+    return { class: classes };
+  },
+  end: () => {
+    const classes = ['bpv-page-item-end'];
+
+    return { class: classes };
   }
 };

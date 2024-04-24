@@ -1,0 +1,49 @@
+.bpv-overlaypanel {
+  --#{$prefix}popover-max-width: auto;
+
+  margin-top: var(--#{$prefix}popover-arrow-height);
+  z-index: $zindex-popover !important;
+
+  &::before, &::after {
+    content: '';
+    border-color: transparent;
+    border-style: solid;
+    position: absolute;
+    left: calc(var(--overlayArrowLeft, 0) + 1.25rem);
+  }
+
+  &:not([data-p-overlaypanel-flipped]) {
+    &::before, &::after {
+      border-width: 0 calc(var(--#{$prefix}popover-arrow-width) * .5) var(--#{$prefix}popover-arrow-height);
+    }
+
+    &::before {
+      top: calc(var(--#{$prefix}popover-arrow-height) * -1);
+      border-bottom-color: var(--#{$prefix}popover-arrow-border);
+    }
+
+    &::after {
+      top: calc((var(--#{$prefix}popover-arrow-height) - var(--#{$prefix}popover-border-width)) * -1);
+      border-bottom-color: var(--#{$prefix}popover-bg);
+    }
+  }
+
+  &[data-p-overlaypanel-flipped="true"] {
+    margin-top: calc(var(--#{$prefix}popover-arrow-height) * -1);
+    margin-bottom: var(--#{$prefix}popover-arrow-height);
+
+    &::before, &::after {
+      border-width: var(--#{$prefix}popover-arrow-height) calc(var(--#{$prefix}popover-arrow-width) * .5) 0;
+    }
+
+    &::before {
+      bottom: calc(var(--#{$prefix}popover-arrow-height) * -1);
+      border-top-color: var(--#{$prefix}popover-arrow-border);
+    }
+
+    &::after {
+      bottom: calc((var(--#{$prefix}popover-arrow-height) - var(--#{$prefix}popover-border-width)) * -1);
+      border-top-color: var(--#{$prefix}popover-bg);
+    }
+  }
+}

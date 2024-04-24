@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ColumnProps } from 'primevue/column';
+import type { DataTableEmits } from 'primevue/datatable';
 import type { BPVTableSize } from '../../../src/runtime/types';
 import { BPV_TABLE_SIZE as bpvTableSize } from '../../../src/runtime/constants';
 
@@ -8,14 +9,16 @@ interface ProductsRes {
   total: number;
 }
 
+const dynamicCols = <ColumnProps[]>[
+  { field: 'id', header: 'ID', style: { width: '8%' } },
+  { field: 'title', header: 'Наименование' },
+  { field: 'category', header: 'Категория', style: { width: '25%' } },
+  { field: 'stock', header: 'Кол-во', style: { width: '25%' } }
+];
+
 const props = reactive({
   dynamic: {
-    cols: <ColumnProps[]>[
-      { field: 'id', header: 'ID' },
-      { field: 'title', header: 'Наименование' },
-      { field: 'category', header: 'Категория' },
-      { field: 'stock', header: 'Кол-во' }
-    ]
+    cols: dynamicCols
   },
   slots: {
     cols: <ColumnProps[]>[
@@ -31,11 +34,17 @@ const props = reactive({
     value: 'md' as BPVTableSize,
     lst: bpvTableSize.map((item) => ({ text: { sm: 'Маленькая', md: 'Нормальная', lg: 'Большая' }[item], value: item }))
   },
-  pagination: {
+  sortOneColumn: {
+    cols: dynamicCols.slice().map((item) => ({ ...item, sortable: true }))
+  },
+  lazy: {
     currentPage: 1,
-    pageSize: 5
+    totalRows: 0
   }
 });
+
+const lazyPageSize = ref(5);
+const lazySkip = computed(() => (props.lazy.currentPage - 1) * lazyPageSize.value);
 
 const {
   data: products1,
@@ -49,9 +58,30 @@ const {
   pending: products2Pending,
   refresh: products2Refresh
 } = useFetch<ProductsRes>('https://dummyjson.com/products', {
+  // params: {
+  //   limit: props.pagination.pageSize,
+  //   skip: (props.pagination.currentPage - 1) * props.pagination.pageSize
+  // }
   params: {
-    limit: props.pagination.pageSize,
-    skip: (props.pagination.currentPage - 1) * props.pagination.pageSize
+    limit: 999
+  }
+});
+const {
+  data: products3,
+  pending: products3Pending,
+  refresh: products3Refresh
+} = useFetch<ProductsRes>('https://dummyjson.com/products', {
+  server: false,
+  params: {
+    limit: lazyPageSize,
+    skip: lazySkip
+  },
+  onResponse: (ctx) => {
+    const total = +ctx.response._data.total;
+
+    if (total !== props.lazy.totalRows) {
+      props.lazy.totalRows = total;
+    }
   }
 });
 
@@ -75,6 +105,10 @@ function getBadgeSeverity(data) {
         return null;
     }
   }
+}
+
+function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
+  props.lazy.currentPage = event.page + 1;
 }
 </script>
 
@@ -100,7 +134,7 @@ function getBadgeSeverity(data) {
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable :value="products1.products" :loading="products1Pending">
-          <BColumn v-for="col of props.dynamic.cols" :field="col.field" :header="col.header" />
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
         </BDataTable>
       </div>
     </div>
@@ -116,7 +150,7 @@ function getBadgeSeverity(data) {
             </div>
           </template>
 
-          <BColumn v-for="col of props.slots.cols" :field="col.field" :header="col.header">
+          <BColumn v-for="col of props.slots.cols" v-bind="col">
             <template v-if="col.field === 'thumbnail'" #body="slotProps">
               <img :src="slotProps.data.thumbnail" :alt="slotProps.data.title" class="w-50 rounded-3" />
             </template>
@@ -151,7 +185,7 @@ function getBadgeSeverity(data) {
         </div>
 
         <BDataTable :value="products1.products" :loading="products1Pending" :size="props.withSize.value">
-          <BColumn v-for="col of props.dynamic.cols" :field="col.field" :header="col.header" />
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
         </BDataTable>
       </div>
     </div>
@@ -160,7 +194,7 @@ function getBadgeSeverity(data) {
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable :value="products1.products" :loading="products1Pending" show-gridlines>
-          <BColumn v-for="col of props.dynamic.cols" :field="col.field" :header="col.header" />
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
         </BDataTable>
       </div>
     </div>
@@ -169,7 +203,7 @@ function getBadgeSeverity(data) {
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable :value="products1.products" :loading="products1Pending" striped-rows>
-          <BColumn v-for="col of props.dynamic.cols" :field="col.field" :header="col.header" />
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
         </BDataTable>
       </div>
     </div>
@@ -177,8 +211,96 @@ function getBadgeSeverity(data) {
     <h2>Пагинация</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <BDataTable :value="products2.products" :loading="products2Pending">
-          <BColumn v-for="col of props.dynamic.cols" :field="col.field" :header="col.header" />
+        <BDataTable
+          :value="products2.products"
+          :loading="products2Pending"
+          :rows="5"
+          :rows-per-page-options="[5, 10, 20, 50]"
+          paginator-alignment="center"
+          paginator
+        >
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
+        </BDataTable>
+      </div>
+    </div>
+
+    <h2>Пагинация (Шаблоны)</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable
+          :value="products2.products"
+          :loading="products2Pending"
+          :rows="5"
+          :rows-per-page-options="[5, 10, 20, 50]"
+          paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+          current-page-report-template="Показаны с {first} по {last} из {totalRecords}"
+          paginator-alignment="center"
+          paginator
+        >
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
+
+          <template #paginatorstart>
+            <BButton severity="primary" type="button" icon="pi pi-refresh" text @click="products2Refresh" />
+          </template>
+
+          <template #paginatorend>
+            <BButton severity="primary" type="button" icon="pi pi-download" text />
+          </template>
+        </BDataTable>
+      </div>
+    </div>
+
+    <h2>Сортировка (1 колонка)</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable :value="products1.products" :loading="products1Pending">
+          <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
+        </BDataTable>
+      </div>
+    </div>
+
+    <!--<h2>Сортировка (несколько колонок)</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable :value="products1.products" :loading="products1Pending" sort-mode="multiple">
+          <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
+        </BDataTable>
+      </div>
+    </div>-->
+
+    <h2>Сортировка (по умолчанию)</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable :value="products1.products" :loading="products1Pending" sort-field="id" :sort-order="-1">
+          <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
+        </BDataTable>
+      </div>
+    </div>
+
+    <h2>Сортировка (со сбросом)</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable :value="products1.products" :loading="products1Pending" removable-sort>
+          <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
+        </BDataTable>
+      </div>
+    </div>
+
+    <h2>Ленивая загрузка</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BDataTable
+          :value="(products3 || {}).products"
+          :loading="products3Pending"
+          paginator
+          v-model:rows="lazyPageSize"
+          :total-records="props.lazy.totalRows"
+          paginator-alignment="center"
+          :rows-per-page-options="[5, 10, 25]"
+          lazy
+          @page="onChangePageLazy($event)"
+        >
+          <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
         </BDataTable>
       </div>
     </div>

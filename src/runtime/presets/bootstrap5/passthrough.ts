@@ -16,6 +16,7 @@ import { panelmenuPT } from './panelmenu';
 import { datatablePT } from './datatable';
 import { columnPT } from './column';
 import { paginatorPT } from './paginator';
+import { overlaypanelPT } from './overlaypanel';
 
 export default {
   button: buttonPT,
@@ -36,6 +37,7 @@ export default {
   datatable: datatablePT,
   column: columnPT,
   paginator: paginatorPT,
+  overlaypanel: overlaypanelPT,
   directives: {
     badge: badgeDirectivePT
   }

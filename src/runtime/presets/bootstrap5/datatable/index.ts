@@ -1,5 +1,6 @@
 import type { DataTablePassThroughOptions } from 'primevue/datatable';
 import type { BPVDataTableProps } from './types';
+import { paginatorPT } from '../paginator';
 import { inArrayValidator } from '../../../utils/validators';
 import { BPV_TABLE_SIZE } from '../../../constants';
 
@@ -45,5 +46,22 @@ export const datatablePT = <DataTablePassThroughOptions>{
     const classes = ['bpv-datatable-loading-icon'];
 
     return { class: classes };
+  },
+  paginator: {
+    paginatorWrapper: () => {
+      const base = paginatorPT.paginatorWrapper();
+
+      const classes = [base.class, 'bpv-datatable-paginator'];
+
+      return { ...base, class: classes };
+    },
+    root: ({ parent }: any) => {
+      const parentAttrs = parent.attrs;
+
+      const alignment = parentAttrs['paginator-alignment'] || parentAttrs['paginatorAlignment'];
+
+      // @ts-ignore
+      return paginatorPT.root({ attrs: { alignment } });
+    }
   }
 };
