@@ -8,6 +8,10 @@ interface MenuItem {
 
 const menu = reactive<MenuItem[]>([
   {
+    title: 'Контент',
+    items: [{ title: 'Таблицы с данными', to: '/content/datatable' }]
+  },
+  {
     title: 'Компоненты',
     items: [
       { title: 'Аккордеон', to: '/components/accordion' },
@@ -17,10 +21,12 @@ const menu = reactive<MenuItem[]>([
       { title: 'Кнопки', to: '/components/button' },
       { title: 'Карточки', to: '/components/card' },
       { title: 'Карусели', to: '/components/carousel' },
-      { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' },
       { title: 'Меню', to: '/components/menu' },
       { title: 'Многоуровневое меню', to: '/components/tiered-menu' },
-      { title: 'Панельное меню', to: '/components/panel-menu' }
+      { title: 'Панельное меню', to: '/components/panel-menu' },
+      { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' },
+      { title: 'Пагинация', to: '/components/pagination' },
+      { title: 'Панель поверх', to: '/components/overlaypanel' }
     ]
   },
   {

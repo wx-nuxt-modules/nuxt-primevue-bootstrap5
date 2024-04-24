@@ -1,8 +1,8 @@
-%reset-border-bottom {
-  border-bottom-width: 0;
-}
-
 .bpv-menu {
+  %reset-border-bottom {
+    border-bottom-width: 0;
+  }
+
   .bpv-menu-item {
     padding: 0;
 
@@ -23,6 +23,14 @@
 
       .bpv-menu-item-action-submenu-icon {
         margin-left: auto;
+      }
+
+      &.active {
+        z-index: 2; // Place active items above their siblings for proper border styling
+        color: var(--#{$prefix}list-group-active-color);
+        background-color: var(--#{$prefix}list-group-active-bg);
+        border-color: var(--#{$prefix}list-group-active-border-color);
+        cursor: default;
       }
     }
 

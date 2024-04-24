@@ -1,12 +1,16 @@
-import type { DropdownPassThroughOptions } from 'primevue/dropdown';
+import type { DropdownPassThroughOptions, DropdownPassThroughMethodOptions } from 'primevue/dropdown';
 import { createRootClasses } from '../inputtext';
 
-export const dropdownPT = <DropdownPassThroughOptions>{
-  root: ({}) => {
+export const sharedDropdownPT = {
+  root: ({}: DropdownPassThroughMethodOptions<any> = {}) => {
     const classes = ['dropdown bpv-form-select'];
 
     return { class: classes };
-  },
+  }
+};
+
+export const dropdownPT = <DropdownPassThroughOptions>{
+  root: sharedDropdownPT.root,
   input: ({}) => {
     const classes = ['form-select bpv-form-select-input'];
 

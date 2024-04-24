@@ -63,6 +63,7 @@
 
     .offcanvas-body {
       width: var(--#{$prefix}offcanvas-width-lg);
+      transition: padding-left .2s ease-in-out;
 
       .bpv-panelmenu {
         &, .bpv-menu {
@@ -87,12 +88,12 @@
             transition: $transition-base;
             opacity: var(--#{$prefix}list-group-action-opacity);
 
-            &:hover, &:focus, &:active {
+            &:hover, &:focus, &:active, &.active {
               opacity: var(--#{$prefix}list-group-action-hover-opacity);
             }
 
             .bpv-menu-item-action-icon {
-              transition: $transition-base;
+              transition: width .2s ease-in-out, margin .2s ease-in-out, padding .2s ease-in-out, background .2s ease-in-out;
 
               &.bpv-menu-item-action-icon-submenu {
                 display: none;
@@ -137,12 +138,30 @@
     .bpv-offcanvas-layout-aside {
       width: var(--#{$prefix}offcanvas-width-sm);
 
+      .offcanvas-body {
+        padding-left: calc(var(--#{$prefix}offcanvas-padding-x) - calc(var(--#{$prefix}offcanvas-padding-x) * 0.2));
+      }
+
       .bpv-panelmenu {
         .bpv-menu-item {
           .bpv-menu-item-action {
+            padding: 0;
+
             .bpv-menu-item-action-icon {
+              padding: var(--#{$prefix}list-group-item-padding-y) calc(var(--#{$prefix}offcanvas-padding-x) * 0.75);
+
               &:not(.bpv-menu-item-action-icon-submenu) {
                 margin-right: calc(var(--#{$prefix}offcanvas-padding-x) * 2);
+              }
+            }
+
+            &.active {
+              background-color: inherit;
+              color: inherit;
+
+              .bpv-menu-item-action-icon {
+                color: var(--#{$prefix}list-group-active-color);
+                background-color: var(--#{$prefix}list-group-active-bg);
               }
             }
           }

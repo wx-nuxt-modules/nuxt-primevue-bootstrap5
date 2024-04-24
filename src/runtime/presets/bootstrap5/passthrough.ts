@@ -13,6 +13,9 @@ import { dropdownPT } from './dropdown';
 import { menuPT } from './menu';
 import { tieredmenuPT } from './tieredmenu';
 import { panelmenuPT } from './panelmenu';
+import { datatablePT } from './datatable';
+import { columnPT } from './column';
+import { paginatorPT } from './paginator';
 
 export default {
   button: buttonPT,
@@ -30,6 +33,9 @@ export default {
   menu: menuPT,
   tieredmenu: tieredmenuPT,
   panelmenu: panelmenuPT,
+  datatable: datatablePT,
+  column: columnPT,
+  paginator: paginatorPT,
   directives: {
     badge: badgeDirectivePT
   }

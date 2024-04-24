@@ -1,13 +1,14 @@
 import { defineNuxtModule, installModule, createResolver, useLogger, addComponent, addImportsDir } from '@nuxt/kit';
 import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
-import { parse, relative } from 'pathe';
+import * as pathe from 'pathe';
+import * as pkg from '../package.json';
 
 export interface ModuleOptions {
   prefix?: string;
 }
 
-const PACKAGE_NAME = 'primevue-bootstrap-nuxt';
+const PACKAGE_NAME = pkg.name;
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -48,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
         .map((component) => {
           const shortName = component.kebabName.split('-').slice(1).join('');
           const fullPath = resolve(`runtime/presets/bootstrap5/${shortName}/types`);
-          const relativePath = relative(nuxt.options.buildDir, fullPath);
+          const relativePath = pathe.relative(nuxt.options.buildDir, fullPath);
 
           return [component.filePath, relativePath];
         });
@@ -64,7 +65,7 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     for (const component of components) {
-      const { name } = parse(component);
+      const { name } = pathe.parse(component);
       await addComponent({
         name: `${options.prefix}${name}`,
         filePath: component,

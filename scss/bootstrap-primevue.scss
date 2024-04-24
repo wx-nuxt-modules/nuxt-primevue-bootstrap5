@@ -2,15 +2,17 @@
 @import "variables";
 
 // Layout & components
+@import "tables";
 @import "forms";
 @import "buttons";
+@import "card";
 @import "accordion";
+@import "breadcrumb";
+@import "pagination";
 @import "badge";
 @import "alert";
-@import "breadcrumb";
-@import "card";
-@import "carousel";
-@import "offcanvas-layout";
 @import "menu";
 @import "panelmenu";
 @import "tieredmenu";
+@import "carousel";
+@import "offcanvas-layout";

@@ -1,0 +1,39 @@
+.bpv-pages {
+  @extend .pagination;
+}
+
+.bpv-page-item {
+  &.bpv-page-item-btn {
+    @extend .page-link;
+  }
+
+  &.bpv-page-item-current {
+    &, &:hover {
+      color: var(--#{$prefix}body-color);
+      background-color: var(--#{$prefix}pagination-bg);
+      border-color: var(--#{$prefix}pagination-border-color);
+    }
+  }
+
+  &:not(:first-of-type), &.bpv-page-item-inner, &.bpv-page-item-current {
+    &.bpv-page-item-btn {
+      margin-left: $pagination-margin-start;
+    }
+  }
+
+  &:first-of-type {
+    &.bpv-page-item-btn:not(.bpv-page-item-inner, .bpv-page-item-current) {
+      @include border-start-radius(var(--#{$prefix}pagination-border-radius));
+    }
+  }
+
+  &:last-of-type {
+    &.bpv-page-item-btn:not(.bpv-page-item-inner, .bpv-page-item-current) {
+      @include border-end-radius(var(--#{$prefix}pagination-border-radius));
+    }
+  }
+}
+
+.bpv-page-item-input {
+  margin-left: var(--#{$prefix}pagination-padding-x);
+}
