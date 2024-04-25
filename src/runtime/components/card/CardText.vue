@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CardTextProps } from './types';
-import { tryOmit } from '@windx-foobar/shared';
+import { useSlots } from '#imports';
 
 const props = withDefaults(defineProps<CardTextProps>(), {
   tag: 'p'

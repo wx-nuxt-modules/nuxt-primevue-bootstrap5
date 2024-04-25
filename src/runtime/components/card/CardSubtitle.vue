@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardSubtitleProps } from './types';
+import { useSlots } from '#imports';
 
 const props = withDefaults(defineProps<CardSubtitleProps>(), {
   tag: 'h6'

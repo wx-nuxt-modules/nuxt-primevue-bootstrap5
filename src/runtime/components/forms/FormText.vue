@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useSlots } from '#imports';
+
 interface FormTextProps {
   tag?: string;
   html?: string;

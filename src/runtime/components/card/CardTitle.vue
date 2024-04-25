@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardTitleProps } from './types';
+import { useSlots } from '#imports';
 
 const props = withDefaults(defineProps<CardTitleProps>(), {
   tag: 'h5'

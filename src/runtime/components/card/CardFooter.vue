@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardFooterProps } from './types';
+import { useSlots } from '#imports';
 
 const props = withDefaults(defineProps<CardFooterProps>(), {
   tag: 'div'

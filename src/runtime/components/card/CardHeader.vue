@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardHeaderProps } from './types';
+import { useSlots } from '#imports';
 
 const props = withDefaults(defineProps<CardHeaderProps>(), {
   tag: 'div'

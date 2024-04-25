@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { LabelHTMLAttributes } from 'vue';
+import { type LabelHTMLAttributes } from 'vue';
+import { useSlots } from '#imports';
 
 interface FormLabelProps {
   tag?: string;
