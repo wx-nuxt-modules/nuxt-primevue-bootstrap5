@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CardTextProps } from './types';
-import { useSlots } from '#imports';
+import { useSlots, h } from '#imports';
 
 const props = withDefaults(defineProps<CardTextProps>(), {
   tag: 'p'

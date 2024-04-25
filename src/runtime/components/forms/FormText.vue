@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSlots } from '#imports';
+import { useSlots, h } from '#imports';
 
 interface FormTextProps {
   tag?: string;
