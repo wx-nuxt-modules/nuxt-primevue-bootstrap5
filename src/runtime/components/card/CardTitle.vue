@@ -14,7 +14,7 @@ function RootComponent() {
 
   !_props.innerHTML && delete _props.innerHTML;
 
-  return h(props.tag, _props, slots.default!());
+  return h(props.tag, _props, [slots.default?.()]);
 }
 </script>
 
