@@ -46,4 +46,8 @@
       border-top-color: var(--#{$prefix}popover-bg);
     }
   }
+
+  &.bpv-overlaypanel-enter-from, &.bpv-overlaypanel-leave-to {
+    opacity: 0;
+  }
 }

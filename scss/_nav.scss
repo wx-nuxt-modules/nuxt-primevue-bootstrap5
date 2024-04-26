@@ -1,0 +1,11 @@
+.bpv-tabview {
+  .nav-tabs {
+    .nav-link {
+      cursor: pointer;
+    }
+  }
+
+  .bpv-tabview-body {
+    padding: $tabview-body-padding-y $tabview-body-padding-x;
+  }
+}

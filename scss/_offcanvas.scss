@@ -1,0 +1,38 @@
+.bpv-offcanvas-backdrop {
+  @include transition(background-color $offcanvas-transition-duration ease-in-out);
+
+  opacity: 1;
+  background-color: rgba(0, 0, 0, $offcanvas-backdrop-opacity);
+
+  &:has(.bpv-offcanvas-enter-from, .bpv-offcanvas-leave-to) {
+    background-color: transparent;
+  }
+}
+
+.bpv-offcanvas {
+  @include transition(var(--#{$prefix}offcanvas-transition));
+
+  &.show {
+    &:not(.hiding) {
+      transform: inherit;
+    }
+  }
+
+  &.offcanvas-start {
+    &.bpv-offcanvas-enter-from, &.bpv-offcanvas-leave-to {
+      transform: translateX(-100%) translateY(0) translateZ(0);
+    }
+  }
+
+  &.offcanvas-end {
+    &.bpv-offcanvas-enter-from, &.bpv-offcanvas-leave-to {
+      transform: translateX(100%) translateY(0) translateZ(0);
+    }
+  }
+
+  .offcanvas-title {
+    @extend h5;
+
+    margin-bottom: 0;
+  }
+}

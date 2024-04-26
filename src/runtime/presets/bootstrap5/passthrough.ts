@@ -17,6 +17,10 @@ import { datatablePT } from './datatable';
 import { columnPT } from './column';
 import { paginatorPT } from './paginator';
 import { overlaypanelPT } from './overlaypanel';
+import { sidebarPT } from './sidebar';
+import { tabmenuPT } from './tabmenu';
+import { tabpanelPT } from './tabpanel';
+import { tabviewPT } from './tabview';
 
 export default {
   button: buttonPT,
@@ -38,6 +42,10 @@ export default {
   column: columnPT,
   paginator: paginatorPT,
   overlaypanel: overlaypanelPT,
+  sidebar: sidebarPT,
+  tabmenu: tabmenuPT,
+  tabpanel: tabpanelPT,
+  tabview: tabviewPT,
   directives: {
     badge: badgeDirectivePT
   }

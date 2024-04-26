@@ -24,9 +24,11 @@ const menu = reactive<MenuItem[]>([
       { title: 'Меню', to: '/components/menu' },
       { title: 'Многоуровневое меню', to: '/components/tiered-menu' },
       { title: 'Панельное меню', to: '/components/panel-menu' },
+      { title: 'Вне холста', to: '/components/offcanvas' },
       { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' },
       { title: 'Пагинация', to: '/components/pagination' },
-      { title: 'Панель поверх', to: '/components/overlaypanel' }
+      { title: 'Панель поверх', to: '/components/overlaypanel' },
+      { title: 'Табы', to: '/components/tabs' }
     ]
   },
   {
