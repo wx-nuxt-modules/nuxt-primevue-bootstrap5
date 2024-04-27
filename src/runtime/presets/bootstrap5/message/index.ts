@@ -7,7 +7,7 @@ import InfoCircleIcon from 'primevue/icons/infocircle';
 import TimesCircleIcon from 'primevue/icons/timescircle';
 
 import { BPV_SEVERITY } from '../../../constants';
-import { inArrayValidator } from '../../../utils/validators';
+import { isNullOrUndefined } from '../../../utils/validators';
 
 export const messagePT = <MessagePassThroughOptions>{
   root: ({ props, ...rest }) => {
@@ -26,7 +26,7 @@ export const messagePT = <MessagePassThroughOptions>{
     });
 
     return {
-      class: ['alert', 'bpv-alert', `alert-${inArrayValidator(props.severity, BPV_SEVERITY, 'info')}`]
+      class: ['alert', 'bpv-alert', `alert-${isNullOrUndefined(props.severity) ? 'info' : props.severity}`]
     };
   },
   wrapper: () => ({

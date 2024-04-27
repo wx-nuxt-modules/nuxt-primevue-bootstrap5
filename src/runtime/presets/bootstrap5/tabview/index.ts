@@ -8,9 +8,13 @@ export const tabviewPT = <TabViewPassThroughOptions>{
 
     return { class: classes };
   },
-  nav: () => {
+  nav: ({ attrs }: any) => {
     // @ts-ignore
-    const base = tabmenuPT.menu({ attrs: {} });
+    const base = tabmenuPT.menu({
+      attrs: {
+        underline: [attrs['nav-underline'], attrs['navUnderline']].some((item) => ['', true, 'true'].includes(item))
+      }
+    });
 
     return {
       ...base

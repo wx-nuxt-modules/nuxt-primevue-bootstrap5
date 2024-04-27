@@ -28,6 +28,10 @@
 
   .table {
     margin-bottom: 0;
+
+    &.table-hover {
+      cursor: pointer;
+    }
   }
 
   .bpv-datatable-footer {

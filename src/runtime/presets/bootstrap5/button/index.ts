@@ -1,6 +1,6 @@
 import type { ButtonPassThroughOptions } from 'primevue/button';
 
-import { BPV_SEVERITY, BPV_BUTTON_SIZE } from '../../../constants';
+import { BPV_BUTTON_SIZE } from '../../../constants';
 import { inArrayValidator, isUndefined } from '../../../utils/validators';
 
 export const buttonPT = <ButtonPassThroughOptions>{
@@ -8,7 +8,7 @@ export const buttonPT = <ButtonPassThroughOptions>{
     const { block } = instance.$params.attrs;
     const { severity, link, raised, rounded, text, outlined, size } = props;
 
-    const currentSeverity = inArrayValidator(severity, BPV_SEVERITY, 'primary');
+    const currentSeverity = severity;
     const currentSize = inArrayValidator(size, BPV_BUTTON_SIZE);
 
     const classes = [

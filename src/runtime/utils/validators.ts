@@ -6,4 +6,4 @@ export const inArrayValidator = <T extends any[] | Readonly<any[]>>(
   return search.includes(value) ? value : defaultValue;
 };
 
-export { isUndefined } from '@windx-foobar/shared';
+export { isUndefined, isNullOrUndefined } from '@windx-foobar/shared';

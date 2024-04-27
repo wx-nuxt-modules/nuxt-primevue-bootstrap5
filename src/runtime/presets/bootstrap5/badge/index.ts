@@ -3,11 +3,12 @@ import type { BadgeDirectivePassThroughOptions } from 'primevue/badgedirective';
 import type { BPVSeverity } from '../../../types';
 
 import { BPV_SEVERITY, BPV_BADGE_SIZE } from '../../../constants';
-import { inArrayValidator, isUndefined } from '../../../utils/validators';
+import { inArrayValidator, isNullOrUndefined, isUndefined } from '../../../utils/validators';
 
 const sharedPT = {
-  severity(value: BPVSeverity | null | undefined) {
-    return `bpv-badge-${inArrayValidator(value, BPV_SEVERITY, 'secondary')}`;
+  severity(value: BPVSeverity | string | null | undefined) {
+    if (isNullOrUndefined(value)) return 'bpv-badge-secondary';
+    return `bpv-badge-${value}`;
   }
 };
 

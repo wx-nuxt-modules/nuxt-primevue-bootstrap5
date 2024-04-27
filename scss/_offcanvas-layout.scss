@@ -7,6 +7,8 @@
   --#{$prefix}offcanvas-bg: #{$offcanvas-layout-bg-color};
   --#{$prefix}offcanvas-color: #{$offcanvas-layout-color};
   --#{$prefix}offcanvas-transition: #{width $offcanvas-transition-duration ease-in-out};
+  --#{$prefix}offcanvas-padding-x: #{$offcanvas-layout-padding-x};
+  --#{$prefix}offcanvas-padding-y: #{$offcanvas-layout-padding-y};
   // scss-docs-end offcanvas-layout-css-vars
 }
 

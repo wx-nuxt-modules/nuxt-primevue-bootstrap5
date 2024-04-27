@@ -22,8 +22,8 @@ export const datatablePT = <DataTablePassThroughOptions>{
 
     return { class: classes };
   },
-  table: () => {
-    const classes = ['table'];
+  table: ({ props }) => {
+    const classes = ['table', props.rowHover && 'table-hover'];
 
     return { class: classes };
   },
