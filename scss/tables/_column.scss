@@ -17,3 +17,11 @@
     color: $table-caption-color;
   }
 }
+
+.table.table-hover {
+  tbody {
+    > tr {
+      cursor: pointer;
+    }
+  }
+}
