@@ -33,10 +33,7 @@ export const inputTextPT = <InputTextPassThroughOptions>{
         state: attrs.state,
         size: props.size,
         plainText: attrs['plain-text'] !== undefined || attrs['plainText'] !== undefined
-      }),
-
-      // Need for correct working float labels
-      placeholder: ''
+      })
     };
   }
 };
