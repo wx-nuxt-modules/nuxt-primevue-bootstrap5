@@ -20,6 +20,7 @@
       border-color: $form-select-disabled-border-color;
       background-color: $form-select-disabled-bg;
       color: $form-select-disabled-color;
+      cursor: default;
 
       &:focus {
         border-color: var(--#{$prefix}border-color);
