@@ -14,7 +14,7 @@ export const dropdownPT = <DropdownPassThroughOptions>{
   input: ({ props }) => {
     const classes = [
       'form-select bpv-form-select-input',
-      !props.modelValue && 'bpv-form-select-input-placeholder',
+      [null, undefined].includes(props.modelValue) && 'bpv-form-select-input-placeholder',
       props.disabled && 'bpv-form-select-input-disabled'
     ];
 
