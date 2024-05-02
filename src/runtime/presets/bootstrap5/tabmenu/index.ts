@@ -17,8 +17,6 @@ export const tabmenuPT = <TabMenuPassThroughOptions>{
     return { class: classes };
   },
   menuitem: () => {
-    // console.log(rest);
-
     const classes = ['nav-item'];
 
     return { class: classes };
