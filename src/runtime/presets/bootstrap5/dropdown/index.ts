@@ -32,6 +32,7 @@ export const dropdownPT = <DropdownPassThroughOptions>{
   },
   blankIcon: { class: 'bpv-form-select-menu-item-icon bpv-form-select-menu-item-icon-blank' },
   checkIcon: { class: 'bpv-form-select-menu-item-icon bpv-form-select-menu-item-icon-check' },
+  clearIcon: { class: 'btn-close bpv-form-select-clear-icon' },
   itemLabel: () => {
     const classes = ['dropdown-item', 'bpv-form-select-menu-item-label'];
 

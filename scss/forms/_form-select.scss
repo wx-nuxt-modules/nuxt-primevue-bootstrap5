@@ -1,6 +1,13 @@
 @import "bootstrap/scss/mixins/gradients";
 
 .bpv-form-select {
+  --p-clear-icon-width: #{$form-select-clear-icon-width};
+  --p-clear-icon-height: #{$form-select-clear-icon-height};
+  --p-dropdown-icon-width: #{$form-select-dropdown-icon-width};
+  --p-dropdown-icon-height: #{$form-select-dropdown-icon-height};
+
+  position: relative;
+
   .bpv-form-select-input {
     cursor: pointer;
     background-image: none;
@@ -14,11 +21,40 @@
     height: 100%;
     display: flex;
     align-items: center;
+
+    > * {
+      width: var(--p-dropdown-icon-width);
+      height: var(--p-dropdown-icon-height);
+    }
+  }
+
+  .bpv-form-select-clear-icon {
+    width: var(--p-clear-icon-width);
+    height: var(--p-clear-icon-height);
+    padding: 0;
+    border-radius: 0;
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - var(--p-clear-icon-height) * 0.5);
+    right: calc(#{$form-select-padding-x * 2} + var(--p-dropdown-icon-width));
+
+    * {
+      display: none;
+    }
+  }
+
+  &:has(.bpv-form-select-clear-icon) {
+    .bpv-form-select-input {
+      padding-right: calc(#{$form-select-indicator-padding} + var(--p-dropdown-icon-width));
+    }
   }
 }
 
 .bpv-form-select-menu {
   --p-anchor-gutter: 2px;
+  --p-form-select-menu-zindex: $zindex-form-select-menu;
+
+  z-index: var(--p-form-select-menu-zindex, $zindex-dropdown) !important;
 
   &.bpv-form-select-menu-enter-from {
     opacity: 0;

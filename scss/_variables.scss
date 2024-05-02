@@ -27,7 +27,14 @@ $table-cell-padding-x-lg: .75rem !default;
 $tabview-body-padding-x: $accordion-body-padding-x !default;
 $tabview-body-padding-y: $accordion-body-padding-y !default;
 
-$overlaypanel-btn-close-position-top: var(--#{$prefix}popover-body-padding-y);
-$overlaypanel-btn-close-position-right: var(--#{$prefix}popover-body-padding-x);
-$overlaypanel-btn-close-position-bottom: auto;
-$overlaypanel-btn-close-position-left: auto;
+$overlaypanel-btn-close-position-top: var(--#{$prefix}popover-body-padding-y) !default;
+$overlaypanel-btn-close-position-right: var(--#{$prefix}popover-body-padding-x) !default;
+$overlaypanel-btn-close-position-bottom: auto !default;
+$overlaypanel-btn-close-position-left: auto !default;
+
+$zindex-form-select-menu: $zindex-dropdown !default;
+
+$form-select-clear-icon-width: $btn-close-width * 0.625 !default;
+$form-select-clear-icon-height: $btn-close-height * 0.625 !default;
+$form-select-dropdown-icon-width: $btn-close-width * 0.875 !default;
+$form-select-dropdown-icon-height: $btn-close-height * 0.875 !default;

@@ -58,7 +58,8 @@ const inputs = reactive({
   editable: '',
   grouping: '',
   template: '',
-  filter: ''
+  filter: '',
+  clearIcon: null
 });
 </script>
 
@@ -257,6 +258,28 @@ const inputs = reactive({
               </template>
             </BDropdown>
             <pre class="mb-0">value: {{ inputs.template }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Очищаемый</h2>
+    <p>
+      Когда пропс <code>showClear="true"</code>, появится кнопка для сброса значения
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BDropdown
+              v-model="inputs.clearIcon"
+              class="mb-3"
+              :options="cityLst"
+              option-label="text"
+              placeholder="Выберите город"
+              show-clear
+            />
+            <pre class="mb-0">value: {{ inputs.clearIcon === null ? 'null' : inputs.clearIcon }}</pre>
           </div>
         </div>
       </div>

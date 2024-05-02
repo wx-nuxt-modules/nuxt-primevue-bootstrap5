@@ -1,9 +1,9 @@
 .bpv-overlaypanel {
   --#{$prefix}popover-max-width: auto;
-  --#{$prefix}overlaypanel-position-top: var(--#{$prefix}popover-body-padding-y);
-  --#{$prefix}overlaypanel-position-right: var(--#{$prefix}popover-body-padding-y);
-  --#{$prefix}overlaypanel-position-bottom: auto;
-  --#{$prefix}overlaypanel-position-left: auto;
+  --p-overlaypanel-position-top: var(--#{$prefix}popover-body-padding-y);
+  --p-overlaypanel-position-right: var(--#{$prefix}popover-body-padding-y);
+  --p-overlaypanel-position-bottom: auto;
+  --p-overlaypanel-position-left: auto;
 
   margin-top: var(--#{$prefix}popover-arrow-height);
   z-index: $zindex-popover !important;
@@ -57,10 +57,10 @@
 
   .btn-close {
     position: absolute;
-    right: var(--#{$prefix}overlaypanel-position-right);
-    top: var(--#{$prefix}overlaypanel-position-top);
-    bottom: var(--#{$prefix}overlaypanel-position-bottom);
-    left: var(--#{$prefix}overlaypanel-position-left);
+    right: var(--p-overlaypanel-position-right);
+    top: var(--p-overlaypanel-position-top);
+    bottom: var(--p-overlaypanel-position-bottom);
+    left: var(--p-overlaypanel-position-left);
 
     &:focus {
       box-shadow: none;
