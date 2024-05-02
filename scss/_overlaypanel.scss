@@ -1,5 +1,9 @@
 .bpv-overlaypanel {
   --#{$prefix}popover-max-width: auto;
+  --#{$prefix}overlaypanel-position-top: var(--#{$prefix}popover-body-padding-y);
+  --#{$prefix}overlaypanel-position-right: var(--#{$prefix}popover-body-padding-y);
+  --#{$prefix}overlaypanel-position-bottom: auto;
+  --#{$prefix}overlaypanel-position-left: auto;
 
   margin-top: var(--#{$prefix}popover-arrow-height);
   z-index: $zindex-popover !important;
@@ -49,5 +53,18 @@
 
   &.bpv-overlaypanel-enter-from, &.bpv-overlaypanel-leave-to {
     opacity: 0;
+  }
+
+  .btn-close {
+    position: absolute;
+    right: var(--#{$prefix}overlaypanel-position-right);
+    top: var(--#{$prefix}overlaypanel-position-top);
+    bottom: var(--#{$prefix}overlaypanel-position-bottom);
+    left: var(--#{$prefix}overlaypanel-position-left);
+
+    &:focus {
+      box-shadow: none;
+      opacity: var(--#{$prefix}btn-close-opacity);
+    }
   }
 }
