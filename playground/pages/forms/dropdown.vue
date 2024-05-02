@@ -284,5 +284,24 @@ const inputs = reactive({
         </div>
       </div>
     </div>
+
+    <h2>Выключенный</h2>
+    <p>
+      Когда пропс <code>disabled="true"</code>, элемент нельзя редактировать и установить фокус.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BDropdown
+              :options="cityLst"
+              option-label="text"
+              placeholder="Выберите город"
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

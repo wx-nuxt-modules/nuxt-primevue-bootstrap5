@@ -15,6 +15,23 @@
     &.bpv-form-select-input-placeholder {
       color: $input-placeholder-color;
     }
+
+    &.bpv-form-select-input-disabled {
+      border-color: $form-select-disabled-border-color;
+      background-color: $form-select-disabled-bg;
+      color: $form-select-disabled-color;
+
+      &:focus {
+        border-color: var(--#{$prefix}border-color);
+
+        @if $enable-shadows {
+          @include box-shadow(none);
+        } @else {
+          // Avoid using mixin so we can pass custom focus shadow properly
+          box-shadow: none;
+        }
+      }
+    }
   }
 
   .bpv-form-select-trigger {

@@ -12,7 +12,11 @@ export const sharedDropdownPT = {
 export const dropdownPT = <DropdownPassThroughOptions>{
   root: sharedDropdownPT.root,
   input: ({ props }) => {
-    const classes = ['form-select bpv-form-select-input', !props.modelValue && 'bpv-form-select-input-placeholder'];
+    const classes = [
+      'form-select bpv-form-select-input',
+      !props.modelValue && 'bpv-form-select-input-placeholder',
+      props.disabled && 'bpv-form-select-input-disabled'
+    ];
 
     return { class: classes };
   },
