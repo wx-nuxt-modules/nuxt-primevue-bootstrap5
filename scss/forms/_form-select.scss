@@ -11,6 +11,10 @@
   .bpv-form-select-input {
     cursor: pointer;
     background-image: none;
+
+    &.bpv-form-select-input-placeholder {
+      color: $input-placeholder-color;
+    }
   }
 
   .bpv-form-select-trigger {

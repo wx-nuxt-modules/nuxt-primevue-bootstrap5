@@ -55,7 +55,7 @@
     opacity: 0;
   }
 
-  .btn-close {
+  > .btn-close {
     position: absolute;
     right: var(--p-overlaypanel-position-right);
     top: var(--p-overlaypanel-position-top);
