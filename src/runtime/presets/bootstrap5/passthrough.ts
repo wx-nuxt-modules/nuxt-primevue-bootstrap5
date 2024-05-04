@@ -23,6 +23,7 @@ import { tabpanelPT } from './tabpanel';
 import { tabviewPT } from './tabview';
 import { multiselectPT } from './multiselect';
 import { checkboxPT } from './checkbox';
+import { calendarPT } from './calendar';
 
 export default {
   button: buttonPT,
@@ -50,6 +51,7 @@ export default {
   tabview: tabviewPT,
   multiselect: multiselectPT,
   checkbox: checkboxPT,
+  calendar: calendarPT,
   directives: {
     badge: badgeDirectivePT
   }

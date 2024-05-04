@@ -1,0 +1,55 @@
+.bpv-calendar {
+  display: block;
+}
+
+.bpv-calendar-panel {
+  --p-anchor-gutter: var(--#{$prefix}popover-arrow-height);
+
+  &.bpv-calendar-enter-from, &.bpv-calendar-leave-to {
+    opacity: 0;
+  }
+
+  .bpv-calendar-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: $table-cell-padding-y;
+    border-bottom: $table-border-width solid $table-border-color;
+  }
+
+  .bpv-calendar-panel-table {
+    margin-bottom: 0;
+
+    thead {
+      th, td {
+        text-align: center;
+      }
+    }
+
+    .bpv-calendar-panel-table-cell {
+      padding: 0;
+    }
+  }
+
+  .bpv-calendar-panel-label {
+    padding: $table-cell-padding-y $table-cell-padding-x;
+    display: flex;
+    justify-content: center;
+
+    &.disabled {
+      --#{$prefix}btn-disabled-color: var(--#{$prefix}secondary);
+      border: none;
+    }
+  }
+
+  .bpv-calendar-panel-monthpicker, .bpv-calendar-panel-yearpicker {
+    padding-left: $popover-body-padding-x;
+    padding-right: $popover-body-padding-x;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -$table-cell-padding-y;
+
+    .bpv-calendar-panel-label {
+    }
+  }
+}
