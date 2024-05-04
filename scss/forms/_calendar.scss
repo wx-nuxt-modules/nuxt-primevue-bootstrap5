@@ -4,6 +4,9 @@
 
 .bpv-calendar-panel {
   --p-anchor-gutter: var(--#{$prefix}popover-arrow-height);
+  --p-calendar-panel-zindex: $zindex-calendar-panel;
+
+  z-index: var(--p-calendar-panel-zindex, $zindex-popover) !important;
 
   &.bpv-calendar-enter-from, &.bpv-calendar-leave-to {
     opacity: 0;
