@@ -2,7 +2,7 @@ import { MultiSelectProps, MultiSelectSlots, MultiSelectEmits } from 'primevue/m
 import { ClassComponent } from 'primevue/ts-helpers';
 
 export interface BPVMultiSelectProps extends MultiSelectProps {
-  maxSelectedLabels?: number | string;
+  maxSelectedLabels?: number;
   selectedItemsLabel?: string;
 }
 
