@@ -178,3 +178,27 @@
     }
   }
 }
+
+.bpv-form-multiselect-menu {
+  .bpv-form-multiselect-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+
+    .btn-close {
+      padding: 0;
+    }
+  }
+
+  .bpv-form-multiselect-menu-item {
+    display: flex;
+    align-items: center;
+    padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+    cursor: pointer;
+
+    .bpv-form-multiselect-menu-item-option {
+      padding-left: $form-check-padding-start - $form-check-input-width;
+    }
+  }
+}

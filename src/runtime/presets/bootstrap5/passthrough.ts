@@ -21,6 +21,8 @@ import { sidebarPT } from './sidebar';
 import { tabmenuPT } from './tabmenu';
 import { tabpanelPT } from './tabpanel';
 import { tabviewPT } from './tabview';
+import { multiselectPT } from './multiselect';
+import { checkboxPT } from './checkbox';
 
 export default {
   button: buttonPT,
@@ -46,6 +48,8 @@ export default {
   tabmenu: tabmenuPT,
   tabpanel: tabpanelPT,
   tabview: tabviewPT,
+  multiselect: multiselectPT,
+  checkbox: checkboxPT,
   directives: {
     badge: badgeDirectivePT
   }

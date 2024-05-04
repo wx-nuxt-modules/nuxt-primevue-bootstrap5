@@ -6,19 +6,22 @@ export const sharedDropdownPT = {
     const classes = ['dropdown bpv-form-select'];
 
     return { class: classes };
+  },
+  input: ({ isPlaceholder, isDisabled }: { isPlaceholder?: boolean; isDisabled?: boolean }) => {
+    const classes = [
+      'form-select bpv-form-select-input',
+      isPlaceholder && 'bpv-form-select-input-placeholder',
+      isDisabled && 'bpv-form-select-input-disabled'
+    ];
+
+    return { class: classes };
   }
 };
 
 export const dropdownPT = <DropdownPassThroughOptions>{
   root: sharedDropdownPT.root,
   input: ({ props }) => {
-    const classes = [
-      'form-select bpv-form-select-input',
-      [null, undefined].includes(props.modelValue) && 'bpv-form-select-input-placeholder',
-      props.disabled && 'bpv-form-select-input-disabled'
-    ];
-
-    return { class: classes };
+    return sharedDropdownPT.input({ isPlaceholder: props.modelValue === undefined, isDisabled: props.disabled });
   },
   trigger: { class: 'bpv-form-select-trigger' },
   panel: { class: 'dropdown-menu show bpv-form-select-menu' },

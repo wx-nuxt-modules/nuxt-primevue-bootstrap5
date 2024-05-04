@@ -36,7 +36,9 @@ const menu = reactive<MenuItem[]>([
     items: [
       { title: 'Базовое поле', to: '/forms/inputtext' },
       { title: 'Числовое поле', to: '/forms/inputnumber' },
-      { title: 'Выпадающий список', to: '/forms/dropdown' }
+      { title: 'Чекбокс', to: '/forms/checkbox' },
+      { title: 'Выпадающий список', to: '/forms/dropdown' },
+      { title: 'Выпадающий список (множественный выбор)', to: '/forms/multiselect' }
     ]
   }
 ]);
