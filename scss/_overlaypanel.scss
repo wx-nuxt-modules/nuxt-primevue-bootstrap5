@@ -13,7 +13,7 @@
     border-color: transparent;
     border-style: solid;
     position: absolute;
-    left: calc(var(--overlayArrowLeft, 0) + 1.25rem);
+    left: var(--overlayArrowLeft, 0);
   }
 
   &:not([data-p-overlaypanel-flipped]) {
