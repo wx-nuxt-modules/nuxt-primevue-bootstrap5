@@ -86,7 +86,7 @@ const {
 });
 
 function toPrice(val: number | string) {
-  return Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(val);
+  return Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(+val);
 }
 
 function getBadgeSeverity(data) {
@@ -117,7 +117,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
     <h1 class="bd-title mb-0" id="content">Таблицы с данными</h1>
   </div>
 
-  <div class="bd-content ps-lg-2">
+  <div v-if="!products1Pending && !products2Pending && !products3Pending" class="bd-content ps-lg-2">
     <h2>Базовый</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
@@ -146,7 +146,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
           <template #header>
             <div class="d-flex justify-content-between">
               <div class="h3 mb-0">Товары</div>
-              <BButton severity="success" icon="pi pi-refresh" rounded size="sm" @click="products1Refresh" />
+              <BButton severity="success" icon="pi pi-refresh" rounded size="sm" @click="products1Refresh()" />
             </div>
           </template>
 
@@ -240,7 +240,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
           <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
 
           <template #paginatorstart>
-            <BButton severity="primary" type="button" icon="pi pi-refresh" text @click="products2Refresh" />
+            <BButton severity="primary" type="button" icon="pi pi-refresh" text @click="products2Refresh()" />
           </template>
 
           <template #paginatorend>
@@ -290,7 +290,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable
-          :value="(products3 || {}).products"
+          :value="products3.products"
           :loading="products3Pending"
           paginator
           v-model:rows="lazyPageSize"
@@ -304,5 +304,22 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
         </BDataTable>
       </div>
     </div>
+
+    <h2>Изменение размера колонок</h2>
+
+    <h3>Fit Mode</h3>
+    <p>
+      Размер столбцов можно изменить перетаскиванием, если включен пропс <code>resizableColumns</code>. Режим изменения
+      размера по умолчанию <code>fit</code>. Данный режим изменяет размер столбцов, но не превышает размер таблицы
+    </p>
+    <BDataTable
+      :value="products1.products"
+      :loading="products1Pending"
+      resizable-columns
+      column-resize-mode="fit"
+      show-gridlines
+    >
+      <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
+    </BDataTable>
   </div>
 </template>

@@ -23,6 +23,9 @@ $offcanvas-layout-padding-y: $offcanvas-padding-y !default;
 
 $table-cell-padding-y-lg: .75rem !default;
 $table-cell-padding-x-lg: .75rem !default;
+$table-column-resizer-width: 6px !default;
+$table-resize-helper-width: $table-border-width;
+$table-resize-helper-color: var(--#{$prefix}secondary);
 
 $tabview-body-padding-x: $accordion-body-padding-x !default;
 $tabview-body-padding-y: $accordion-body-padding-y !default;
@@ -32,13 +35,13 @@ $overlaypanel-btn-close-position-right: var(--#{$prefix}popover-body-padding-x) 
 $overlaypanel-btn-close-position-bottom: auto !default;
 $overlaypanel-btn-close-position-left: auto !default;
 
-$zindex-form-select-menu: $zindex-dropdown !default;
-
 $form-select-clear-icon-width: $btn-close-width * 0.625 !default;
 $form-select-clear-icon-height: $btn-close-height * 0.625 !default;
 $form-select-dropdown-icon-width: $btn-close-width * 0.875 !default;
 $form-select-dropdown-icon-height: $btn-close-height * 0.875 !default;
 
-$zindex-calendar-panel: $zindex-popover !default;
-
 $calendar-panel-min-width: 210px !default;
+
+$zindex-table-resize-helper: 20 !default;
+$zindex-form-select-menu: $zindex-dropdown !default;
+$zindex-calendar-panel: $zindex-popover !default;

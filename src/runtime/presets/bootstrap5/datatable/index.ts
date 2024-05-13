@@ -1,18 +1,19 @@
-import type { DataTablePassThroughOptions } from 'primevue/datatable';
+import type { DataTablePassThroughOptions, DataTablePassThroughMethodOptions } from 'primevue/datatable';
 import type { BPVDataTableProps } from './types';
 import { paginatorPT } from '../paginator';
 import { inArrayValidator } from '../../../utils/validators';
 import { BPV_TABLE_SIZE } from '../../../constants';
 
 export const datatablePT = <DataTablePassThroughOptions>{
-  root: ({ props }: { props: BPVDataTableProps }) => {
+  root: ({ props }: DataTablePassThroughMethodOptions & { props: BPVDataTableProps }) => {
     const size = inArrayValidator(props.size, BPV_TABLE_SIZE, 'md');
 
     const classes = [
       'bpv-datatable',
       `bpv-datatable-${size}`,
       props.showGridlines && `bpv-datatable-bordered`,
-      props.stripedRows && `bpv-datatable-stripped`
+      props.stripedRows && `bpv-datatable-stripped`,
+      props.resizableColumns && 'bpv-datatable-resizable'
     ];
 
     return { class: classes };
@@ -44,6 +45,11 @@ export const datatablePT = <DataTablePassThroughOptions>{
   },
   loadingIcon: () => {
     const classes = ['bpv-datatable-loading-icon'];
+
+    return { class: classes };
+  },
+  resizeHelper: (...args) => {
+    const classes = ['bpv-datatable-resize-helper'];
 
     return { class: classes };
   },

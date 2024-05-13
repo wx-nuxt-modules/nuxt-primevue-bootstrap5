@@ -12,9 +12,25 @@
     }
   }
 
+  &.bpv-table-column-resizable {
+    &:not(.bpv-table-column-frozen) {
+      background-clip: padding-box;
+      position: relative;
+    }
+  }
+
   .bpv-table-column-sort {
     margin-left: $table-cell-padding-x;
     color: $table-caption-color;
+  }
+
+  .bpv-table-column-resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: $table-column-resizer-width;
+    cursor: col-resize;
   }
 }
 
