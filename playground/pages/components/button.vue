@@ -201,11 +201,11 @@ const emulateLoad = async () => {
     <h2>Группа кнопок</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <BButtonGroup>
           <BButton label="Save" icon="pi pi-check" severity="primary" />
           <BButton label="Delete" icon="pi pi-trash" severity="primary" />
           <BButton label="Cancel" icon="pi pi-times" severity="primary" />
-        </div>
+        </BButtonGroup>
       </div>
     </div>
 
