@@ -21,10 +21,7 @@ export const inputNumberPT = <InputNumberPassThroughOptions>{
         class: createRootClasses({
           variant: props.variant,
           state: parent.attrs.state
-        }),
-
-        // Need for correct working float labels
-        placeholder: ''
+        })
       };
     }
   }
