@@ -74,9 +74,6 @@
 
 .bpv-form-select-menu {
   --p-anchor-gutter: 2px;
-  --p-form-select-menu-zindex: $zindex-form-select-menu;
-
-  z-index: var(--p-form-select-menu-zindex, $zindex-dropdown) !important;
 
   &.bpv-form-select-menu-enter-from {
     opacity: 0;

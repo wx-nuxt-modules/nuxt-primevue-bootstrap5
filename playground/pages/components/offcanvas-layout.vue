@@ -151,8 +151,3 @@ const items = reactive({
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.bpv-offcanvas-layout-aside {
-}
-</style>

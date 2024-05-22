@@ -6,7 +6,6 @@
   --p-overlaypanel-position-left: auto;
 
   margin-top: var(--#{$prefix}popover-arrow-height);
-  z-index: $zindex-popover !important;
 
   &::before, &::after {
     content: '';
