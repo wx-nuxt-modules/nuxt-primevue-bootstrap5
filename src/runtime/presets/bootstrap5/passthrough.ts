@@ -25,6 +25,7 @@ import { multiselectPT } from './multiselect';
 import { checkboxPT } from './checkbox';
 import { calendarPT } from './calendar';
 import { buttongroupPT } from './buttongroup';
+import { textareaPT } from './textarea';
 
 export default {
   button: buttonPT,
@@ -54,6 +55,7 @@ export default {
   checkbox: checkboxPT,
   calendar: calendarPT,
   buttongroup: buttongroupPT,
+  textarea: textareaPT,
   directives: {
     badge: badgeDirectivePT
   }
