@@ -26,6 +26,7 @@ import { checkboxPT } from './checkbox';
 import { calendarPT } from './calendar';
 import { buttongroupPT } from './buttongroup';
 import { textareaPT } from './textarea';
+import { selectbuttonPT } from './selectbutton';
 
 export default {
   button: buttonPT,
@@ -56,6 +57,7 @@ export default {
   calendar: calendarPT,
   buttongroup: buttongroupPT,
   textarea: textareaPT,
+  selectbutton: selectbuttonPT,
   directives: {
     badge: badgeDirectivePT
   }

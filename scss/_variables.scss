@@ -45,3 +45,10 @@ $calendar-panel-min-width: 210px !default;
 $zindex-table-resize-helper: 20 !default;
 $zindex-form-select-menu: $zindex-dropdown !default;
 $zindex-calendar-panel: $zindex-popover !default;
+
+$selectbutton-group-padding-x: $input-btn-padding-x !default;
+$selectbutton-group-padding-y: $input-btn-padding-y !default;
+$selectbutton-bg-color: var(--#{$prefix}light) !default;
+$selectbutton-border-color: var(--#{$prefix}light) !default;
+$selectbutton-btn-bg-color: $primary !default;
+$selectbutton-btn-border-color: $primary !default;

@@ -1,0 +1,22 @@
+.bpv-selectbutton {
+  padding: $selectbutton-group-padding-y $selectbutton-group-padding-x;
+  background-color: $selectbutton-bg-color;
+  border-color: $selectbutton-border-color;
+
+  > .btn {
+    --#{$prefix}btn-active-border-color: #{$selectbutton-btn-border-color};
+
+    &.active {
+      @include button-variant(
+        $selectbutton-btn-bg-color,
+        $selectbutton-btn-border-color,
+        $active-background: $selectbutton-btn-bg-color,
+        $active-border: $selectbutton-btn-border-color
+      );
+    }
+
+    &:not(:last-child):not(.dropdown-toggle), &:not(:first-child) {
+      @include border-radius(var(--#{$prefix}btn-border-radius));
+    }
+  }
+}
