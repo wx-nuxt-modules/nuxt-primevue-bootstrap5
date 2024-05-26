@@ -5,6 +5,7 @@ import {
   BPV_FORM_STATE,
   BPV_OFFCANVAS_LAYOUT_SIZE,
   BPV_TABLE_SIZE,
+  BPV_DROPDOWN_SIZE,
   BPV_PAGINATOR_ALIGNMENT,
   BPV_SIDEBAR_POSITION
 } from '../constants';
@@ -17,3 +18,4 @@ export type BPVOffcanvasSize = (typeof BPV_OFFCANVAS_LAYOUT_SIZE)[number];
 export type BPVTableSize = (typeof BPV_TABLE_SIZE)[number];
 export type BPVPaginatorAlignment = (typeof BPV_PAGINATOR_ALIGNMENT)[number];
 export type BPVSidebarPosition = (typeof BPV_SIDEBAR_POSITION)[number];
+export type BPVDropdownSize = (typeof BPV_DROPDOWN_SIZE)[number];

@@ -33,6 +33,16 @@
         }
       }
     }
+
+    &.bpv-form-select-input-sm {
+      padding: $form-select-input-padding-y-sm $form-select-input-indicator-padding-sm $form-select-input-padding-y-sm $form-select-input-padding-x-sm;
+      font-size: $form-select-input-font-size-sm;
+    }
+
+    &.bpv-form-select-input-lg {
+      padding: $form-select-input-padding-y-lg $form-select-input-indicator-padding-lg $form-select-input-padding-y-lg $form-select-input-padding-x-lg;
+      font-size: $form-select-input-font-size-lg;
+    }
   }
 
   .bpv-form-select-trigger {
@@ -172,6 +182,18 @@
           }
         }
       }
+    }
+  }
+
+  &.bpv-form-select-menu-sm {
+    .bpv-form-select-menu-item-label {
+      font-size: $form-select-menu-label-font-size-sm;
+    }
+  }
+
+  &.bpv-form-select-menu-lg {
+    .bpv-form-select-menu-item-label {
+      font-size: $form-select-menu-label-font-size-lg;
     }
   }
 }

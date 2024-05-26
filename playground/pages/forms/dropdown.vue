@@ -54,6 +54,7 @@ const countryLst = shallowReactive([
 
 const inputs = reactive({
   basic: ['', ''],
+  sizing: ['', '', ''],
   checkmark: '',
   editable: '',
   grouping: '',
@@ -112,6 +113,48 @@ const inputs = reactive({
               placeholder="С optionValue"
             />
             <pre class="mb-0">value: {{ inputs.basic[1] }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Размеры поля</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <label class="form-label">Размер - lg</label>
+            <BDropdown
+              class="mb-3"
+              v-model="inputs.sizing[0]"
+              :options="cityLst"
+              optionLabel="text"
+              size="lg"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[0] }}</pre>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Размер - md (по умолчанию)</label>
+            <BDropdown
+              class="mb-3"
+              v-model="inputs.sizing[1]"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[1] }}</pre>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Размер - sm</label>
+            <BDropdown
+              class="mb-3"
+              v-model="inputs.sizing[2]"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              size="sm"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[2] }}</pre>
           </div>
         </div>
       </div>

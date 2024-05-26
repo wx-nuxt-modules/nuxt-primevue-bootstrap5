@@ -39,6 +39,16 @@ $form-select-clear-icon-width: $btn-close-width * 0.625 !default;
 $form-select-clear-icon-height: $btn-close-height * 0.625 !default;
 $form-select-dropdown-icon-width: $btn-close-width * 0.875 !default;
 $form-select-dropdown-icon-height: $btn-close-height * 0.875 !default;
+$form-select-input-padding-x-sm: $input-padding-x-sm !default;
+$form-select-input-padding-y-sm: $input-padding-y-sm !default;
+$form-select-input-indicator-padding-sm: $form-select-input-padding-x-sm * 3 !default;
+$form-select-input-font-size-sm: $input-font-size-sm !default;
+$form-select-input-padding-x-lg: $input-padding-x-lg !default;
+$form-select-input-padding-y-lg: $input-padding-y-lg !default;
+$form-select-input-indicator-padding-lg: $form-select-input-padding-x-lg * 3 !default;
+$form-select-input-font-size-lg: $input-font-size-lg !default;
+$form-select-menu-label-font-size-sm: $form-select-input-font-size-sm !default;
+$form-select-menu-label-font-size-lg: $form-select-input-font-size-lg !default;
 
 $calendar-panel-min-width: 210px !default;
 
