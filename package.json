@@ -52,7 +52,8 @@
     "@types/node": "^18.15.3",
     "sass": "^1.71.1",
     "@faker-js/faker": "^8.4.1",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "rc9": "^2.1.1"
   },
   "packageManager": "pnpm@8.15.4"
 }
