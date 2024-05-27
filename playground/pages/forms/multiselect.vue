@@ -9,6 +9,7 @@ const cityLst = shallowReactive([
 
 const inputs = reactive({
   basic: [undefined, undefined],
+  sizing: [undefined, undefined, undefined],
   maxSelectedLabels: undefined
 });
 </script>
@@ -67,6 +68,52 @@ const inputs = reactive({
       </div>
     </div>
 
+    <h2>Размеры поля</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <label class="form-label">Размер - lg</label>
+            <BMultiSelect
+              class="mb-3"
+              v-model="inputs.sizing[0]"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              size="lg"
+              placeholder="lg"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[0] }}</pre>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Размер - md (по умолчанию)</label>
+            <BMultiSelect
+              class="mb-3"
+              v-model="inputs.sizing[1]"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              placeholder="md (default)"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[1] }}</pre>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Размер - sm</label>
+            <BMultiSelect
+              class="mb-3"
+              v-model="inputs.sizing[2]"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              placeholder="sm"
+              size="sm"
+            />
+            <pre class="mb-0">value: {{ inputs.sizing[2] }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h2>Прятать под label много значений</h2>
     <p>
       C помощью пропса <code>maxSelectedLabels</code> можно выбрать через сколько выбранных значений нужно прятать под
@@ -84,7 +131,7 @@ const inputs = reactive({
               option-label="text"
               option-value="value"
               placeholder="Выберите значения"
-              max-selected-labels="2"
+              :max-selected-labels="2"
               selected-items-label="{0} выбрано"
             />
             <pre class="mb-0">value: {{ inputs.maxSelectedLabels }}</pre>

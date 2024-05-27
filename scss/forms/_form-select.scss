@@ -1,5 +1,7 @@
 @import "bootstrap/scss/mixins/gradients";
 
+$sizes: ('sm', 'lg');
+
 .bpv-form-select {
   --p-clear-icon-width: #{$form-select-clear-icon-width};
   --p-clear-icon-height: #{$form-select-clear-icon-height};
@@ -34,14 +36,16 @@
       }
     }
 
-    &.bpv-form-select-input-sm {
-      padding: $form-select-input-padding-y-sm $form-select-input-indicator-padding-sm $form-select-input-padding-y-sm $form-select-input-padding-x-sm;
-      font-size: $form-select-input-font-size-sm;
-    }
-
-    &.bpv-form-select-input-lg {
-      padding: $form-select-input-padding-y-lg $form-select-input-indicator-padding-lg $form-select-input-padding-y-lg $form-select-input-padding-x-lg;
-      font-size: $form-select-input-font-size-lg;
+    @each $size in $sizes {
+      &.bpv-form-select-input-#{$size} {
+        @if ($size == 'sm') {
+          padding: $form-select-input-padding-y-sm $form-select-input-indicator-padding-sm $form-select-input-padding-y-sm $form-select-input-padding-x-sm;
+          font-size: $form-select-input-font-size-sm;
+        } @else if ($size == 'lg') {
+          padding: $form-select-input-padding-y-lg $form-select-input-indicator-padding-lg $form-select-input-padding-y-lg $form-select-input-padding-x-lg;
+          font-size: $form-select-input-font-size-lg;
+        }
+      }
     }
   }
 
@@ -185,15 +189,15 @@
     }
   }
 
-  &.bpv-form-select-menu-sm {
-    .bpv-form-select-menu-item-label {
-      font-size: $form-select-menu-label-font-size-sm;
-    }
-  }
-
-  &.bpv-form-select-menu-lg {
-    .bpv-form-select-menu-item-label {
-      font-size: $form-select-menu-label-font-size-lg;
+  @each $size in $sizes {
+    &.bpv-form-select-menu-#{$size} {
+      .bpv-form-select-menu-item {
+        @if ($size == 'sm') {
+          font-size: $form-select-menu-label-font-size-sm;
+        } @else if ($size == 'lg') {
+          font-size: $form-select-menu-label-font-size-lg;
+        }
+      }
     }
   }
 }
@@ -218,6 +222,18 @@
 
     .bpv-form-multiselect-menu-item-option {
       padding-left: $form-check-padding-start - $form-check-input-width;
+    }
+  }
+
+  @each $size in $sizes {
+    &.bpv-form-select-menu-#{$size} {
+      .bpv-form-multiselect-menu-header {
+        @if ($size == 'sm') {
+          font-size: $form-select-menu-label-font-size-sm;
+        } @else if ($size == 'lg') {
+          font-size: $form-select-menu-label-font-size-lg;
+        }
+      }
     }
   }
 }

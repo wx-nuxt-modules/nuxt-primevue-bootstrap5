@@ -1,6 +1,6 @@
 import type { MultiSelectPassThroughOptions } from 'primevue/multiselect';
 
-import { isPlainObject, isArray } from '@windx-foobar/shared';
+import { isArray } from '@windx-foobar/shared';
 import { dropdownPT, sharedDropdownPT } from '../dropdown';
 
 export const multiselectPT = <MultiSelectPassThroughOptions>{
@@ -9,7 +9,7 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
 
     return { ...base, class: [base.class, 'bpv-form-multiselect'] };
   },
-  label: ({ props }) => {
+  label: ({ props, attrs }) => {
     let isPlaceholder;
     if (isArray(props.modelValue)) {
       isPlaceholder = !props.modelValue.length;
@@ -17,11 +17,11 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
       isPlaceholder = props.modelValue === undefined;
     }
 
-    return sharedDropdownPT.input({ isDisabled: props.disabled, isPlaceholder });
+    return sharedDropdownPT.input({ isDisabled: props.disabled, isPlaceholder, size: attrs.size });
   },
   trigger: dropdownPT.trigger,
-  panel: (ctx) => {
-    const base = isPlainObject(dropdownPT.panel) ? dropdownPT.panel : { class: '' };
+  panel: ({ attrs }) => {
+    const base = sharedDropdownPT.panel({ size: attrs.size });
 
     return { ...base, class: [base.class, 'bpv-form-multiselect-menu'] };
   },
