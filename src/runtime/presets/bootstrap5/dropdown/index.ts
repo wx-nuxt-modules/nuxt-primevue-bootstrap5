@@ -29,6 +29,13 @@ export const sharedDropdownPT = {
     ];
 
     return { class: classes };
+  },
+  panel: ({ size }: { size?: BPVDropdownProps['size'] }) => {
+    const currentSize = inArrayValidator(size, BPV_DROPDOWN_SIZE, 'md');
+
+    const classes = ['dropdown-menu show bpv-form-select-menu', `bpv-form-select-menu-${currentSize}`];
+
+    return { class: classes };
   }
 };
 
@@ -43,11 +50,7 @@ export const dropdownPT = <DropdownPassThroughOptions>{
   },
   trigger: { class: 'bpv-form-select-trigger' },
   panel: ({ props, attrs }: any) => {
-    const currentSize = inArrayValidator(attrs.size, BPV_DROPDOWN_SIZE, 'md');
-
-    const classes = ['dropdown-menu show bpv-form-select-menu', `bpv-form-select-menu-${currentSize}`];
-
-    return { class: classes };
+    return sharedDropdownPT.panel({ size: attrs.size });
   },
   wrapper: { class: 'bpv-form-select-menu-wrapper-list' },
   list: { class: 'bpv-form-select-menu-list' },
