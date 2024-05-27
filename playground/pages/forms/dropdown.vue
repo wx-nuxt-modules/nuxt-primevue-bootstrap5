@@ -53,13 +53,13 @@ const countryLst = shallowReactive([
 ]);
 
 const inputs = reactive({
-  basic: ['', ''],
-  sizing: ['', '', ''],
-  checkmark: '',
-  editable: '',
-  grouping: '',
-  template: '',
-  filter: '',
+  basic: [undefined, undefined],
+  sizing: [undefined, undefined, undefined],
+  checkmark: undefined,
+  editable: undefined,
+  grouping: undefined,
+  template: undefined,
+  filter: undefined,
   clearIcon: null
 });
 </script>
@@ -128,8 +128,10 @@ const inputs = reactive({
               class="mb-3"
               v-model="inputs.sizing[0]"
               :options="cityLst"
-              optionLabel="text"
+              option-label="text"
+              option-value="value"
               size="lg"
+              placeholder="lg"
             />
             <pre class="mb-0">value: {{ inputs.sizing[0] }}</pre>
           </div>
@@ -141,6 +143,7 @@ const inputs = reactive({
               :options="cityLst"
               option-label="text"
               option-value="value"
+              placeholder="md (default)"
             />
             <pre class="mb-0">value: {{ inputs.sizing[1] }}</pre>
           </div>
@@ -153,6 +156,7 @@ const inputs = reactive({
               option-label="text"
               option-value="value"
               size="sm"
+              placeholder="sm"
             />
             <pre class="mb-0">value: {{ inputs.sizing[2] }}</pre>
           </div>
