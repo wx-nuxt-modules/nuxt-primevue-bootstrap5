@@ -16,7 +16,8 @@ export const columnPT = <ColumnPassThroughOptions>{
       'bpv-table-column bpv-table-column-header',
       column.props && column.props.sortable && 'bpv-table-column-sortable',
       column.context && column.context.sorted && 'bpv-table-column-sorted',
-      isResiableColumns && 'bpv-table-column-resizable'
+      isResiableColumns && 'bpv-table-column-resizable',
+      column.props && [true, ''].includes(column.props.frozen) && 'bpv-table-column-frozen'
     ];
 
     return { class: classes };
