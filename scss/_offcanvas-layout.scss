@@ -67,6 +67,11 @@
       width: var(--#{$prefix}offcanvas-width-lg);
       transition: padding-left .2s ease-in-out;
 
+      &:has(.bpv-menu) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
       .bpv-panelmenu {
         &, .bpv-menu {
           --#{$prefix}list-group-bg: var(--#{$prefix}offcanvas-bg);
@@ -83,6 +88,9 @@
         }
 
         .bpv-menu-item {
+          padding-left: calc(var(--#{$prefix}offcanvas-padding-x) - calc(var(--#{$prefix}offcanvas-padding-x) * 0.2));
+          padding-right: var(--#{$prefix}offcanvas-padding-x);
+
           .bpv-menu-item-action {
             border-radius: 0;
             padding-right: 0;
@@ -116,9 +124,20 @@
           }
         }
 
+        .bpv-menu-separator {
+          margin-bottom: var(--#{$prefix}list-group-item-padding-y);
+          border-top-width: $offcanvas-layout-menu-separator-width;
+          border-color: $offcanvas-layout-menu-separator-color;
+        }
+
         .bpv-menu {
           transition: $transition-base;
           padding-left: calc(var(--#{$prefix}offcanvas-padding-x) * 0.75);
+
+          .bpv-menu-item {
+            padding-left: 0;
+            padding-right: 0;
+          }
         }
       }
     }
@@ -139,10 +158,6 @@
   &.bpv-offcanvas-layout-sm {
     .bpv-offcanvas-layout-aside {
       width: var(--#{$prefix}offcanvas-width-sm);
-
-      .offcanvas-body {
-        padding-left: calc(var(--#{$prefix}offcanvas-padding-x) - calc(var(--#{$prefix}offcanvas-padding-x) * 0.2));
-      }
 
       .bpv-panelmenu {
         .bpv-menu-item {
