@@ -12,6 +12,9 @@ $card-subtitle-color: map-get($theme-colors, secondary) !default;
 
 $input-filled-bg: var(--#{$prefix}light) !default;
 
+$menu-separator-width: $border-width !default;
+$menu-separator-color: $list-group-action-color !default;
+
 $offcanvas-layout-width-sm: $offcanvas-horizontal-width * 0.5 !default;
 $offcanvas-layout-width-lg: $offcanvas-horizontal-width !default;
 $offcanvas-layout-border-width: $offcanvas-border-width !default;

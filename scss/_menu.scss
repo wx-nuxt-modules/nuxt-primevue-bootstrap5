@@ -56,8 +56,9 @@
 
   .bpv-menu-separator {
     padding: 0;
-    border-top-width: 1px;
+    border-top-width: $menu-separator-width;
     border-bottom-width: 0;
+    border-color: $menu-separator-color;
   }
 
   &.bpv-menu-submenu {
