@@ -2,7 +2,9 @@
 const inputs = reactive({
   basic: undefined,
   format: undefined,
-  range: undefined
+  range: undefined,
+  inline: undefined,
+  inline2: undefined
 });
 
 /**
@@ -99,6 +101,39 @@ usePrimeVue().config.locale.monthNamesShort = dateForLocale('ru-RU', { month: 's
           <div class="col-6">
             <BCalendar class="mb-3" v-model="inputs.range" selection-mode="range" :manual-input="false" />
             <pre class="mb-0">value: {{ inputs.range }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Inline</h2>
+    <p>Calendar is used a controlled input component with <code>v-model</code> property.</p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BCalendar class="mb-3" v-model="inputs.inline" selection-mode="range" inline />
+            <pre class="mb-0">value: {{ inputs.inline }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Inline (parallel two view)</h2>
+    <div class="bd-callout bd-callout-danger">VERY VERY VERY RAW</div>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <BCalendar
+              class="mb-3"
+              v-model="inputs.inline2"
+              selection-mode="range"
+              :number-of-months="2"
+              inline
+              disable-sync
+            />
+            <pre class="mb-0">value: {{ inputs.inline2 }}</pre>
           </div>
         </div>
       </div>

@@ -12,8 +12,9 @@ $card-subtitle-color: map-get($theme-colors, secondary) !default;
 
 $input-filled-bg: var(--#{$prefix}light) !default;
 
-$menu-separator-width: $border-width !default;
-$menu-separator-color: $list-group-action-color !default;
+$menu-separator-width: $list-group-border-width !default;
+$menu-separator-color: $list-group-border-color !default;
+$menu-separator-offset: $list-group-item-padding-y !default;
 
 $offcanvas-layout-width-sm: $offcanvas-horizontal-width * 0.5 !default;
 $offcanvas-layout-width-lg: $offcanvas-horizontal-width !default;
@@ -25,6 +26,7 @@ $offcanvas-layout-padding-x: $offcanvas-padding-x !default;
 $offcanvas-layout-padding-y: $offcanvas-padding-y !default;
 $offcanvas-layout-menu-separator-color: $menu-separator-color !default;
 $offcanvas-layout-menu-separator-width: $menu-separator-width !default;
+$offcanvas-layout-menu-separator-offset: $menu-separator-offset !default;
 
 $table-cell-padding-y-lg: .75rem !default;
 $table-cell-padding-x-lg: .75rem !default;
@@ -56,6 +58,15 @@ $form-select-menu-label-font-size-sm: $form-select-input-font-size-sm !default;
 $form-select-menu-label-font-size-lg: $form-select-input-font-size-lg !default;
 
 $calendar-panel-min-width: 210px !default;
+$calendar-panel-group-item-padding-x: $grid-gutter-width !default;
+$calendar-panel-label-selected-bg: $primary !default;
+$calendar-panel-label-selected-border-color: $primary !default;
+$calendar-panel-label-active-color: var(--#{$prefix}btn-active-color) !default;
+$calendar-panel-label-active-bg: var(--#{$prefix}btn-active-bg) !default;
+$calendar-panel-label-active-border-color: var(--#{$prefix}btn-active-border) !default;
+$calendar-panel-label-today-color: $primary !default;
+$calendar-panel-label-disabled-color: var(--#{$prefix}secondary) !default;
+$calendar-panel-label-disabled-border-color: transparent !default;
 
 $zindex-table-resize-helper: 20 !default;
 

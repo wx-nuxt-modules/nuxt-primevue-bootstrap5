@@ -1,8 +1,12 @@
 import type { MenuPassThroughOptions } from 'primevue/menu';
 
-export const baseMenuPT = {
-  menu: () => {
-    const classes = ['list-group bpv-menu'];
+import { inArrayValidator } from '../../../utils/validators';
+
+export const sharedMenuPT = {
+  menu: ({ flush }: { flush?: string | boolean | undefined } = {}) => {
+    const currentFlush = inArrayValidator(flush, [true, ''], false);
+
+    const classes = ['list-group bpv-menu', [true, ''].includes(currentFlush) && 'list-group-flush'];
 
     return { class: classes };
   },
@@ -28,4 +32,10 @@ export const baseMenuPT = {
   }
 };
 
-export const menuPT = <MenuPassThroughOptions>baseMenuPT;
+export const menuPT = <MenuPassThroughOptions>{
+  menu: ({ attrs }) => sharedMenuPT.menu({ flush: attrs.flush }),
+  menuitem: () => sharedMenuPT.menuitem(),
+  submenuHeader: () => sharedMenuPT.submenuHeader(),
+  action: () => sharedMenuPT.action(),
+  icon: () => sharedMenuPT.icon()
+};

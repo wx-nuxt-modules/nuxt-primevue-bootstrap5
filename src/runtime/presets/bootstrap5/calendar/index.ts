@@ -1,4 +1,4 @@
-import type { CalendarPassThroughOptions } from 'primevue/calendar';
+import type { BPVCalendarPassThroughOptions } from './types';
 
 import { createRootClasses } from '../inputtext';
 
@@ -8,7 +8,7 @@ const sharedButtonPT = ({ ...rest }: any) => {
   return { class: classes };
 };
 
-export const calendarPT = <CalendarPassThroughOptions>{
+export const calendarPT: BPVCalendarPassThroughOptions = {
   root: () => {
     const classes = ['bpv-calendar'];
 
@@ -25,13 +25,25 @@ export const calendarPT = <CalendarPassThroughOptions>{
 
     return { class: classes };
   },
-  groupContainer: () => {
-    const classes = ['popover-body'];
+  title: () => {
+    const classes = ['bpv-calendar-panel-header-title'];
 
     return { class: classes };
   },
-  previousButton: () => sharedButtonPT({ class: 'bpv-btn-pill' }),
-  nextButton: () => sharedButtonPT({ class: 'bpv-btn-pill' }),
+  groupContainer: () => {
+    const classes = ['popover-body bpv-calendar-panel-group'];
+
+    return { class: classes };
+  },
+  group: () => {
+    const classes = ['bpv-calendar-panel-group-item'];
+
+    return { class: classes };
+  },
+  // @ts-ignore
+  previousButton: ({ props }: any) => sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled }),
+  // @ts-ignore
+  nextButton: ({ props }: any) => sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled }),
   monthTitle: () => sharedButtonPT({}),
   yearTitle: () => sharedButtonPT({}),
   decadeTitle: () => sharedButtonPT({}),
@@ -50,15 +62,20 @@ export const calendarPT = <CalendarPassThroughOptions>{
 
     return { class: classes };
   },
-  dayLabel: ({ context }) =>
-    sharedButtonPT({
+  dayLabel: ({ context, props }) => {
+    const isSelected = context.selected && !context.disabled;
+    const isExactSelected = context.exactSelected && !context.disabled;
+
+    return sharedButtonPT({
       class: [
         'bpv-calendar-panel-label',
-        context.selected && !context.disabled && 'btn-primary',
-        context.date.today && !context.selected && 'bpv-btn-text-primary',
-        context.disabled && 'disabled'
+        isSelected && 'selected',
+        isExactSelected && 'active',
+        context.date.today && !context.selected && 'today',
+        (context.disabled || props.disabled) && 'disabled'
       ]
-    }),
+    });
+  },
   monthPicker: () => {
     const classes = ['bpv-calendar-panel-monthpicker'];
 

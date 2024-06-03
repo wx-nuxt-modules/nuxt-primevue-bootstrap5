@@ -125,7 +125,7 @@
         }
 
         .bpv-menu-separator {
-          margin-bottom: var(--#{$prefix}list-group-item-padding-y);
+          margin: $offcanvas-layout-menu-separator-offset 0;
           border-top-width: $offcanvas-layout-menu-separator-width;
           border-color: $offcanvas-layout-menu-separator-color;
         }
