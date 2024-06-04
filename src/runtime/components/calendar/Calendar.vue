@@ -253,8 +253,10 @@ export default defineComponent({
       newDate.setMonth(newDate.getMonth() - 1);
 
       if (prevDate) {
-        if (prevDate.initial.getMonth() >= newDate.getMonth()) {
-          prevDate.current.setMonth(newDate.getMonth() - 1);
+        if (prevDate.initial.getFullYear() === newDate.getFullYear()) {
+          if (prevDate.initial.getMonth() >= newDate.getMonth()) {
+            prevDate.current.setMonth(newDate.getMonth() - 1);
+          }
         }
 
         if (!prevDate.isCompared) {
@@ -315,8 +317,10 @@ export default defineComponent({
       newDate.setMonth(newDate.getMonth() + 1);
 
       if (nextDate) {
-        if (nextDate.initial.getMonth() <= newDate.getMonth()) {
-          nextDate.current.setMonth(newDate.getMonth() + 1);
+        if (nextDate.initial.getFullYear() === newDate.getFullYear()) {
+          if (nextDate.initial.getMonth() <= newDate.getMonth()) {
+            nextDate.current.setMonth(newDate.getMonth() + 1);
+          }
         }
 
         if (!nextDate.isCompared) {
