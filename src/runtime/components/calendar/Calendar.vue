@@ -24,6 +24,11 @@ export default defineComponent({
       type: Array as PropType<NonNullable<BPVCalendarProps['monthsInitial']>>,
       required: false,
       default: () => []
+    },
+    weekdaysDayNamesLocaleKey: {
+      type: String,
+      default: 'dayNamesMin',
+      validator: (val: string) => ['dayNames', 'dayNamesShort', 'dayNamesMin'].includes(val)
     }
   },
   data() {
@@ -132,6 +137,17 @@ export default defineComponent({
       }
 
       return months;
+    },
+    weekDays() {
+      let weekDays = [];
+      let dayIndex = this.$primevue.config.locale.firstDayOfWeek;
+
+      for (let i = 0; i < 7; i++) {
+        weekDays.push(this.$primevue.config.locale[this.weekdaysDayNamesLocaleKey][dayIndex]);
+        dayIndex = dayIndex == 6 ? 0 : ++dayIndex;
+      }
+
+      return weekDays;
     }
   },
   methods: {
