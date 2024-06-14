@@ -5,4 +5,5 @@ export interface BPVSidebarProps extends SidebarProps {
   position?: 'left' | 'right' | undefined;
 }
 
+export * from 'primevue/sidebar';
 export default class BPVSidebar extends ClassComponent<BPVSidebarProps, SidebarSlots, SidebarEmits> {}

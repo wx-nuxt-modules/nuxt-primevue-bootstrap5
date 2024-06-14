@@ -8,4 +8,5 @@ export interface BPVMultiSelectProps extends MultiSelectProps {
   size?: BPVDropdownSize | undefined;
 }
 
-export default class BPVInputText extends ClassComponent<BPVMultiSelectProps, MultiSelectSlots, MultiSelectEmits> {}
+export * from 'primevue/multiselect';
+export default class BPVMultiSelect extends ClassComponent<BPVMultiSelectProps, MultiSelectSlots, MultiSelectEmits> {}

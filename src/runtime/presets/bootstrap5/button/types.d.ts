@@ -9,4 +9,5 @@ export interface BPVButtonProps extends ButtonProps {
   size?: BPVButtonSize | undefined | null;
 }
 
+export * from 'primevue/button';
 export default class BPVButton extends ClassComponent<BPVButtonProps, ButtonSlots, ButtonEmits> {}

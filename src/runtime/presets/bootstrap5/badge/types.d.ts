@@ -9,4 +9,5 @@ export interface BPVBadgeProps extends BadgeProps {
   rounded?: boolean;
 }
 
+export * from 'primevue/badge';
 export default class BPVBadge extends ClassComponent<BPVBadgeProps, BadgeSlots, BadgeEmits> {}

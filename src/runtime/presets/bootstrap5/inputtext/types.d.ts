@@ -9,4 +9,5 @@ export interface BPVInputTextProps extends Omit<InputTextProps, 'invalid'> {
   plainText?: boolean | null | undefined;
 }
 
+export * from 'primevue/inputtext';
 export default class BPVInputText extends ClassComponent<BPVInputTextProps, InputTextSlots, InputTextEmits> {}

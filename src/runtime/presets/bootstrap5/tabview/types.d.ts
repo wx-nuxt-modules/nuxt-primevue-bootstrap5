@@ -8,4 +8,5 @@ export interface BPVTabViewProps extends TabViewProps {
   navUnderline: BPVTabMenuProps['underline'];
 }
 
+export * from 'primevue/tabview';
 export default class BPVTabView extends ClassComponent<BPVTabViewProps, TabViewSlots, TabViewEmits> {}

@@ -1,4 +1,13 @@
-import { defineNuxtModule, installModule, createResolver, useLogger, addComponent, addImportsDir } from '@nuxt/kit';
+import type { Nuxt } from '@nuxt/schema';
+import {
+  defineNuxtModule,
+  installModule,
+  createResolver,
+  useLogger,
+  addComponent,
+  addImportsDir,
+  addTemplate
+} from '@nuxt/kit';
 import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
 import * as pathe from 'pathe';
@@ -9,6 +18,33 @@ export interface ModuleOptions {
 }
 
 const PACKAGE_NAME = pkg.name;
+
+const generateComponentTypes = async (nuxt: Nuxt, globPath: string) => {
+  const { resolve } = createResolver(import.meta.url);
+
+  const bootstrap5PresetTypes = await globby(resolve(globPath));
+
+  const parsePath = (path: string) => {
+    const parsed = pathe.parse(pathe.resolve(path));
+
+    return {
+      ...parsed,
+      upperFirstName: parsed.name.slice(0, 1).toUpperCase() + parsed.name.slice(1)
+    };
+  };
+
+  bootstrap5PresetTypes.forEach((path) => {
+    const { name } = parsePath(pathe.resolve(path, '..'));
+
+    addTemplate({
+      filename: `nuxt-primevue-bootstrap5/bootstrap5/${name}.d.ts`,
+      getContents: () => {
+        const currentPath = pathe.relative(resolve(nuxt.options.buildDir, 'nuxt-primevue-bootstrap5/bootstrap5'), path);
+        return [`export type * from '${currentPath}'`, `export type { default } from '${currentPath}'`].join('\n');
+      }
+    });
+  });
+};
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -43,26 +79,16 @@ export default defineNuxtModule<ModuleOptions>({
 
     let overrideItems: any[];
 
-    nuxt.hook('components:extend', async (components) => {
-      overrideItems = components
-        .filter((component) => component.filePath.startsWith('primevue/'))
-        .map((component) => {
-          const shortName = component.kebabName.split('-').slice(1).join('');
-          const fullPath = resolve(`runtime/presets/bootstrap5/${shortName}/types`);
-          const relativePath = pathe.relative(nuxt.options.buildDir, fullPath);
-
-          return [component.filePath, relativePath];
-        });
+    const typesTemplate = addTemplate({
+      filename: 'nuxt-primevue-bootstrap5/types.d.ts',
+      getContents: () => `export * from '../${pathe.relative(nuxt.options.buildDir, resolve('runtime/types'))}'`
     });
 
-    nuxt.hook('app:templatesGenerated', async (app) => {
-      let content = await fsp.readFile(typesDir).then((b) => b.toString());
-      overrideItems.forEach(([name, path]) => {
-        content = content.replace(RegExp(`['"]${name}['"]`, 'g'), `"${path}"`);
-      });
+    await generateComponentTypes(nuxt, `runtime/presets/bootstrap5/**/types.d.ts`);
 
-      await fsp.writeFile(typesDir, content);
-    });
+    nuxt.options.alias['#nuxt-primevue-bootstrap5/types'] = typesTemplate.dst.replace('.d.ts', '');
+    nuxt.options.alias['#nuxt-primevue-bootstrap5/bootstrap5'] = './nuxt-primevue-bootstrap5/bootstrap5';
+    nuxt.options.alias['#nuxt-primevue-bootstrap5/bootstrap5/*'] = './nuxt-primevue-bootstrap5/bootstrap5/*';
 
     for (const component of components) {
       const { name } = pathe.parse(component);
@@ -72,6 +98,36 @@ export default defineNuxtModule<ModuleOptions>({
         priority: 10
       });
     }
+
+    nuxt.hook('components:extend', async (components) => {
+      const getShortName = (component: (typeof components)[number]) => component.kebabName.split('-').slice(1).join('');
+
+      overrideItems = components
+        .filter((component) => {
+          if (component.filePath.startsWith('primevue/')) return true;
+          return ['buttongroup', 'calendar', 'panelmenu'].includes(getShortName(component));
+        })
+        .map((component) => {
+          const filePath = component.filePath.startsWith('primevue/')
+            ? component.filePath
+            : pathe.relative(nuxt.options.buildDir, component.filePath);
+
+          const shortName = getShortName(component);
+
+          const oldImport = RegExp(`import\\(["']${filePath}["']\\).*`, 'g');
+
+          return [oldImport, `import("#nuxt-primevue-bootstrap5/bootstrap5/${shortName}")['default']`];
+        });
+    });
+
+    nuxt.hook('app:templatesGenerated', async (app) => {
+      let content = await fsp.readFile(typesDir).then((b) => b.toString());
+      overrideItems.forEach(([oldImport, newImport]) => {
+        content = content.replace(oldImport, newImport);
+      });
+
+      await fsp.writeFile(typesDir, content);
+    });
 
     addImportsDir(resolve('runtime/composables'));
 

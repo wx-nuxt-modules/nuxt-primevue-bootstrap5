@@ -1,9 +1,11 @@
 import type { ButtonGroupPassThroughOptions } from '../../../components/buttongroup/types';
 
-export const buttongroupPT = <ButtonGroupPassThroughOptions>{
-  root: () => {
-    const classes = ['btn-group'];
+export const sharedButtongroupPT = {
+  root: () => ({
+    class: 'btn-group'
+  })
+};
 
-    return { class: classes };
-  }
+export const buttongroupPT = <ButtonGroupPassThroughOptions>{
+  root: sharedButtongroupPT.root()
 };

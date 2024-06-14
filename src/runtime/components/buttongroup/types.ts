@@ -15,6 +15,8 @@ export interface ButtonGroupProps {
   unstyled?: boolean;
 }
 
+export interface ButtonGroupSlots {}
+
 export interface ButtonGroupPassThroughMethodOptions {
   instance: any;
   props: ButtonGroupProps;

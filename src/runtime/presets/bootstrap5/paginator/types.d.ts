@@ -6,4 +6,5 @@ export interface BPVPaginatorProps extends PaginatorProps {
   alignment?: BPVPaginatorAlignment | undefined | null;
 }
 
-export default class BPVButton extends ClassComponent<BPVPaginatorProps, PaginatorSlots, PaginatorEmits> {}
+export * from 'primevue/paginator';
+export default class BPVPaginator extends ClassComponent<BPVPaginatorProps, PaginatorSlots, PaginatorEmits> {}

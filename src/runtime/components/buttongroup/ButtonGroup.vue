@@ -1,7 +1,5 @@
 <script lang="ts">
-import type { ButtonGroupProps } from './types';
-
-import { provide, defineComponent, getCurrentInstance, defineSlots, type PropType, type SlotsType } from 'vue';
+import { provide, defineComponent, getCurrentInstance } from 'vue';
 import BaseComponent from 'primevue/basecomponent';
 
 import ButtonGroupStyle from './style/ButtonGroupStyle';
@@ -13,21 +11,18 @@ export default defineComponent({
   style: ButtonGroupStyle,
   props: {
     pt: {
-      type: Object as PropType<ButtonGroupProps['pt']>,
+      type: Object,
       required: false
     },
     ptOptions: {
-      type: Object as PropType<ButtonGroupProps['ptOptions']>,
+      type: Object,
       required: false
     },
     unstyled: {
-      type: Boolean as PropType<ButtonGroupProps['unstyled']>,
+      type: Boolean,
       required: false
     }
   },
-  slots: Object as SlotsType<{
-    default: { xxx: number };
-  }>,
   setup() {
     provide('parentInstance', getCurrentInstance());
   }

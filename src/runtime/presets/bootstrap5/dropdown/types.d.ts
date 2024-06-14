@@ -6,4 +6,5 @@ export interface BPVDropdownProps extends DropdownProps {
   size?: BPVDropdownSize | undefined;
 }
 
+export * from 'primevue/dropdown';
 export default class BPVDropdown extends ClassComponent<BPVDropdownProps, DropdownSlots, DropdownEmits> {}

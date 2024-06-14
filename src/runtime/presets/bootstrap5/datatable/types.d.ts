@@ -8,4 +8,5 @@ export interface BPVDataTableProps extends DataTableProps {
   paginatorAlignment?: BPVPaginatorProps['alignment'];
 }
 
-export default class BPVButton extends ClassComponent<BPVDataTableProps, DataTableSlots, DataTableEmits> {}
+export * from 'primevue/datatable';
+export default class BPVDataTable extends ClassComponent<BPVDataTableProps, DataTableSlots, DataTableEmits> {}

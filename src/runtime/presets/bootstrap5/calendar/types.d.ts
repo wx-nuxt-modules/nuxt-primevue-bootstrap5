@@ -21,6 +21,7 @@ export type BPVCalendarPassThroughOptionType =
 export interface BPVCalendarProps extends CalendarProps {
   disableSync?: boolean;
   monthsInitial?: Date[];
+  weekdaysDayNamesLocaleKey?: 'dayNames' | 'dayNamesShort' | 'dayNamesMin';
 }
 
 export interface BPVCalendarContext extends CalendarContext {

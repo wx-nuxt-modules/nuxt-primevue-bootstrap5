@@ -12,4 +12,5 @@ export interface BPVInputNumberProps extends Omit<InputNumberProps, 'invalid'> {
   currencyDisplay?: 'code' | 'symbol' | undefined;
 }
 
+export * from 'primevue/inputnumber';
 export default class BPVInputNumber extends ClassComponent<BPVInputNumberProps, InputNumberSlots, InputNumberEmits> {}

@@ -6,4 +6,5 @@ export interface BPVTabMenuProps extends TabMenuProps {
   underline?: boolean | undefined;
 }
 
+export * from 'primevue/tabmenu';
 export default class BPVTabMenu extends ClassComponent<BPVTabMenuProps, TabMenuSlots, TabMenuEmits> {}

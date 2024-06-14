@@ -1,11 +1,10 @@
 import type { SelectButtonPassThroughOptions } from 'primevue/selectbutton';
 
-import { buttongroupPT } from '../buttongroup';
+import { sharedButtongroupPT } from '../buttongroup';
 
 export const selectbuttonPT = <SelectButtonPassThroughOptions>{
   root: () => {
-    // @ts-ignore
-    const inherits = buttongroupPT.root();
+    const inherits = sharedButtongroupPT.root();
 
     const classes = [...inherits.class, 'bpv-selectbutton'];
 
