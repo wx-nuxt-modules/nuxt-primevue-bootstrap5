@@ -27,6 +27,7 @@ import { calendarPT } from './calendar';
 import { buttongroupPT } from './buttongroup';
 import { textareaPT } from './textarea';
 import { selectbuttonPT } from './selectbutton';
+import { passwordPT } from './password';
 
 export default {
   button: buttonPT,
@@ -58,6 +59,7 @@ export default {
   buttongroup: buttongroupPT,
   textarea: textareaPT,
   selectbutton: selectbuttonPT,
+  password: passwordPT,
   directives: {
     badge: badgeDirectivePT
   }

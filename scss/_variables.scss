@@ -76,3 +76,11 @@ $selectbutton-bg-color: var(--#{$prefix}light) !default;
 $selectbutton-border-color: var(--#{$prefix}light) !default;
 $selectbutton-btn-bg-color: $primary !default;
 $selectbutton-btn-border-color: $primary !default;
+
+$password-toggle-mask-icon-width-lg: $input-height-inner-half !default;
+$password-toggle-mask-icon-width: calc($input-height-inner-half * 0.75) !default;
+$password-toggle-mask-icon-width-sm: calc($input-height-inner-half * 0.6) !default;
+$password-toggle-mask-icon-height-lg: $input-height-inner-half !default;
+$password-toggle-mask-icon-height-sm: calc($input-height-inner-half * 0.6) !default;
+$password-toggle-mask-icon-height: calc($input-height-inner-half * 0.75) !default;
+$password-toggle-mask-icon-color: $input-placeholder-color !default;
