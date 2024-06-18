@@ -33,7 +33,7 @@ export interface BPVCalendarPassThroughMethodOptions extends CalendarPassThrough
 }
 
 export interface BPVCalendarPassThroughOptions extends CalendarPassThroughOptions {
-  dayLabel: BPVCalendarPassThroughOptionType;
+  dayLabel?: BPVCalendarPassThroughOptionType;
 }
 
 export default class BPVCalendar extends ClassComponent<BPVCalendarProps, CalendarSlots, CalendarEmits> {}
