@@ -233,7 +233,7 @@ const inputs = reactive({
                     :class="`me-2 flag flag-${option.value.toLowerCase()}`"
                     style="width: 18px"
                   />
-                  <div>{{ option.text }}</div>
+                  <div>{{ option!.text }}</div>
                 </div>
               </template>
             </BDropdown>
@@ -266,7 +266,7 @@ const inputs = reactive({
                     :class="`me-2 flag flag-${option.value.toLowerCase()}`"
                     style="width: 18px"
                   />
-                  <div>{{ option.text }}</div>
+                  <div>{{ option!.text }}</div>
                 </div>
               </template>
             </BDropdown>
@@ -300,7 +300,7 @@ const inputs = reactive({
                     :class="`me-2 flag flag-${option.value.toLowerCase()}`"
                     style="width: 18px"
                   />
-                  <div>{{ option.text }}</div>
+                  <div>{{ option!.text }}</div>
                 </div>
               </template>
             </BDropdown>
