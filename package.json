@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wx-nuxt-modules/nuxt-primevue-bootstrap5"
+  },
   "scripts": {
     "dev": "nuxi dev playground",
     "prepare": "nuxi prepare playground",
