@@ -27,7 +27,7 @@ dependencies:
     specifier: ^1.1.2
     version: 1.1.2
   primevue:
-    specifier: ~3.49.1
+    specifier: ^3.48.1
     version: 3.49.1(vue@3.4.19)
 
 devDependencies:

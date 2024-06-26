@@ -37,7 +37,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
     }
   });
 
-  await fsp.writeFile(pkgPath, JSON.stringify(pkg, null, 2));
+  await fsp.writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
 
   console.log('DONE!');
 })()
