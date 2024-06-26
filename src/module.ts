@@ -11,6 +11,8 @@ import {
 import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
 import * as pathe from 'pathe';
+import { defu } from 'defu';
+
 import * as pkg from '../package.json';
 
 export interface ModuleOptions {
@@ -87,6 +89,18 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     await generateComponentTypes(nuxt, `runtime/presets/bootstrap5/**/types.d.ts`);
+
+    // Bug: not visible toast when cached vite
+    Object.assign(
+      nuxt.options,
+      defu(nuxt.options, {
+        vite: {
+          optimizeDeps: {
+            exclude: ['primevue']
+          }
+        }
+      })
+    );
 
     nuxt.options.alias['#nuxt-primevue-bootstrap5/types'] = typesTemplate.dst.replace('.d.ts', '');
     nuxt.options.alias['#nuxt-primevue-bootstrap5/bootstrap5'] = './nuxt-primevue-bootstrap5/bootstrap5';

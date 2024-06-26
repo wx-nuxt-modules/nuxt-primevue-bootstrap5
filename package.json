@@ -41,6 +41,7 @@
     "globby": "^14.0.1",
     "pathe": "^1.1.2",
     "bootstrap": "^5.3.3",
+    "defu": "^6.1.4",
     "@windx-foobar/shared": "^1.0.1"
   },
   "devDependencies": {
