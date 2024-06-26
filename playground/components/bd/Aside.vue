@@ -16,6 +16,7 @@ const menu = reactive<MenuItem[]>([
     items: [
       { title: 'Аккордеон', to: '/components/accordion' },
       { title: 'Уведомления', to: '/components/alert' },
+      { title: 'Пуш уведомления', to: '/components/toast' },
       { title: 'Значки', to: '/components/badge' },
       { title: 'Крошки', to: '/components/breadcrumb' },
       { title: 'Кнопки', to: '/components/button' },

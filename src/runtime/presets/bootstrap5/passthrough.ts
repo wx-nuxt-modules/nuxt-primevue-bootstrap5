@@ -28,6 +28,7 @@ import { buttongroupPT } from './buttongroup';
 import { textareaPT } from './textarea';
 import { selectbuttonPT } from './selectbutton';
 import { passwordPT } from './password';
+import { toastPT } from './toast';
 
 export default {
   button: buttonPT,
@@ -60,6 +61,7 @@ export default {
   textarea: textareaPT,
   selectbutton: selectbuttonPT,
   password: passwordPT,
+  toast: toastPT,
   directives: {
     badge: badgeDirectivePT
   }

@@ -1,0 +1,28 @@
+.bpv-toast {
+  .toast-container {
+    position: unset;
+  }
+
+  .toast {
+    &.bpv-toast-enter-from, &.bpv-toast-leave-to {
+      opacity: 0;
+    }
+  }
+}
+
+.bpv-toast-icon {
+  margin-right: map-get($spacers, 2);
+}
+
+.bpv-toast-btn-container {
+  margin-left: auto;
+}
+
+.bpv-toast-btn-close {
+  --#{$prefix}btn-padding-x: 0;
+  --#{$prefix}btn-padding-y: 0;
+  --#{$prefix}btn-line-height: 0;
+
+  color: inherit;
+  outline: none;
+}

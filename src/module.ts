@@ -74,6 +74,8 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     const components = await globby(resolve('runtime/components', '**', '*.vue'));
+    const ignoreComponents = ['ToastMessage'];
+    const customComponents = ['buttongroup', 'calendar', 'panelmenu', 'toast'];
 
     const typesDir = resolve(nuxt.options.buildDir, 'components.d.ts');
 
@@ -92,11 +94,14 @@ export default defineNuxtModule<ModuleOptions>({
 
     for (const component of components) {
       const { name } = pathe.parse(component);
-      await addComponent({
-        name: `${options.prefix}${name}`,
-        filePath: component,
-        priority: 10
-      });
+
+      if (!ignoreComponents.includes(name)) {
+        await addComponent({
+          name: `${options.prefix}${name}`,
+          filePath: component,
+          priority: 10
+        });
+      }
     }
 
     nuxt.hook('components:extend', async (components) => {
@@ -105,7 +110,7 @@ export default defineNuxtModule<ModuleOptions>({
       overrideItems = components
         .filter((component) => {
           if (component.filePath.startsWith('primevue/')) return true;
-          return ['buttongroup', 'calendar', 'panelmenu'].includes(getShortName(component));
+          return customComponents.includes(getShortName(component));
         })
         .map((component) => {
           const filePath = component.filePath.startsWith('primevue/')
