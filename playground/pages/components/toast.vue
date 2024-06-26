@@ -176,7 +176,10 @@ function onCloseCustomTemplate() {
     </div>
 
     <h2>Позиционирование</h2>
-    <p>Проп <code>severity</code> указывает цветовой вариант сообщения.</p>
+    <p>
+      Сообщение может быть нацелено на определенный компонент Toast, сопоставляя ключ <code>group</code>, тогда как
+      местоположение настраивается в зависимости от <code>position</code>.
+    </p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <div class="row justify-content-center gx-2">
