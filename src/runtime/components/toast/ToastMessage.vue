@@ -17,7 +17,9 @@ export default defineComponent({
     dangerIcon: {
       type: String,
       default: null
-    }
+    },
+    /** @deprecated */
+    templates: {}
   },
   computed: {
     iconComponent() {
@@ -34,36 +36,53 @@ export default defineComponent({
 
 <template>
   <div :class="[cx('content'), message.contentStyleClass]" v-bind="ptm('content')">
-    <template v-if="!templates.message">
-      <div :class="cx('header')" v-bind="ptm('header')">
-        <Component
-          :is="templates.icon ? templates.icon : iconComponent && iconComponent.name ? iconComponent : 'span'"
-          :class="cx('icon')"
-          v-bind="ptm('icon')"
-        />
-        <strong :class="cx('summary')" v-bind="ptm('summary')">{{ message.summary }}</strong>
-        <div v-if="message.closable !== false" v-bind="ptm('buttonContainer')">
-          <button
-            v-ripple
-            :class="cx('closeButton')"
-            type="button"
-            :aria-label="closeAriaLabel"
-            @click="onCloseClick"
-            autofocus
-            v-bind="{ ...closeButtonProps, ...ptm('button'), ...ptm('closeButton') }"
-          >
+    <slot name="root" :message="message" :closeCallback="onCloseClick">
+      <slot
+        name="header"
+        :attrs="{ class: cx('header'), ...ptm('header') }"
+        :message="message"
+        :closeCallback="onCloseClick"
+      >
+        <div :class="cx('header')" v-bind="ptm('header')">
+          <slot name="icon" :class="cx('icon')" v-bind="ptm('icon')">
             <Component
-              :is="templates.closeicon || 'TimesIcon'"
-              :class="[cx('closeIcon'), closeIcon]"
-              v-bind="{ ...ptm('buttonIcon'), ...ptm('closeIcon') }"
+              :is="iconComponent && iconComponent.name ? iconComponent : 'span'"
+              :class="cx('icon')"
+              v-bind="ptm('icon')"
             />
-          </button>
+          </slot>
+
+          <strong :class="cx('summary')" v-bind="ptm('summary')">{{ message.summary }}</strong>
+          <div v-if="message.closable !== false" v-bind="ptm('buttonContainer')">
+            <button
+              v-ripple
+              :class="cx('closeButton')"
+              type="button"
+              :aria-label="closeAriaLabel"
+              @click="onCloseClick"
+              autofocus
+              v-bind="{ ...closeButtonProps, ...ptm('button'), ...ptm('closeButton') }"
+            >
+              <slot
+                name="closeicon"
+                :class="[cx('closeIcon'), closeIcon]"
+                v-bind="{ ...ptm('buttonIcon'), ...ptm('closeIcon') }"
+              >
+                <TimesIcon
+                  :class="[cx('closeIcon'), closeIcon]"
+                  v-bind="{ ...ptm('buttonIcon'), ...ptm('closeIcon') }"
+                />
+              </slot>
+            </button>
+          </div>
         </div>
-      </div>
-      <div :class="cx('body')" v-bind="ptm('body')">
-        {{ message.detail }}
-      </div>
-    </template>
-    <Component v-else :is="templates.message" :message="message" :closeCallback="closeCallback" />
+      </slot>
+
+      <slot name="body" :attrs="{ class: cx('body'), ...ptm('body') }" :message="message" :closeCallback="onCloseClick">
+        <div :class="cx('body')" v-bind="ptm('body')">
+          {{ message.detail }}
+        </div>
+      </slot>
+    </slot>
   </div>
 </template>

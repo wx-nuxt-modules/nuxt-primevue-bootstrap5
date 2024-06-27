@@ -1,3 +1,4 @@
+import { type VNode } from 'vue';
 import {
   ToastProps,
   ToastSlots,
@@ -17,5 +18,13 @@ export interface BPVToastPassThroughOptions extends Omit<ToastPassThroughOptions
   body?: ToastPassThroughOptionType;
 }
 
+export interface BPVToastSlots extends Pick<ToastSlots, 'container'> {
+  'message(root)'(scope: { message: any; closeCallback: () => void }): VNode[];
+  'message(header)'(scope: { message: any; attrs: { class: any }; closeCallback: () => void }): VNode[];
+  'message(body)'(scope: { message: any; attrs: { class: any }; closeCallback: () => void }): VNode[];
+  'message(icon)'(scope: { class: any }): VNode[];
+  'message(closeicon)'(scope: { class: any }): VNode[];
+}
+
 export * from 'primevue/toast';
-export default class BPVToast extends ClassComponent<BPVToastProps, ToastSlots, ToastEmits> {}
+export default class BPVToast extends ClassComponent<BPVToastProps, BPVToastSlots, ToastEmits> {}

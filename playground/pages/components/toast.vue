@@ -263,11 +263,11 @@ function onCloseCustomTemplate() {
     </div>
 
     <h2>Свой шаблон сообщения</h2>
-    <p>Пользовательский контент внутри сообщения определяется слотом <code>content</code>.</p>
+    <p>Пользовательский контент внутри сообщения определяется слотом <code>message(root)</code>.</p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <BToast position="bottom-right" group="ct" @close="onCloseCustomTemplate">
-          <template #message="slotProps">
+        <BToast position="bottom-center" group="ct" @close="onCloseCustomTemplate">
+          <template #message(root)="slotProps">
             <div class="toast-header">
               <div class="d-flex align-items-center g-2">
                 <img
@@ -293,6 +293,62 @@ function onCloseCustomTemplate() {
         <div class="row justify-content-center gx-2">
           <div class="col-auto">
             <BButton label="Показать" severity="primary" @click="onClickShowCustomTemplate" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Свой шаблон сообщения <span class="badge text-bg-warning">exclusive</span></h2>
+    <div>
+      Доступные слоты для переопределения
+
+      <ul>
+        <li><code>message(header)</code></li>
+        <li><code>message(body)</code></li>
+        <li><code>message(icon)</code></li>
+        <li><code>message(closeicon)</code></li>
+      </ul>
+    </div>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <BToast position="top-center" group="act" @close="onCloseCustomTemplate">
+          <template #message(header)="slotProps">
+            <div v-bind="slotProps.attrs">
+              <div class="d-flex align-items-center g-2">
+                <img
+                  class="img-fluid rounded-circle bpv-toast-icon"
+                  src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+                  width="28"
+                  height="28"
+                  alt="avatar"
+                />
+                <strong class="text-dark">{{ slotProps.message.summary }}</strong>
+              </div>
+            </div>
+          </template>
+
+          <template #message(body)="slotProps">
+            <div v-bind="slotProps.attrs">
+              <div class="mb-2">{{ slotProps.message.detail }}</div>
+
+              <BButton label="Закрыть" severity="primary" size="sm" @click="slotProps.closeCallback()" />
+            </div>
+          </template>
+        </BToast>
+
+        <div class="row justify-content-center gx-2">
+          <div class="col-auto">
+            <BButton
+              label="Показать"
+              severity="primary"
+              @click="
+                onClickShow({
+                  group: 'act',
+                  summary: 'Hi!',
+                  detail: 'Значимость этих проблем настолько очевидна, что сложившаяся структура организации.'
+                })
+              "
+            />
           </div>
         </div>
       </div>
