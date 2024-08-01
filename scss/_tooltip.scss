@@ -10,7 +10,7 @@
   }
 
   &[data-p-position^="top"] {
-    @extend .bs-tooltip-top;
+    @extend .bs-tooltip-top !optional;
 
     transform: translateY(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
 
@@ -20,7 +20,7 @@
     }
   }
   &[data-p-position^="right"] {
-    @extend .bs-tooltip-end;
+    @extend .bs-tooltip-end !optional;
 
     transform: translateX(var(--#{$prefix}tooltip-arrow-height));
 
@@ -30,7 +30,7 @@
     }
   }
   &[data-p-position^="bottom"] {
-    @extend .bs-tooltip-bottom;
+    @extend .bs-tooltip-bottom !optional;
 
     transform: translateY(var(--#{$prefix}tooltip-arrow-height));
 
@@ -40,7 +40,7 @@
     }
   }
   &[data-p-position^="left"] {
-    @extend .bs-tooltip-start;
+    @extend .bs-tooltip-start !optional;
 
     transform: translateX(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
 
