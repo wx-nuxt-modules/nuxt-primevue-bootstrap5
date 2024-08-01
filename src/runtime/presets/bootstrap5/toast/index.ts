@@ -15,7 +15,7 @@ export const toastPT = <BPVToastPassThroughOptions>{
     return { class: classes };
   },
   container: ({ props, instance }) => {
-    const severity = inArrayValidator(props.message.severity, BPV_SEVERITY);
+    const severity = inArrayValidator(props.message!.severity, BPV_SEVERITY);
 
     const classes = ['toast', severity && `text-bg-${severity}`, 'fade', 'show'];
 
