@@ -15,5 +15,6 @@ export default defineNuxtConfig({
   css: ['primeicons/primeicons.css', '../assets/scss/app.scss'],
   imports: {
     autoImport: true
-  }
+  },
+  compatibilityDate: '2024-08-01'
 });

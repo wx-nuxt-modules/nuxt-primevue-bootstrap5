@@ -36,30 +36,29 @@
     "@nuxt/kit": "^3.0.0"
   },
   "dependencies": {
-    "primevue": "^3.48.1",
-    "nuxt-primevue": "^0.3.1",
-    "globby": "^14.0.1",
-    "pathe": "^1.1.2",
+    "@windx-foobar/shared": "^1.0.1",
     "bootstrap": "^5.3.3",
     "defu": "^6.1.4",
-    "@windx-foobar/shared": "^1.0.1"
+    "globby": "^14.0.1",
+    "nuxt-primevue": "^0.3.1",
+    "pathe": "^1.1.2",
+    "primevue": "^3.48.1"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "typescript": "^5.3.3",
+    "@faker-js/faker": "^8.4.1",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@types/node": "^18.15.3",
     "changelogen": "^0.5.1",
     "eslint": "^8.56.0",
+    "execa": "^9.3.0",
     "nuxt": "^3.0.0",
+    "prettier": "^3.2.5",
     "primeicons": "^6.0.1",
-    "@types/node": "^18.15.3",
-    "sass": "^1.71.1",
-    "@faker-js/faker": "^8.4.1",
-    "push-dir": "^0.4.1",
     "rc9": "^2.1.1",
-    "execa": "^9.3.0"
+    "sass": "1.77.6",
+    "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
 }
