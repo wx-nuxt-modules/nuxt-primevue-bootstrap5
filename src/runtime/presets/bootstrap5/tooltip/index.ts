@@ -2,7 +2,7 @@ import type { TooltipDirectivePassThroughOptions } from 'primevue/tooltip';
 
 export const tooltipPT = <TooltipDirectivePassThroughOptions>{
   root: ({ context }) => {
-    const classes = ['bpv-tooltip tooltip fade show'];
+    const classes = ['bpv-tooltip tooltip show bpv-fade-in'];
 
     return { class: classes };
   },
@@ -15,8 +15,5 @@ export const tooltipPT = <TooltipDirectivePassThroughOptions>{
     const classes = ['tooltip-arrow'];
 
     return { class: classes };
-  },
-  transition: {
-    name: 'bpv-tooltip'
   }
 };

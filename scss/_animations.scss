@@ -1,0 +1,25 @@
+@keyframes bpv-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bpv-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.bpv-fade-in {
+  animation: bpv-fade-in .15s linear;
+}
+
+.bpv-fade-out {
+  animation: bpv-fade-out .15s linear;
+}
