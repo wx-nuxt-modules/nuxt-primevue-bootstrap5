@@ -1,0 +1,52 @@
+.bpv-tooltip {
+  position: absolute;
+
+  &.bpv-tooltip-enter-from, &.bpv-tooltip-leave-to {
+    opacity: 0;
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+  }
+
+  &[data-p-position^="top"] {
+    @extend .bs-tooltip-top;
+
+    transform: translateY(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
+
+    .tooltip-arrow {
+      bottom: calc(-1 * var(--#{$prefix}tooltip-arrow-height)) !important;
+      transform: translateX(calc(-0.5 * var(--#{$prefix}tooltip-arrow-width)));
+    }
+  }
+  &[data-p-position^="right"] {
+    @extend .bs-tooltip-end;
+
+    transform: translateX(var(--#{$prefix}tooltip-arrow-height));
+
+    .tooltip-arrow {
+      left: calc(-1 * var(--#{$prefix}tooltip-arrow-height)) !important;
+      transform: translateY(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
+    }
+  }
+  &[data-p-position^="bottom"] {
+    @extend .bs-tooltip-bottom;
+
+    transform: translateY(var(--#{$prefix}tooltip-arrow-height));
+
+    .tooltip-arrow {
+      top: calc(-1 * var(--#{$prefix}tooltip-arrow-height)) !important;
+      transform: translateX(calc(-0.5 * var(--#{$prefix}tooltip-arrow-width)));
+    }
+  }
+  &[data-p-position^="left"] {
+    @extend .bs-tooltip-start;
+
+    transform: translateX(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
+
+    .tooltip-arrow {
+      right: calc(-1 * var(--#{$prefix}tooltip-arrow-height)) !important;
+      transform: translateY(calc(-1 * var(--#{$prefix}tooltip-arrow-height)));
+    }
+  }
+}

@@ -45,6 +45,10 @@ const menu = reactive<MenuItem[]>([
       { title: 'Большое поле', to: '/forms/textarea' },
       { title: 'Кнопки с выбором', to: '/forms/selectbutton' }
     ]
+  },
+  {
+    title: 'Оверлеи',
+    items: [{ title: 'Подсказки', to: '/overlay/tooltip' }]
   }
 ]);
 </script>

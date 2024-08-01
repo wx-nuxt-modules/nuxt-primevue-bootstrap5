@@ -13,7 +13,7 @@ import { globby } from 'globby';
 import * as pathe from 'pathe';
 import { defu } from 'defu';
 
-import * as pkg from '../package.json';
+import pkg from '../package.json';
 
 export interface ModuleOptions {
   prefix?: string;
@@ -70,6 +70,10 @@ export default defineNuxtModule<ModuleOptions>({
       },
       components: {
         prefix: options.prefix,
+        include: '*'
+      },
+      directives: {
+        prefix: options.prefix ? `${options.prefix.toLowerCase()}-` : undefined,
         include: '*'
       },
       importPT: { from: resolve('runtime/presets/bootstrap5/passthrough') }
