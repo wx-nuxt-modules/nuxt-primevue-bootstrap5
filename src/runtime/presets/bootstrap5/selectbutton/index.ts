@@ -6,7 +6,7 @@ export const selectbuttonPT = <SelectButtonPassThroughOptions>{
   root: () => {
     const inherits = sharedButtongroupPT.root();
 
-    const classes = [...inherits.class, 'bpv-selectbutton'];
+    const classes = [inherits.class, 'bpv-selectbutton'];
 
     return {
       // @ts-ignore
