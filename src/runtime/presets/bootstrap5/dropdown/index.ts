@@ -5,7 +5,7 @@ import { inArrayValidator } from '../../../utils/validators';
 import { BPV_DROPDOWN_SIZE } from '../../../constants';
 
 export const sharedDropdownPT = {
-  root: ({}: DropdownPassThroughMethodOptions<any> = {}) => {
+  root: () => {
     const classes = ['dropdown bpv-form-select'];
 
     return { class: classes };
@@ -36,6 +36,11 @@ export const sharedDropdownPT = {
     const classes = ['dropdown-menu show bpv-form-select-menu', `bpv-form-select-menu-${currentSize}`];
 
     return { class: classes };
+  },
+  item: ({ selected = false, focused = false }: { selected?: boolean; focused?: boolean } = {}) => {
+    const classes = ['bpv-form-select-menu-item', selected && 'active', !selected && focused && 'focus'];
+
+    return { class: classes };
   }
 };
 
@@ -55,15 +60,7 @@ export const dropdownPT = <DropdownPassThroughOptions>{
   wrapper: { class: 'bpv-form-select-menu-wrapper-list' },
   list: { class: 'bpv-form-select-menu-list' },
   itemGroup: { class: 'bpv-form-select-menu-item bpv-form-select-menu-item-group' },
-  item: ({ context }) => {
-    const classes = [
-      'bpv-form-select-menu-item',
-      context.selected && 'active',
-      !context.selected && context.focused && 'focus'
-    ];
-
-    return { class: classes };
-  },
+  item: ({ context }) => sharedDropdownPT.item({ focused: context.focused, selected: context.selected }),
   blankIcon: { class: 'bpv-form-select-menu-item-icon bpv-form-select-menu-item-icon-blank' },
   checkIcon: { class: 'bpv-form-select-menu-item-icon bpv-form-select-menu-item-icon-check' },
   clearIcon: { class: 'btn-close bpv-form-select-clear-icon' },

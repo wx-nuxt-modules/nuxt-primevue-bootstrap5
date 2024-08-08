@@ -5,7 +5,7 @@ import { dropdownPT, sharedDropdownPT } from '../dropdown';
 
 export const multiselectPT = <MultiSelectPassThroughOptions>{
   root: (ctx) => {
-    const base = typeof dropdownPT.root === 'function' ? dropdownPT.root(ctx) : { class: '' };
+    const base = sharedDropdownPT.root();
 
     return { ...base, class: [base.class, 'bpv-form-multiselect'] };
   },
@@ -28,11 +28,11 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
   wrapper: dropdownPT.wrapper,
   list: dropdownPT.list,
   itemGroup: dropdownPT.itemGroup,
-  item: (ctx) => {
-    const base = typeof dropdownPT.item === 'function' ? dropdownPT.item(ctx) : { class: '' };
+  item: ({ context }) => {
+    const base = sharedDropdownPT.item({ focused: context.focused, selected: context.selected });
     const classes = [base.class, 'bpv-form-multiselect-menu-item'];
 
-    return { ...base, class: [base.class, ...classes] };
+    return { ...base, class: classes };
   },
   blankIcon: dropdownPT.blankIcon,
   checkIcon: dropdownPT.checkIcon,
