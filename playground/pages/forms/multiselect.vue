@@ -10,7 +10,9 @@ const cityLst = shallowReactive([
 const inputs = reactive({
   basic: [undefined, undefined],
   sizing: [undefined, undefined, undefined],
-  maxSelectedLabels: undefined
+  maxSelectedLabels: undefined,
+  valid: undefined,
+  invalid: undefined
 });
 </script>
 
@@ -139,5 +141,41 @@ const inputs = reactive({
         </div>
       </div>
     </div>
+
+    <h2>Состояние поля</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BMultiSelect
+              v-model="inputs.valid"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              placeholder="Выберите значения"
+              :max-selected-labels="2"
+              selected-items-label="{0} выбрано"
+              state="valid"
+            />
+            <BMultiSelect
+              v-model="inputs.invalid"
+              :options="cityLst"
+              option-label="text"
+              option-value="value"
+              placeholder="Выберите значения"
+              :max-selected-labels="2"
+              selected-items-label="{0} выбрано"
+              state="invalid"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.bpv-form-multiselect + .bpv-form-multiselect {
+  margin-top: 0.5rem;
+}
+</style>

@@ -60,7 +60,9 @@ const inputs = reactive({
   grouping: undefined,
   template: undefined,
   filter: undefined,
-  clearIcon: null
+  clearIcon: null,
+  valid: undefined,
+  invalid: undefined
 });
 </script>
 
@@ -332,6 +334,18 @@ const inputs = reactive({
       </div>
     </div>
 
+    <h2>Состояние поля</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BDropdown v-model="inputs.valid" option-label="text" :options="cityLst" state="valid" />
+            <BDropdown v-model="inputs.invalid" option-label="text" :options="cityLst" state="invalid" />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h2>Выключенный</h2>
     <p>
       Когда пропс <code>disabled="true"</code>, элемент нельзя редактировать и установить фокус.
@@ -352,3 +366,9 @@ const inputs = reactive({
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.bpv-form-select + .bpv-form-select {
+  margin-top: 0.5rem;
+}
+</style>

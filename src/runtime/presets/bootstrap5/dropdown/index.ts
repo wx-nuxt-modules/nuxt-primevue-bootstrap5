@@ -2,7 +2,7 @@ import type { DropdownPassThroughOptions, DropdownPassThroughMethodOptions } fro
 import type { BPVDropdownProps } from './types';
 import { createRootClasses } from '../inputtext';
 import { inArrayValidator } from '../../../utils/validators';
-import { BPV_DROPDOWN_SIZE } from '../../../constants';
+import { BPV_DROPDOWN_SIZE, BPV_FORM_STATE } from '../../../constants';
 
 export const sharedDropdownPT = {
   root: () => {
@@ -13,19 +13,23 @@ export const sharedDropdownPT = {
   input: ({
     isPlaceholder,
     isDisabled,
-    size
+    size,
+    state
   }: {
     isPlaceholder?: boolean;
     isDisabled?: boolean;
     size?: BPVDropdownProps['size'];
+    state?: BPVDropdownProps['state'];
   }) => {
     const currentSize = inArrayValidator(size, BPV_DROPDOWN_SIZE, 'md');
+    const currentState = inArrayValidator(state, BPV_FORM_STATE);
 
     const classes = [
       'form-select bpv-form-select-input',
       isPlaceholder && 'bpv-form-select-input-placeholder',
       isDisabled && 'bpv-form-select-input-disabled',
-      `bpv-form-select-input-${currentSize}`
+      `bpv-form-select-input-${currentSize}`,
+      currentState && `is-${currentState}`
     ];
 
     return { class: classes };
@@ -50,7 +54,8 @@ export const dropdownPT = <DropdownPassThroughOptions>{
     return sharedDropdownPT.input({
       isPlaceholder: props.modelValue === undefined,
       isDisabled: props.disabled,
-      size: attrs.size
+      size: attrs.size,
+      state: attrs.state
     });
   },
   trigger: { class: 'bpv-form-select-trigger' },

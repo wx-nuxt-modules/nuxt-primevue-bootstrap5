@@ -4,7 +4,9 @@ const inputs = reactive({
   format: undefined,
   range: undefined,
   inline: undefined,
-  inline2: undefined
+  inline2: undefined,
+  valid: undefined,
+  invalid: undefined
 });
 
 /**
@@ -138,5 +140,23 @@ usePrimeVue().config.locale.monthNamesShort = dateForLocale('ru-RU', { month: 's
         </div>
       </div>
     </div>
+
+    <h2>Состояние поля</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BCalendar v-model="inputs.valid" class="mb-3" state="valid" />
+            <BCalendar v-model="inputs.invalid" state="invalid" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.bpv-calendar + .bpv-calendar {
+  margin-top: 0.5rem;
+}
+</style>

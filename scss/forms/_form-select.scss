@@ -12,10 +12,18 @@ $sizes: ('sm', 'lg');
 
   .bpv-form-select-input {
     cursor: pointer;
-    background-image: none;
+    background-image: var(--#{$prefix}form-select-bg-icon);
 
     &.bpv-form-select-input-placeholder {
       color: $input-placeholder-color;
+    }
+
+    @if $enable-validation-icons {
+      &:not([multiple]):not([size]),
+      &:not([multiple])[size="1"] {
+        background-position: $form-select-feedback-icon-position;
+        background-size: $form-select-feedback-icon-size;
+      }
     }
 
     &.bpv-form-select-input-disabled {

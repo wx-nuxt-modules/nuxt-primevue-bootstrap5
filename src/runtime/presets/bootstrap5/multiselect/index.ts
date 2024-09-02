@@ -17,7 +17,7 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
       isPlaceholder = props.modelValue === undefined;
     }
 
-    return sharedDropdownPT.input({ isDisabled: props.disabled, isPlaceholder, size: attrs.size });
+    return sharedDropdownPT.input({ isDisabled: props.disabled, isPlaceholder, size: attrs.size, state: attrs.state });
   },
   trigger: dropdownPT.trigger,
   panel: ({ attrs }) => {

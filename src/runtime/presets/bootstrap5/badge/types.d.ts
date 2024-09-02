@@ -2,7 +2,7 @@ import { BadgeProps, BadgeSlots, BadgeEmits } from 'primevue/badge';
 import { ClassComponent } from 'primevue/ts-helpers';
 import { BPVSeverity, BPVBadgeSize } from '../../../types';
 
-export interface BPVBadgeProps extends BadgeProps {
+export interface BPVBadgeProps extends Omit<BadgeProps, 'size'> {
   severity?: BPVSeverity | undefined | null;
   size?: BPVBadgeSize | undefined | null;
   pill?: boolean;

@@ -8,13 +8,18 @@ const sharedButtonPT = ({ ...rest }: any) => {
   return { class: classes };
 };
 
+// @ts-ignore
 export const calendarPT: BPVCalendarPassThroughOptions = {
   root: () => {
     const classes = ['bpv-calendar'];
 
     return { class: classes };
   },
-  input: () => createRootClasses({}),
+  input: ({ attrs }) => {
+    return createRootClasses({
+      state: attrs.state
+    });
+  },
   header: () => {
     const classes = ['bpv-calendar-panel-header'];
 
@@ -40,10 +45,12 @@ export const calendarPT: BPVCalendarPassThroughOptions = {
 
     return { class: classes };
   },
-  // @ts-ignore
-  previousButton: ({ props }: any) => sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled }),
-  // @ts-ignore
-  nextButton: ({ props }: any) => sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled }),
+  previousButton: ({ props }: any) => {
+    return sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled });
+  },
+  nextButton: ({ props }: any) => {
+    return sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled });
+  },
   monthTitle: () => sharedButtonPT({}),
   yearTitle: () => sharedButtonPT({}),
   decadeTitle: () => sharedButtonPT({}),

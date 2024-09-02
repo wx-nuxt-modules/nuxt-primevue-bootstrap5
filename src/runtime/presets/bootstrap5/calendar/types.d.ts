@@ -18,10 +18,11 @@ export type BPVCalendarPassThroughOptionType =
   | null
   | undefined;
 
-export interface BPVCalendarProps extends CalendarProps {
+export interface BPVCalendarProps extends Omit<CalendarProps, 'invalid'> {
   disableSync?: boolean;
   monthsInitial?: Date[];
   weekdaysDayNamesLocaleKey?: 'dayNames' | 'dayNamesShort' | 'dayNamesMin';
+  state?: 'valid' | 'invalid' | undefined;
 }
 
 export interface BPVCalendarContext extends CalendarContext {

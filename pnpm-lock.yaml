@@ -30,8 +30,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       primevue:
-        specifier: ^3.48.1
-        version: 3.53.0(vue@3.4.35(typescript@5.5.4))
+        specifier: ~3.49.1
+        version: 3.49.1(vue@3.4.35(typescript@5.5.4))
     devDependencies:
       '@faker-js/faker':
         specifier: ^8.4.1
@@ -3550,11 +3550,6 @@ packages:
 
   primevue@3.49.1:
     resolution: {integrity: sha512-OmUTqbKbPB63Zqf7uA49cipDi+Qh+/13AYJPwgvsVsI4QmAKIkeibBwkOgj1CNIFlopfF79YmyBshFUAPqlw9A==}
-    peerDependencies:
-      vue: ^3.0.0
-
-  primevue@3.53.0:
-    resolution: {integrity: sha512-mRqTPGGZX+3AQokaCCjxLVSNEjGEA7LaPdBT4qSpGEdMstK6vhUBCxgLH7IPjHudbaSi4Xo3CIO62pXQxbz8dQ==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -8369,10 +8364,6 @@ snapshots:
   primeicons@6.0.1: {}
 
   primevue@3.49.1(vue@3.4.35(typescript@5.5.4)):
-    dependencies:
-      vue: 3.4.35(typescript@5.5.4)
-
-  primevue@3.53.0(vue@3.4.35(typescript@5.5.4)):
     dependencies:
       vue: 3.4.35(typescript@5.5.4)
 
