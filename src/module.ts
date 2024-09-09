@@ -67,7 +67,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     try {
       logger.info('Check `chart.js` installation');
-      // @ts-ignore
+      // @ts-expect-error
       await import('chart.js');
       logger.info('`chart.js` is installed. Add...');
     } catch (_) {
@@ -110,7 +110,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Bug: not visible toast when cached vite
     Object.assign(
       nuxt.options,
-      defu({}, nuxt.options, {
+      defu(nuxt.options, {
         vite: {
           optimizeDeps: {
             exclude: ['primevue']
