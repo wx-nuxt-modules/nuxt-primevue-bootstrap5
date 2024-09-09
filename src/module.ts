@@ -63,6 +63,18 @@ export default defineNuxtModule<ModuleOptions>({
     const logger = useLogger(PACKAGE_NAME);
     const { resolve } = createResolver(import.meta.url);
 
+    let exclude = ['Editor'];
+
+    try {
+      logger.info('Check `chart.js` installation');
+      // @ts-ignore
+      await import('chart.js');
+      logger.info('`chart.js` is installed. Add...');
+    } catch (_) {
+      logger.info('`chart.js` not installed. Skip...');
+      exclude.push('Chart');
+    }
+
     await installModule('nuxt-primevue', {
       options: {
         unstyled: true,
@@ -70,7 +82,8 @@ export default defineNuxtModule<ModuleOptions>({
       },
       components: {
         prefix: options.prefix,
-        include: '*'
+        include: '*',
+        exclude
       },
       directives: {
         prefix: options.prefix ? `${options.prefix.toLowerCase()}-` : undefined,
@@ -97,7 +110,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Bug: not visible toast when cached vite
     Object.assign(
       nuxt.options,
-      defu(nuxt.options, {
+      defu({}, nuxt.options, {
         vite: {
           optimizeDeps: {
             exclude: ['primevue']
