@@ -30,6 +30,18 @@
     }
   }
 
+  &.offcanvas-top {
+    &.bpv-offcanvas-enter-from, &.bpv-offcanvas-leave-to {
+      transform: translateX(0) translateY(-100%) translateZ(0);
+    }
+  }
+
+  &.offcanvas-bottom {
+    &.bpv-offcanvas-enter-from, &.bpv-offcanvas-leave-to {
+      transform: translateX(0) translateY(100%) translateZ(0);
+    }
+  }
+
   .offcanvas-title {
     @extend h5;
 

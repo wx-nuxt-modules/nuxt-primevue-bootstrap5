@@ -10,7 +10,9 @@ export const sidebarPT = <SidebarPassThroughOptions>{
     const classes = [
       'bpv-offcanvas offcanvas show',
       { 'offcanvas-start': position === 'left' },
-      { 'offcanvas-end': position === 'right' }
+      { 'offcanvas-end': position === 'right' },
+      { 'offcanvas-bottom': position === 'bottom' },
+      { 'offcanvas-top': position === 'top' }
     ];
 
     return { class: classes };

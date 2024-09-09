@@ -3,7 +3,9 @@ const state = reactive({
   basic: false,
   position: {
     left: false,
-    right: false
+    right: false,
+    top: false,
+    bottom: false
   },
   size: false,
   template: false
@@ -52,12 +54,34 @@ const state = reactive({
           </p>
         </BSidebar>
 
+        <BSidebar v-model:visible="state.position.top" header="Top Sidebar" position="top">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </BSidebar>
+
+        <BSidebar v-model:visible="state.position.bottom" header="Bottom Sidebar" position="bottom">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </BSidebar>
+
         <div class="row justify-content-center g-2">
           <div class="col-auto">
             <BButton icon="pi pi-arrow-right" severity="primary" @click="state.position.left = true" />
           </div>
           <div class="col-auto">
             <BButton icon="pi pi-arrow-left" severity="primary" @click="state.position.right = true" />
+          </div>
+          <div class="col-auto">
+            <BButton icon="pi pi-arrow-up" severity="primary" @click="state.position.top = true" />
+          </div>
+          <div class="col-auto">
+            <BButton icon="pi pi-arrow-down" severity="primary" @click="state.position.bottom = true" />
           </div>
         </div>
       </div>
