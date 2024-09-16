@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ColumnProps } from 'primevue/column';
-import type { DataTableEmits } from 'primevue/datatable';
+import type { DataTableEmits, DataTableFilterMeta } from '#nuxt-primevue-bootstrap5/bootstrap5/datatable';
 import type { BPVTableSize } from '../../../src/runtime/types';
+import { FilterMatchMode } from 'primevue/api';
 import { BPV_TABLE_SIZE as bpvTableSize } from '../../../src/runtime/constants';
 
 interface ProductsRes {
@@ -15,6 +16,10 @@ const dynamicCols = <ColumnProps[]>[
   { field: 'category', header: 'Категория', style: { width: '25%' } },
   { field: 'stock', header: 'Кол-во', style: { width: '25%' } }
 ];
+const filters: DataTableFilterMeta = {
+  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  id: { value: null, matchMode: FilterMatchMode.EQUALS }
+};
 
 const props = reactive({
   dynamic: {
@@ -40,6 +45,9 @@ const props = reactive({
   lazy: {
     currentPage: 1,
     totalRows: 0
+  },
+  filters: {
+    filters: structuredClone(filters)
   }
 });
 
@@ -286,7 +294,11 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
       </div>
     </div>
 
-    <h2>Ленивая загрузка</h2>
+    <h2>Фильтрация</h2>
+    <!--<PagesContentDatatableFilter />-->
+    <PagesContentDatatableFilterAdvanced />
+
+    <!--<h2>Ленивая загрузка</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable
@@ -320,6 +332,6 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
       show-gridlines
     >
       <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
-    </BDataTable>
+    </BDataTable>-->
   </div>
 </template>

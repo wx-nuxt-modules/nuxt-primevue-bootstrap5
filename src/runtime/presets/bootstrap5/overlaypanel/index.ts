@@ -2,11 +2,15 @@ import type { OverlayPanelPassThroughOptions } from 'primevue/overlaypanel';
 
 import { sidebarPT } from '../sidebar';
 
+export const overlaypanelPTRoot = () => {
+  const classes = ['popover fade show bpv-overlaypanel'];
+
+  return { class: classes };
+};
+
 export const overlaypanelPT = <OverlayPanelPassThroughOptions>{
   root: () => {
-    const classes = ['popover fade show bpv-overlaypanel'];
-
-    return { class: classes };
+    return overlaypanelPTRoot();
   },
   content: () => {
     const classes = ['popover-body bpv-overlaypanel-body'];

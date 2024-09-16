@@ -31,6 +31,10 @@ $offcanvas-layout-menu-separator-offset: $menu-separator-offset !default;
 $table-cell-padding-y-lg: .75rem !default;
 $table-cell-padding-x-lg: .75rem !default;
 $table-column-resizer-width: 6px !default;
+$table-column-filter-overlay-body-gap: $card-body-gap * 0.5 !default;
+$table-column-filter-overlay-padding-x: $card-spacer-x * 0.5 !default;
+$table-column-filter-overlay-padding-y: $card-spacer-y * 0.5 !default;
+$table-column-filter-overlay-min-width: 200px !default;
 $table-resize-helper-width: $table-border-width;
 $table-resize-helper-color: var(--#{$prefix}secondary);
 
