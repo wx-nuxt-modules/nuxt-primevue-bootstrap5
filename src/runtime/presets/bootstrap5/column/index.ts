@@ -169,6 +169,11 @@ export const columnPT = <ColumnPassThroughOptions>{
 
     return { class: classes };
   },
+  headerTitle: () => {
+    const classes = ['bpv-table-column-header-title'];
+
+    return { class: classes };
+  },
   transition: {
     name: 'bpv-overlaypanel'
   }
