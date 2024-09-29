@@ -36,6 +36,7 @@ const menu = reactive<MenuItem[]>([
     title: 'Формы',
     items: [
       { title: 'Базовое поле', to: '/forms/inputtext' },
+      { title: 'Базовое поле (с маской)', to: '/forms/inputmask' },
       { title: 'Числовое поле', to: '/forms/inputnumber' },
       { title: 'Пароль', to: '/forms/password' },
       { title: 'Чекбокс', to: '/forms/checkbox' },

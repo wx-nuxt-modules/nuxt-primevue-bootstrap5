@@ -31,6 +31,7 @@ import { passwordPT } from './password';
 import { toastPT } from './toast';
 import { tooltipPT } from './tooltip';
 import { chartPT } from './chart';
+import { inputmaskPT } from './inputmask';
 
 export default {
   button: buttonPT,
@@ -65,6 +66,7 @@ export default {
   password: passwordPT,
   toast: toastPT,
   chart: chartPT,
+  inputmask: inputmaskPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT
