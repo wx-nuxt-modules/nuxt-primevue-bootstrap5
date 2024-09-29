@@ -97,6 +97,18 @@ $sizes: ('sm', 'lg');
 .bpv-form-select-menu {
   --p-anchor-gutter: 2px;
 
+  @each $size in $sizes {
+    &.bpv-form-select-menu-#{$size} {
+      .bpv-form-select-menu-item {
+        @if ($size == 'sm') {
+          font-size: $form-select-menu-label-font-size-sm;
+        } @else if ($size == 'lg') {
+          font-size: $form-select-menu-label-font-size-lg;
+        }
+      }
+    }
+  }
+
   &.bpv-form-select-menu-enter-from {
     opacity: 0;
     transform: scaleY(0.8);
@@ -194,17 +206,30 @@ $sizes: ('sm', 'lg');
           }
         }
       }
+
+      .bpv-form-select-menu-item-empty-message {
+        --#{$prefix}dropdown-link-hover-color: var(--#{$prefix}dropdown-link-color);
+        --#{$prefix}dropdown-link-hover-bg: var(--#{$prefix}dropdown-link-bg);
+        --#{$prefix}dropdown-link-active-bg: var(--#{$prefix}dropdown-link-bg);
+        --#{$prefix}dropdown-link-active-color: var(--#{$prefix}dropdown-link-color);
+
+        user-select: none;
+      }
     }
   }
 
-  @each $size in $sizes {
-    &.bpv-form-select-menu-#{$size} {
-      .bpv-form-select-menu-item {
-        @if ($size == 'sm') {
-          font-size: $form-select-menu-label-font-size-sm;
-        } @else if ($size == 'lg') {
-          font-size: $form-select-menu-label-font-size-lg;
-        }
+  .bpv-form-select-menu-header {
+    padding-left: $form-select-menu-header-padding-x;
+    padding-right: $form-select-menu-header-padding-x;
+
+    .bpv-form-select-menu-filter-container {
+      position: relative;
+
+      .bpv-form-select-menu-filter-icon {
+        position: absolute;
+        top: 50%;
+        margin-top: calc($input-height-sm * -0.25);
+        right: $input-padding-x-sm;
       }
     }
   }

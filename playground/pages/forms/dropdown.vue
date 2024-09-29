@@ -53,7 +53,7 @@ const countryLst = shallowReactive([
 ]);
 
 const inputs = reactive({
-  basic: [undefined, undefined],
+  basic: [undefined, undefined, undefined],
   sizing: [undefined, undefined, undefined],
   checkmark: undefined,
   editable: undefined,
@@ -92,10 +92,11 @@ const inputs = reactive({
       <code>optionValue</code> соответственно. Обратите внимание: когда параметры представляют собой простые примитивные
       значения, такие как массив строк, никакие <code>optionLabel</code> и <code>optionValue</code> не требуются.
     </p>
+    <p>Сообщение пустого списка указывается через пропс <code>emptyMessage</code></p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <div class="row justify-content-center">
-          <div class="col-6">
+          <div class="col-4">
             <BDropdown
               class="mb-3"
               v-model="inputs.basic[0]"
@@ -105,7 +106,7 @@ const inputs = reactive({
             />
             <pre class="mb-0">value: {{ inputs.basic[0] }}</pre>
           </div>
-          <div class="col-6">
+          <div class="col-4">
             <BDropdown
               class="mb-3"
               v-model="inputs.basic[1]"
@@ -115,6 +116,18 @@ const inputs = reactive({
               placeholder="С optionValue"
             />
             <pre class="mb-0">value: {{ inputs.basic[1] }}</pre>
+          </div>
+          <div class="col-4">
+            <BDropdown
+              class="mb-3"
+              v-model="inputs.basic[2]"
+              :options="[]"
+              option-label="text"
+              option-value="value"
+              placeholder="Пустой список"
+              empty-message="Нет доступных значений"
+            />
+            <pre class="mb-0">value: {{ inputs.basic[2] }}</pre>
           </div>
         </div>
       </div>
@@ -306,7 +319,7 @@ const inputs = reactive({
                 </div>
               </template>
             </BDropdown>
-            <pre class="mb-0">value: {{ inputs.template }}</pre>
+            <pre class="mb-0">value: {{ inputs.filter }}</pre>
           </div>
         </div>
       </div>

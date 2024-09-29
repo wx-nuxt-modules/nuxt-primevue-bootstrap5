@@ -62,6 +62,7 @@ export const dropdownPT = <DropdownPassThroughOptions>{
   panel: ({ props, attrs }: any) => {
     return sharedDropdownPT.panel({ size: attrs.size });
   },
+  header: { class: 'bpv-form-select-menu-header' },
   wrapper: { class: 'bpv-form-select-menu-wrapper-list' },
   list: { class: 'bpv-form-select-menu-list' },
   itemGroup: { class: 'bpv-form-select-menu-item bpv-form-select-menu-item-group' },
@@ -74,7 +75,14 @@ export const dropdownPT = <DropdownPassThroughOptions>{
 
     return { class: classes };
   },
+  filterContainer: { class: 'bpv-form-select-menu-filter-container' },
+  filterIcon: { class: 'bpv-form-select-menu-filter-icon' },
   filterInput: { class: createRootClasses({ size: 'sm' }) },
+  emptyMessage: ({}) => {
+    const classes = ['dropdown-item', 'bpv-form-select-menu-item-empty-message'];
+
+    return { class: classes };
+  },
 
   transition: {
     name: 'bpv-form-select-menu'
