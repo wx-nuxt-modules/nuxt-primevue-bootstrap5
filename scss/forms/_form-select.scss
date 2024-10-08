@@ -221,6 +221,7 @@ $sizes: ('sm', 'lg');
   .bpv-form-select-menu-header {
     padding-left: $form-select-menu-header-padding-x;
     padding-right: $form-select-menu-header-padding-x;
+    margin-bottom: $form-select-menu-header-padding-x;
 
     .bpv-form-select-menu-filter-container {
       position: relative;

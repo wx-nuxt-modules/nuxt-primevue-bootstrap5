@@ -260,7 +260,8 @@ const inputs = reactive({
 
     <h2>Свой шаблон</h2>
     <p>
-      Параметры и отображение выбранных параметров поддерживают расширение базового шаблона через <code>{{ '<template #option>' }}</code> и <code>{{ '<template #value>' }}</code>.
+      Параметры и отображение выбранных параметров поддерживают расширение базового шаблона через
+      <code>&lt;template #option&gt;</code> и <code>&lt;template #value&gt;</code>.
     </p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
@@ -293,7 +294,8 @@ const inputs = reactive({
 
     <h2>Фильтр значений</h2>
     <p>
-      Раскрывающийся список предоставляет встроенную фильтрацию, которая включается путем добавления свойства <code>filter</code>.
+      Раскрывающийся список предоставляет встроенную фильтрацию, которая включается путем добавления свойства
+      <code>filter</code>.
     </p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
@@ -326,9 +328,7 @@ const inputs = reactive({
     </div>
 
     <h2>Очищаемый</h2>
-    <p>
-      Когда пропс <code>showClear="true"</code>, появится кнопка для сброса значения
-    </p>
+    <p>Когда пропс <code>showClear="true"</code>, появится кнопка для сброса значения</p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <div class="row justify-content-center">
@@ -360,19 +360,12 @@ const inputs = reactive({
     </div>
 
     <h2>Выключенный</h2>
-    <p>
-      Когда пропс <code>disabled="true"</code>, элемент нельзя редактировать и установить фокус.
-    </p>
+    <p>Когда пропс <code>disabled="true"</code>, элемент нельзя редактировать и установить фокус.</p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <div class="row justify-content-center">
           <div class="col-6">
-            <BDropdown
-              :options="cityLst"
-              option-label="text"
-              placeholder="Выберите город"
-              disabled
-            />
+            <BDropdown :options="cityLst" option-label="text" placeholder="Выберите город" disabled />
           </div>
         </div>
       </div>
