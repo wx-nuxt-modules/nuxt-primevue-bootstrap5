@@ -11,6 +11,7 @@ const inputs = reactive({
   basic: [undefined, undefined],
   sizing: [undefined, undefined, undefined],
   maxSelectedLabels: undefined,
+  filter: undefined,
   valid: undefined,
   invalid: undefined
 });
@@ -137,6 +138,33 @@ const inputs = reactive({
               selected-items-label="{0} выбрано"
             />
             <pre class="mb-0">value: {{ inputs.maxSelectedLabels }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Фильтр значений</h2>
+    <p>
+      Фильтрация позволяет искать элементы в списке, используя поле ввода в заголовке. Чтобы использовать фильтрацию,
+      включите ее через пропс <code>filter</code>. По умолчанию <code>optionLabel</code> используется при поиске, а
+      <code>filterFields</code> можно использовать для настройки используемых полей. Кроме того, доступен
+      <code>filterMatchMode</code> для определения алгоритма поиска. Допустимые значения:
+      <code>«contains» (по умолчанию)</code>, <code>«startsWith»</code> и <code>«endsWith»</code>.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <BMultiSelect
+              class="mb-3"
+              v-model="inputs.filter"
+              :options="cityLst"
+              filter
+              option-label="text"
+              option-value="value"
+              placeholder="Выберите значения"
+            />
+            <pre class="mb-0">value: {{ inputs.filter }}</pre>
           </div>
         </div>
       </div>

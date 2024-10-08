@@ -45,7 +45,9 @@ export const sharedDropdownPT = {
     const classes = ['bpv-form-select-menu-item', selected && 'active', !selected && focused && 'focus'];
 
     return { class: classes };
-  }
+  },
+  filterInput: { class: createRootClasses({ size: 'sm' }) },
+  filterIcon: { class: 'bpv-form-select-menu-filter-icon' }
 };
 
 export const dropdownPT = <DropdownPassThroughOptions>{
@@ -76,8 +78,8 @@ export const dropdownPT = <DropdownPassThroughOptions>{
     return { class: classes };
   },
   filterContainer: { class: 'bpv-form-select-menu-filter-container' },
-  filterIcon: { class: 'bpv-form-select-menu-filter-icon' },
-  filterInput: { class: createRootClasses({ size: 'sm' }) },
+  filterIcon: sharedDropdownPT.filterIcon,
+  filterInput: sharedDropdownPT.filterInput,
   emptyMessage: ({}) => {
     const classes = ['dropdown-item', 'bpv-form-select-menu-item-empty-message'];
 

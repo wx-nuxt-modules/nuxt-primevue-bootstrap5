@@ -2,6 +2,23 @@
 
 $sizes: ('sm', 'lg');
 
+%menu-filter-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: calc($input-height-sm * -0.25);
+  right: $input-padding-x-sm;
+}
+
+%menu-header {
+  padding-left: var(--#{$prefix}dropdown-item-padding-x);
+  padding-right: var(--#{$prefix}dropdown-item-padding-x);
+  margin-bottom: var(--#{$prefix}dropdown-padding-y);
+}
+
+%menu-filter-container {
+  position: relative;
+}
+
 .bpv-form-select {
   --p-clear-icon-width: #{$form-select-clear-icon-width};
   --p-clear-icon-height: #{$form-select-clear-icon-height};
@@ -219,18 +236,13 @@ $sizes: ('sm', 'lg');
   }
 
   .bpv-form-select-menu-header {
-    padding-left: $form-select-menu-header-padding-x;
-    padding-right: $form-select-menu-header-padding-x;
-    margin-bottom: $form-select-menu-header-padding-x;
+    @extend %menu-header;
 
     .bpv-form-select-menu-filter-container {
-      position: relative;
+      @extend %menu-filter-container;
 
       .bpv-form-select-menu-filter-icon {
-        position: absolute;
-        top: 50%;
-        margin-top: calc($input-height-sm * -0.25);
-        right: $input-padding-x-sm;
+        @extend %menu-filter-icon;
       }
     }
   }
@@ -238,13 +250,19 @@ $sizes: ('sm', 'lg');
 
 .bpv-form-multiselect-menu {
   .bpv-form-multiselect-menu-header {
+    @extend %menu-header;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
 
-    .btn-close {
+    > .btn-close {
       padding: 0;
+      margin-left: var(--#{$prefix}dropdown-item-padding-x);
+    }
+
+    > .bpv-form-checkbox {
+      margin-right: var(--#{$prefix}dropdown-item-padding-x);
     }
   }
 
@@ -256,6 +274,16 @@ $sizes: ('sm', 'lg');
 
     .bpv-form-multiselect-menu-item-option {
       padding-left: $form-check-padding-start - $form-check-input-width;
+    }
+  }
+
+  .bpv-form-multiselect-menu-filter-container {
+    @extend %menu-filter-container;
+
+    flex: 1 0;
+
+    .bpv-form-select-menu-filter-icon {
+      @extend %menu-filter-icon;
     }
   }
 
