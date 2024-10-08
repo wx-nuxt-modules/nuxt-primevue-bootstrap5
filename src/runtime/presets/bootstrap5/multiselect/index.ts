@@ -40,6 +40,7 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
   filterInput: sharedDropdownPT.filterInput,
   filterIcon: sharedDropdownPT.filterIcon,
   filterContainer: { class: 'bpv-form-multiselect-menu-filter-container' },
+  emptyMessage: sharedDropdownPT.emptyMessage,
   option: () => {
     const classes = ['bpv-form-multiselect-menu-item-option'];
 
