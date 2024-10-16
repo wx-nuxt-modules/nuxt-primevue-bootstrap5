@@ -48,7 +48,9 @@ export const sharedDropdownPT = {
   },
   filterInput: { class: createRootClasses({ size: 'sm' }) },
   filterIcon: { class: 'bpv-form-select-menu-filter-icon' },
-  emptyMessage: { class: ['dropdown-item', 'bpv-form-select-menu-item-label'] }
+  emptyMessage: {
+    class: ['dropdown-item', 'bpv-form-select-menu-item bpv-form-select-menu-item-empty-message']
+  }
 };
 
 export const dropdownPT = <DropdownPassThroughOptions>{
