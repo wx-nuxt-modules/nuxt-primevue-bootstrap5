@@ -333,5 +333,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
     >
       <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
     </BDataTable>-->
+
+    <PagesContentDatatableReorder />
   </div>
 </template>

@@ -24,12 +24,13 @@ export const columnPT = <ColumnPassThroughOptions>{
       column.context && column.context.sorted && 'bpv-table-column-sorted',
       column.parent && column.parent.props && column.parent.props.filterDisplay && 'bpv-table-column-filterable',
       isResiableColumns && 'bpv-table-column-resizable',
-      column.props && [true, ''].includes(column.props.frozen) && 'bpv-table-column-frozen'
+      column.props && [true, ''].includes(column.props.frozen) && 'bpv-table-column-frozen',
+      column.parent && column.parent.props && column.parent.props.reorderableColumns && 'bpv-table-column-reorderable'
     ];
 
     return { class: classes };
   },
-  bodyCell: (...args) => {
+  bodyCell: () => {
     const classes = ['bpv-table-column'];
 
     return { class: classes };
@@ -173,6 +174,11 @@ export const columnPT = <ColumnPassThroughOptions>{
     const classes = ['bpv-table-column-header-title'];
 
     return { class: classes };
+  },
+  rowReorderIcon: () => {
+    return {
+      class: ['bpv-table-column-reorderablerow-handle']
+    };
   },
   transition: {
     name: 'bpv-overlaypanel'

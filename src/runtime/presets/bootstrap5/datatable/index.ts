@@ -53,6 +53,13 @@ export const datatablePT = <DataTablePassThroughOptions>{
 
     return { class: classes };
   },
+  bodyRow: (ctx) => {
+    console.log(ctx);
+
+    return {
+      class: ['bpv-datatable-row']
+    };
+  },
   paginator: {
     paginatorWrapper: () => {
       const base = paginatorPT.paginatorWrapper();

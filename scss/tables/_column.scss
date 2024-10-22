@@ -19,6 +19,10 @@
     }
   }
 
+  &.bpv-table-column-reorderable {
+    cursor: move;
+  }
+
   .bpv-table-column-header-content {
     display: flex;
     align-items: center;
@@ -41,6 +45,10 @@
   .bpv-table-column-filter {
     display: inline-block;
     margin-left: auto;
+  }
+
+  .bpv-table-column-reorderablerow-handle {
+    cursor: move;
   }
 }
 
