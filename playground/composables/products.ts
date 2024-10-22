@@ -35,13 +35,12 @@ let products: ProductItem[] = Array(20)
   });
 
 export function useProducts() {
-  function getProductsSmall(): Promise<ProductSmallItem[]> {
-    return Promise.resolve(
-      products.map((item) =>
-        tryPick<ProductSmallItem>(item, ['id', 'code', 'name', 'inventoryStatus', 'price', 'image'])
-      )
-    );
-  }
-
-  return { getProductsSmall };
+  return {
+    getProductsMini(): Promise<ProductItem[]> {
+      return Promise.resolve(products.slice(0, 5));
+    },
+    getProductsSmall(): Promise<ProductItem[]> {
+      return Promise.resolve(products.slice(0, 10));
+    }
+  };
 }
