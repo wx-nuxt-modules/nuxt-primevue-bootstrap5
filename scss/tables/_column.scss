@@ -1,6 +1,14 @@
 .bpv-table-column {
   &.bpv-table-column-sortable {
-    cursor: pointer;
+    &:not(.bpv-table-column-reorderable) {
+      cursor: pointer;
+    }
+
+    &.bpv-table-column-reorderable {
+      .bpv-table-column-sort {
+        cursor: pointer;
+      }
+    }
 
     &:hover, &.bpv-table-column-sorted {
       --#{$prefix}table-color-state: var(--#{$prefix}table-hover-color);
