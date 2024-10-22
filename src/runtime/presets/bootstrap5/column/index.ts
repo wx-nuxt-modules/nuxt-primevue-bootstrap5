@@ -14,8 +14,6 @@ export const columnPT = <ColumnPassThroughOptions>{
       const columnProp =
         'reorderable-column' in column.props ? column.props['reorderable-column'] : column.props.reorderableColumn;
 
-      console.log(columnProp);
-
       if (isTruthy(props.reorderableColumns)) {
         return columnProp !== false;
       } else {
