@@ -9,7 +9,7 @@ const slots = useSlots();
 
 function RootComponent() {
   const _props = {
-    class: 'card-title bpv-card-subtitle',
+    class: 'card-subtitle bpv-card-subtitle',
     innerHTML: props.html
   };
 
