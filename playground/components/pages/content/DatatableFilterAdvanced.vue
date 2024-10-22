@@ -225,10 +225,10 @@ const getSeverity = (status) => {
           </BColumn>
           <BColumn header="Status" field="status" :filterMenuStyle="{ width: '14rem' }" style="min-width: 12rem">
             <template #body="{ data }">
-              <Tag :value="data.status" :severity="getSeverity(data.status)" />
+              <BTag :value="data.status" :severity="getSeverity(data.status)" />
             </template>
             <template #filter="{ filterModel }">
-              <Dropdown
+              <BDropdown
                 v-model="filterModel.value"
                 :options="statuses"
                 placeholder="Select One"
@@ -236,9 +236,9 @@ const getSeverity = (status) => {
                 showClear
               >
                 <template #option="slotProps">
-                  <Tag :value="slotProps.option" :severity="getSeverity(slotProps.option)" />
+                  <BTag :value="slotProps.option" :severity="getSeverity(slotProps.option)" />
                 </template>
-              </Dropdown>
+              </BDropdown>
             </template>
           </BColumn>
           <BColumn field="activity" header="Activity" :showFilterMatchModes="false" style="min-width: 12rem">
