@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import type { DataTableRowReorderEvent } from '#nuxt-primevue-bootstrap5/bootstrap5/datatable';
+import type { ColumnProps } from '#nuxt-primevue-bootstrap5/bootstrap5/column';
 
 onMounted(async () => {
   products.value = await useProducts().getProductsMini();
 });
 
 const toast = useToast();
-const columns = ref([
+const columns = ref<ColumnProps[]>([
   { field: 'code', header: 'Code' },
   { field: 'name', header: 'Name' },
   { field: 'category', header: 'Category' },
-  { field: 'quantity', header: 'Quantity' }
+  { field: 'quantity', header: 'Quantity', reorderableColumn: false }
 ]);
 const products = ref();
 
@@ -44,7 +45,7 @@ const onRowReorder = (event: DataTableRowReorderEvent) => {
       @row-reorder="onRowReorder"
     >
       <BColumn header-style="width: 3rem" :reorderable-column="false" row-reorder />
-      <BColumn v-for="col of columns" :field="col.field" :header="col.header" :key="col.field" />
+      <BColumn v-for="col of columns" v-bind="col" :key="col.field" />
     </BDataTable>
     <BToast group="datatableReorder" />
   </div>

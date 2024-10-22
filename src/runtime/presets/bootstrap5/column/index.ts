@@ -7,9 +7,16 @@ import { isUndefined, isTruthy } from '../../../utils/validators';
 import { registerResizeDbClick } from './plugins';
 
 export const columnPT = <ColumnPassThroughOptions>{
-  headerCell: ({ column, parent, instance }: ColumnPassThroughMethodOptions & { column: any }) => {
+  headerCell: ({ column, parent, props, instance }: ColumnPassThroughMethodOptions & { column: any; props: any }) => {
     const isResiableColumns = parent?.props?.resizableColumns;
     const isFitResizableMode = (parent?.props?.columnResizeMode || 'fit') === 'fit';
+    const isReorderableColumns = (() => {
+      if (isTruthy(props.reorderableColumns)) {
+        return column.props.reorderableColumn !== false;
+      } else {
+        return false;
+      }
+    })();
 
     if (isResiableColumns && isFitResizableMode) {
       // registerResizeDbClick(instance);
@@ -25,7 +32,7 @@ export const columnPT = <ColumnPassThroughOptions>{
       column.parent && column.parent.props && column.parent.props.filterDisplay && 'bpv-table-column-filterable',
       isResiableColumns && 'bpv-table-column-resizable',
       column.props && [true, ''].includes(column.props.frozen) && 'bpv-table-column-frozen',
-      column.parent && column.parent.props && column.parent.props.reorderableColumns && 'bpv-table-column-reorderable'
+      isReorderableColumns && 'bpv-table-column-reorderable'
     ];
 
     return { class: classes };
