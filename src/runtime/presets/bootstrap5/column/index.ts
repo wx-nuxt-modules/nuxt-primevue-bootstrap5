@@ -11,8 +11,13 @@ export const columnPT = <ColumnPassThroughOptions>{
     const isResiableColumns = parent?.props?.resizableColumns;
     const isFitResizableMode = (parent?.props?.columnResizeMode || 'fit') === 'fit';
     const isReorderableColumns = (() => {
+      const columnProp =
+        'reorderable-column' in column.props ? column.props['reorderable-column'] : column.props.reorderableColumn;
+
+      console.log(columnProp);
+
       if (isTruthy(props.reorderableColumns)) {
-        return column.props.reorderableColumn !== false;
+        return columnProp !== false;
       } else {
         return false;
       }
