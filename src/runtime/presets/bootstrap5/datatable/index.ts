@@ -54,8 +54,6 @@ export const datatablePT = <DataTablePassThroughOptions>{
     return { class: classes };
   },
   bodyRow: (ctx) => {
-    console.log(ctx);
-
     return {
       class: ['bpv-datatable-row']
     };
