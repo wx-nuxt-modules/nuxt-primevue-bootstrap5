@@ -67,7 +67,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     try {
       logger.info('Check `chart.js` installation');
-      // @ts-expect-error
       await import('chart.js');
       logger.info('`chart.js` is installed. Add...');
     } catch (_) {
