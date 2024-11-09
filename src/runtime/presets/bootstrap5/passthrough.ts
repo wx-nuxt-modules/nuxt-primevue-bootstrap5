@@ -32,6 +32,7 @@ import { toastPT } from './toast';
 import { tooltipPT } from './tooltip';
 import { chartPT } from './chart';
 import { inputmaskPT } from './inputmask';
+import { dialogPT } from './dialog';
 
 export default {
   button: buttonPT,
@@ -67,6 +68,7 @@ export default {
   toast: toastPT,
   chart: chartPT,
   inputmask: inputmaskPT,
+  dialog: dialogPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT

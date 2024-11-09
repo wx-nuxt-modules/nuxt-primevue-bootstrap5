@@ -49,7 +49,11 @@ const menu = reactive<MenuItem[]>([
   },
   {
     title: 'Оверлеи',
-    items: [{ title: 'Подсказки', to: '/overlay/tooltip' }]
+    items: [
+      { title: 'Подсказки', to: '/overlay/tooltip' },
+      { title: 'Модальное окно', to: '/overlay/dialog' },
+      { title: 'Динамическое модальное окно', to: '/overlay/dynamic-dialog' }
+    ]
   }
 ]);
 </script>

@@ -9,7 +9,7 @@ const sharedButtonPT = ({ ...rest }: any) => {
 };
 
 // @ts-ignore
-export const calendarPT: BPVCalendarPassThroughOptions = {
+export const calendarPT = <BPVCalendarPassThroughOptions>{
   root: () => {
     const classes = ['bpv-calendar'];
 

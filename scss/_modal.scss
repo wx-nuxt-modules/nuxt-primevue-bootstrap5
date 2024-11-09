@@ -1,0 +1,26 @@
+.bpv-modal {
+  @extend .modal-backdrop !optional;
+
+  background-color: transparent;
+
+  &.bpv-modal-backdrop {
+    background-color: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+  }
+}
+
+.bpv-modal-dialog {
+  &.fade.show {
+    &.bpv-modal-dialog-enter-from, &.bpv-modal-dialog-leave-to {
+      opacity: 0;
+    }
+  }
+}
+
+.bpv-modal-title {
+  font-size: $font-size-lg;
+}
+
+.bpv-modal-icons {
+  margin-left: auto;
+  display: flex;
+}
