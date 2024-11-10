@@ -5,7 +5,8 @@ import {
   createWrapperOptions,
   createIconOptions,
   createCloseButtonOptions,
-  createTransitionOptions
+  createTransitionOptions,
+  createCloseIconButtonOptions
 } from './shared';
 import { BPV_SEVERITY } from '../../../constants';
 import { inArrayValidator } from '../../../utils/validators';
@@ -13,10 +14,13 @@ import { inArrayValidator } from '../../../utils/validators';
 export const messagePT = <MessagePassThroughOptions>{
   root: ({ props, instance }) => {
     const severity = inArrayValidator(props.severity, BPV_SEVERITY, 'info');
-    return createRootOptions({ severity, instance });
+    const isNotClosable = props.closable === false;
+
+    return createRootOptions({ severity, instance, isNotClosable });
   },
   wrapper: () => createWrapperOptions(),
   icon: () => createIconOptions(),
   closeButton: () => createCloseButtonOptions(),
+  closeIcon: () => createCloseIconButtonOptions(),
   transition: createTransitionOptions()
 };

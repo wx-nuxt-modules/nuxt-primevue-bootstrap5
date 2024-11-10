@@ -9,10 +9,11 @@ import TimesCircleIcon from 'primevue/icons/timescircle';
 export interface CreateRootOptionsOptions {
   severity: BPVSeverity;
   instance: any;
+  isNotClosable: boolean;
 }
 
 export const createRootOptions = (options: CreateRootOptionsOptions) => {
-  const { severity, instance } = options;
+  const { severity, instance, isNotClosable } = options;
 
   if (!Object.prototype.hasOwnProperty.call(instance, '__definedCustomIconComponents__')) {
     Object.defineProperty(instance, '__definedCustomIconComponents__', {
@@ -36,7 +37,7 @@ export const createRootOptions = (options: CreateRootOptionsOptions) => {
     });
   }
 
-  const classes = ['alert', 'bpv-alert', `alert-${severity}`];
+  const classes = ['alert bpv-alert', `alert-${severity}`, !isNotClosable && 'alert-dismissible'];
 
   return { class: classes };
 };
@@ -50,7 +51,11 @@ export const createIconOptions = () => ({
 });
 
 export const createCloseButtonOptions = () => ({
-  class: 'btn bpv-alert-btn-close'
+  class: 'btn-close bpv-alert-btn-close'
+});
+
+export const createCloseIconButtonOptions = () => ({
+  class: 'd-none'
 });
 
 export const createTransitionOptions = () => ({

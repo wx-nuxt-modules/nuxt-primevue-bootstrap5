@@ -8,15 +8,8 @@
 
   .bpv-alert-icon {
     margin-right: map-get($spacers, 2);
-  }
-
-  .bpv-alert-btn-close {
-    --#{$prefix}btn-padding-x: 0;
-    --#{$prefix}btn-padding-y: 0;
-    --#{$prefix}btn-line-height: 0;
-
-    margin-left: auto;
-    color: inherit;
+    flex: 0 0 auto;
+    width: auto;
   }
 
   &.bpv-alert-enter-from {
