@@ -2,6 +2,7 @@
 import type { BPVRadioButtonProps, RadioButtonEmits } from '../../presets/bootstrap5/radiobutton/types';
 
 import { BRadioButton } from '#components';
+import { useId } from '#imports';
 
 interface Props extends BPVRadioButtonProps {
   label: string;

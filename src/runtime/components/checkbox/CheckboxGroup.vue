@@ -2,6 +2,7 @@
 import type { BPVRadioButtonProps, RadioButtonEmits } from '../../presets/bootstrap5/radiobutton/types';
 
 import { BCheckboxWithLabel } from '#components';
+import { useId } from '#imports';
 
 interface Props extends Omit<BPVRadioButtonProps, 'binary' | 'tabindex' | 'name' | 'modelValue'> {
   modelValue?: unknown[];

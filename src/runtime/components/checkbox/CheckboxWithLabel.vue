@@ -2,6 +2,7 @@
 import type { BPVCheckboxProps, CheckboxEmits } from '../../presets/bootstrap5/checkbox/types';
 
 import { BCheckbox } from '#components';
+import { useId } from '#imports';
 
 interface Props extends BPVCheckboxProps {
   label: string;
