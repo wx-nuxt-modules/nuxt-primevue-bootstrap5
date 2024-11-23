@@ -1,17 +1,18 @@
 <script setup lang="ts">
 const options = {
   dynamic: [
-    { name: 'Accounting', key: 'A' },
-    { name: 'Marketing', key: 'M' },
-    { name: 'Production', key: 'P' },
-    { name: 'Research', key: 'R' }
+    { text: 'Accounting', value: 'A' },
+    { text: 'Marketing', value: 'M' },
+    { text: 'Production', value: 'P' },
+    { text: 'Research', value: 'R' }
   ]
 };
 
 const inputs = reactive({
   basic: false,
   group: [],
-  dynamic: []
+  dynamic1: [],
+  dynamic2: []
 });
 </script>
 
@@ -78,19 +79,28 @@ const inputs = reactive({
     <p>Флажки могут быть созданы с использованием списка значений.</p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <div class="d-flex justify-content-center mb-3">
-          <div class="row flex-column gy-2 mb-3">
-            <div v-for="item of options.dynamic" class="col-auto" :key="item.key">
-              <div class="d-inline-flex align-items-center">
-                <BCheckbox v-model="inputs.dynamic" :inputId="item.key" name="dynamic" :value="item.name" />
-                <label :for="item.key" class="ms-2">{{ item.name }}</label>
-              </div>
-            </div>
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <BCheckboxGroup
+              v-model="inputs.dynamic1"
+              class="mb-3"
+              option-text="text"
+              name="pizza1"
+              :options="options.dynamic"
+            />
+            <pre class="mb-0">value: {{ inputs.dynamic1 }}</pre>
           </div>
-        </div>
-
-        <div class="d-flex justify-content-center">
-          <pre class="mb-0">value: {{ inputs.dynamic }}</pre>
+          <div class="col-auto">
+            <BCheckboxGroup
+              v-model="inputs.dynamic2"
+              class="mb-3"
+              option-text="text"
+              name="pizza2"
+              :options="options.dynamic"
+              inline
+            />
+            <pre class="mb-0">value: {{ inputs.dynamic2 }}</pre>
+          </div>
         </div>
       </div>
     </div>
