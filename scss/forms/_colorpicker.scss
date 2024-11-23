@@ -38,6 +38,10 @@
   background-color: $dark;
   border: 1px solid $black;
 
+  &.bpv-overlaypanel {
+    margin-top: 0;
+  }
+
   &::before, &::after {
     display: none;
   }
