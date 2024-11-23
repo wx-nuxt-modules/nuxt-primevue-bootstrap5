@@ -1,7 +1,7 @@
 import type { ColumnPassThroughOptions, ColumnPassThroughMethodOptions } from './types';
 
 import { buttonPTIcon, buttonPTRoot } from '../button';
-import { overlaypanelPTRoot } from '../overlaypanel';
+import { createOverlaypanelRoot } from '../overlaypanel';
 import { sharedDropdownPT } from '../dropdown';
 import { isUndefined, isTruthy } from '../../../utils/validators';
 import { registerResizeDbClick } from './plugins';
@@ -89,7 +89,7 @@ export const columnPT = <ColumnPassThroughOptions>{
     return { class: classes };
   },
   filterOverlay: () => {
-    const { class: overlaypanelClasses } = overlaypanelPTRoot();
+    const { class: overlaypanelClasses } = createOverlaypanelRoot();
 
     const classes = [...overlaypanelClasses, 'bpv-table-column-filter-overlay'];
 

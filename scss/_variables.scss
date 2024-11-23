@@ -85,6 +85,13 @@ $password-toggle-mask-icon-width-lg: $input-height-inner-half !default;
 $password-toggle-mask-icon-width: calc($input-height-inner-half * 0.75) !default;
 $password-toggle-mask-icon-width-sm: calc($input-height-inner-half * 0.6) !default;
 $password-toggle-mask-icon-height-lg: $input-height-inner-half !default;
-$password-toggle-mask-icon-height-sm: calc($input-height-inner-half * 0.6) !default;
 $password-toggle-mask-icon-height: calc($input-height-inner-half * 0.75) !default;
+$password-toggle-mask-icon-height-sm: calc($input-height-inner-half * 0.6) !default;
 $password-toggle-mask-icon-color: $input-placeholder-color !default;
+
+$colorpicker-width: calc($input-height-inner-half * 1.25) !default;
+$colorpicker-height: calc($input-height-inner-half * 1.25);
+$colorpicker-width-lg: calc($input-height-inner-half * 1.5) !default;
+$colorpicker-height-lg: calc($input-height-inner-half * 1.5) !default;
+$colorpicker-width-sm: $input-height-inner-half !default;
+$colorpicker-height-sm: $input-height-inner-half !default;

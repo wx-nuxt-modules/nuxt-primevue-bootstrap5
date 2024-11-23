@@ -1,0 +1,109 @@
+.bpv-colorpicker {
+  position: relative;
+  display: inline-block;
+
+  > .bpv-form-control {
+    width: $colorpicker-width;
+    height: $colorpicker-height;
+    line-height: 0;
+    padding: 0;
+    border: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    &.form-control-lg, &.form-control-sm {
+      padding: 0;
+      min-height: 0;
+    }
+
+    &.form-control-lg {
+      width: $colorpicker-width-lg;
+      height: $colorpicker-height-lg;
+    }
+
+    &.form-control-sm {
+      width: $colorpicker-width-sm;
+      height: $colorpicker-height-sm;
+    }
+  }
+}
+
+.bpv-colorpicker-panel {
+  background-color: $dark;
+  border: 1px solid $black;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  &.bpv-colorpicker-panel-overlay {
+    position: absolute;
+  }
+}
+
+.bpv-colorpicker-panel-content {
+  position: relative;
+  width: 193px;
+  height: 166px;
+}
+
+.bpv-colorpicker-selector {
+  height: 150px;
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 150px;
+}
+
+.bpv-colorpicker-hue {
+  height: 150px;
+  left: 167px;
+  opacity: .85;
+  position: absolute;
+  top: 8px;
+  width: 17px;
+  background: linear-gradient(0deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+}
+
+.bpv-colorpicker-hue-handle {
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  height: 10px;
+  left: 0;
+  margin-left: -2px;
+  margin-top: -5px;
+  opacity: 0.85;
+  position: absolute;
+  width: 21px;
+  top: 150px;
+}
+
+.bpv-colorpicker-color {
+  height: 150px;
+  width: 150px;
+  background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.bpv-colorpicker-color-handle {
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  height: 10px;
+  left: 150px;
+  margin: -5px 0 0 -5px;
+  opacity: .85;
+  position: absolute;
+  width: 10px;
+}
+
+.bpv-colorpicker-hue-handle, .bpv-colorpicker-color-handle {
+  border-color: $white;
+}

@@ -33,6 +33,7 @@ import { tooltipPT } from './tooltip';
 import { chartPT } from './chart';
 import { inputmaskPT } from './inputmask';
 import { dialogPT } from './dialog';
+import { colorpickerPT } from './colorpicker';
 
 export default {
   button: buttonPT,
@@ -69,6 +70,7 @@ export default {
   chart: chartPT,
   inputmask: inputmaskPT,
   dialog: dialogPT,
+  colorpicker: colorpickerPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT

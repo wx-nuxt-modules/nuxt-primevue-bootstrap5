@@ -44,7 +44,8 @@ const menu = reactive<MenuItem[]>([
       { title: 'Выпадающий список (множественный выбор)', to: '/forms/multiselect' },
       { title: 'Календарь', to: '/forms/calendar' },
       { title: 'Большое поле', to: '/forms/textarea' },
-      { title: 'Кнопки с выбором', to: '/forms/selectbutton' }
+      { title: 'Кнопки с выбором', to: '/forms/selectbutton' },
+      { title: 'Выбор цвета', to: '/forms/colorpicker' }
     ]
   },
   {
