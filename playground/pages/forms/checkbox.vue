@@ -104,5 +104,7 @@ const inputs = reactive({
         </div>
       </div>
     </div>
+
+    <PagesFormCheckboxState />
   </div>
 </template>

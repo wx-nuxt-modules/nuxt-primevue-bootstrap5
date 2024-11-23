@@ -32,7 +32,7 @@ const bindProps = computed(() => {
 </script>
 
 <template>
-  <div class="form-check" :class="{ 'form-check-inline': inline }">
+  <div class="form-check bpv-form-check" :class="{ 'form-check-inline': inline }">
     <BCheckbox
       v-bind="bindProps"
       :input-id="id"

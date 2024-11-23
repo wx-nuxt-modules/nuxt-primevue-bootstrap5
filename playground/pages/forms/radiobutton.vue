@@ -23,5 +23,6 @@ const inputs = reactive({
   <div class="bd-content ps-lg-2">
     <PagesFormRadioButtonGroup />
     <PagesFormRadioButtonDynamic />
+    <PagesFormRadioButtonState />
   </div>
 </template>

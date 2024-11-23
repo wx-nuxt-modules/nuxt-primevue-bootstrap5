@@ -10,13 +10,11 @@
   }
 }
 
-.bpv-form-checkbox-group {
-  > .form-check {
-    display: flex;
-    align-items: center;
+.bpv-form-check {
+  display: flex;
+  align-items: center;
 
-    &.form-check-inline {
-      display: inline-flex;
-    }
+  &.form-check-inline {
+    display: inline-flex;
   }
 }
