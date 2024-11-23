@@ -93,7 +93,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     const components = await globby(resolve('runtime/components', '**', '*.vue'));
     const ignoreComponents = ['ToastMessage'];
-    const customComponents = ['buttongroup', 'calendar', 'panelmenu', 'toast'];
+    const customComponents = ['buttongroup', 'calendar', 'panelmenu', 'toast', 'datatable'];
 
     const typesDir = resolve(nuxt.options.buildDir, 'components.d.ts');
 
