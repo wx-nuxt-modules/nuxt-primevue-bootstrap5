@@ -40,6 +40,7 @@ const menu = reactive<MenuItem[]>([
       { title: 'Числовое поле', to: '/forms/inputnumber' },
       { title: 'Пароль', to: '/forms/password' },
       { title: 'Чекбокс', to: '/forms/checkbox' },
+      { title: 'Радиокнопки', to: '/forms/radiobutton' },
       { title: 'Выпадающий список', to: '/forms/dropdown' },
       { title: 'Выпадающий список (множественный выбор)', to: '/forms/multiselect' },
       { title: 'Календарь', to: '/forms/calendar' },

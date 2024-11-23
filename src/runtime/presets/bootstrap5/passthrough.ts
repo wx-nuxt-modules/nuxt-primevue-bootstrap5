@@ -34,6 +34,7 @@ import { chartPT } from './chart';
 import { inputmaskPT } from './inputmask';
 import { dialogPT } from './dialog';
 import { colorpickerPT } from './colorpicker';
+import { radiobuttonPT } from './radiobutton';
 
 export default {
   button: buttonPT,
@@ -71,6 +72,7 @@ export default {
   inputmask: inputmaskPT,
   dialog: dialogPT,
   colorpicker: colorpickerPT,
+  radiobutton: radiobuttonPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT
