@@ -42,10 +42,20 @@ function getInputId(idx: number) {
   return `__${id}_${props.name}_${idx}__`;
 }
 
-function getBindOption(option: Props['options'][number]) {
+function getBindOption(option: Props['options'][number], idx: number) {
   const { [props.optionText]: _text, ...rest } = option;
 
-  return rest;
+  return {
+    ...rest,
+    modelValue: props.modelValue,
+    disabled: props.disabled || option.disabled || undefined,
+    readonly: props.readonly || option.readonly || undefined,
+    state: props.state || undefined,
+    label: option[props.optionText],
+    inline: props.inline || undefined,
+    name: props.name || undefined,
+    inputId: getInputId(idx)
+  };
 }
 
 function onUpdateModelValue(newVal: Parameters<RadioButtonEmits['update:modelValue']>[0]) {
@@ -58,15 +68,8 @@ function onUpdateModelValue(newVal: Parameters<RadioButtonEmits['update:modelVal
   <div class="bpv-form-checkbox-group">
     <BRadioButtonWithLabel
       v-for="(option, idx) of options"
-      v-bind="getBindOption(option)"
+      v-bind="getBindOption(option, idx)"
       :key="getInputId(idx)"
-      :model-value="modelValue"
-      :disabled="disabled || option.disabled || undefined"
-      :readonly="readonly || option.readonly || undefined"
-      :input-id="getInputId(idx)"
-      :name="name"
-      :label="option[optionText]"
-      :inline="inline"
       @update:model-value="onUpdateModelValue"
       @blur="emits('blur', { event: $event, index: idx })"
       @change="emits('change', { event: $event, index: idx })"
