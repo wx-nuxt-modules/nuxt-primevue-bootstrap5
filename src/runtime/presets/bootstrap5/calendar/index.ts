@@ -25,8 +25,8 @@ export const calendarPT = <BPVCalendarPassThroughOptions>{
 
     return { class: classes };
   },
-  panel: () => {
-    const classes = ['popover fade show bpv-calendar-panel'];
+  panel: ({ props }) => {
+    const classes = ['bpv-calendar-panel', !props.inline && 'popover fade show'];
 
     return { class: classes };
   },
