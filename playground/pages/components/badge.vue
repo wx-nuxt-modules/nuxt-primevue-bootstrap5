@@ -101,13 +101,13 @@
       <div class="bd-example m-0 border-0">
         <div class="row g-3 align-items-end">
           <div class="col-auto">
-            <i class="pi pi-bell" style="font-size: 2rem" v-badge="2" />
+            <i class="pi pi-bell" style="font-size: 2rem" v-b-badge="2" />
           </div>
           <div class="col-auto">
-            <i class="pi pi-calendar" style="font-size: 2rem" v-badge.danger="'5+'" />
+            <i class="pi pi-calendar" style="font-size: 2rem" v-b-badge.danger="'5+'" />
           </div>
           <div class="col-auto">
-            <i class="pi pi-envelope" style="font-size: 2rem" v-badge.danger />
+            <i class="pi pi-envelope" style="font-size: 2rem" v-b-badge.danger />
           </div>
         </div>
       </div>

@@ -52,9 +52,13 @@
       width: 0;
       visibility: hidden;
     }
+  }
 
-    + .bpv-badge {
-      margin-left: map-get($spacers, 1);
+  &:not([data-p-overlay-badge="true"]) {
+    .bpv-btn-label {
+      + .bpv-badge {
+        margin-left: map-get($spacers, 1);
+      }
     }
   }
 }
