@@ -12,7 +12,7 @@ export default defineComponent({
   extends: DataTable,
   computed: {
     columns() {
-      const cols: any[] = this.d_columns.get(this);
+      const cols: any[] = this.d_columns.get(this) || [];
 
       if (this.reorderableColumns) {
         let orderedColumns = [];
