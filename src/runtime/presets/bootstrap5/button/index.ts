@@ -1,6 +1,6 @@
 import type { ButtonPassThroughOptions, BPVButtonProps } from './types';
 
-import { BPV_BUTTON_SIZE } from '../../../constants';
+import { BPV_BUTTON_SIZE, BPV_SEVERITY } from '../../../constants';
 import { inArrayValidator, isUndefined } from '../../../utils/validators';
 
 export const buttonPTRoot = ({
@@ -11,7 +11,8 @@ export const buttonPTRoot = ({
   rounded,
   text,
   outlined,
-  size
+  size,
+  disabled
 }: {
   block?: BPVButtonProps['block'];
   severity?: BPVButtonProps['severity'];
@@ -21,67 +22,60 @@ export const buttonPTRoot = ({
   text?: BPVButtonProps['text'];
   outlined?: BPVButtonProps['outlined'];
   size?: BPVButtonProps['size'];
+  disabled?: BPVButtonProps['disabled'];
 }) => {
-  const currentSize = inArrayValidator(size, BPV_BUTTON_SIZE);
+  const isDisabled = !isUndefined(disabled) && [true, 'true', ''].includes(disabled);
 
-  const classes = [
-    'btn',
-    'bpv-btn',
-    severity && !link && !text && !outlined && `btn-${severity}`,
-    severity && text && `bpv-btn-text-${severity}`,
-    severity && outlined && `btn-outline-${severity}`,
-    link && !severity && 'btn-link',
-    !isUndefined(block) && block && 'bpv-btn-block',
-    raised && 'bpv-btn-shadow',
-    rounded && 'bpv-btn-pill',
-    currentSize && `btn-${currentSize}`
-  ];
-
-  return { class: classes };
+  return {
+    class: [
+      'btn',
+      'bpv-btn',
+      severity && !link && !text && !outlined && `btn-${severity}`,
+      severity && text && `bpv-btn-text-${severity}`,
+      severity && outlined && `btn-outline-${severity}`,
+      link && !severity && 'btn-link',
+      !isUndefined(block) && block && 'bpv-btn-block',
+      raised && 'bpv-btn-shadow',
+      rounded && 'bpv-btn-pill',
+      size && `btn-${size}`,
+      isDisabled && 'disabled'
+    ]
+  };
 };
 
 export const buttonPTLabel = ({ label }: { label: BPVButtonProps['label'] }) => {
-  const classes = ['bpv-btn-label', !label && 'bpv-btn-label-hidden'];
-
-  return { class: classes };
+  return { class: ['bpv-btn-label', !label && 'bpv-btn-label-hidden'] };
 };
 
 export const buttonPTIcon = ({ iconPos }: { iconPos: BPVButtonProps['iconPos'] }) => {
-  const classes = [
-    'bpv-btn-icon',
-    iconPos === 'left' && 'bpv-btn-icon-left',
-    iconPos === 'right' && 'bpv-btn-icon-right'
-  ];
-
-  return { class: classes };
+  return {
+    class: ['bpv-btn-icon', iconPos === 'left' && 'bpv-btn-icon-left', iconPos === 'right' && 'bpv-btn-icon-right']
+  };
 };
 
 export const buttonPTLoadingIcon = () => {
-  const classes = ['bpv-btn-icon', 'bpv-btn-icon-loading'];
-
-  return { class: classes };
+  return { class: ['bpv-btn-icon', 'bpv-btn-icon-loading'] };
 };
 
 export const buttonPT = <ButtonPassThroughOptions>{
   root: ({ instance, props }) => {
     return buttonPTRoot({
       block: !isUndefined(instance.$params.attrs.block),
-      severity: props.severity,
+      severity: inArrayValidator(props.severity, BPV_SEVERITY, undefined),
       link: props.link,
       raised: props.raised,
       rounded: props.rounded,
       text: props.text,
       outlined: props.outlined,
-      size: props.size
+      size: inArrayValidator(props.size, BPV_BUTTON_SIZE, undefined),
+      disabled: props.disabled
     });
   },
-  label: ({ instance, props }) => {
+  label: ({ props }) => {
     return buttonPTLabel({ label: props.label });
   },
-  icon: ({ instance, props }) => {
+  icon: ({ props }) => {
     return buttonPTIcon({ iconPos: props.iconPos });
   },
-  loadingIcon: ({ instance, props }) => {
-    return buttonPTLoadingIcon();
-  }
+  loadingIcon: buttonPTLoadingIcon()
 };
