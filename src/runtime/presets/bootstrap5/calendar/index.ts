@@ -1,101 +1,89 @@
 import type { BPVCalendarPassThroughOptions } from './types';
 
 import { createRootClasses } from '../inputtext';
-
-const sharedButtonPT = ({ ...rest }: any) => {
-  const classes = ['btn bpv-btn', rest.class];
-
-  return { class: classes };
-};
+import { buttonPTRoot } from '../button';
 
 // @ts-ignore
 export const calendarPT = <BPVCalendarPassThroughOptions>{
-  root: () => {
-    const classes = ['bpv-calendar'];
-
-    return { class: classes };
-  },
+  root: { class: 'bpv-calendar' },
   input: ({ attrs }) => {
     return createRootClasses({
       state: attrs.state
     });
   },
-  header: () => {
-    const classes = ['bpv-calendar-panel-header'];
-
-    return { class: classes };
-  },
+  header: { class: 'bpv-calendar-panel-header' },
   panel: ({ props }) => {
-    const classes = ['bpv-calendar-panel', !props.inline && 'popover fade show'];
-
-    return { class: classes };
+    return { class: ['bpv-calendar-panel', !props.inline && 'popover fade show'] };
   },
-  title: () => {
-    const classes = ['bpv-calendar-panel-header-title'];
-
-    return { class: classes };
-  },
-  groupContainer: () => {
-    const classes = ['popover-body bpv-calendar-panel-group'];
-
-    return { class: classes };
-  },
-  group: () => {
-    const classes = ['bpv-calendar-panel-group-item'];
-
-    return { class: classes };
-  },
+  title: { class: 'bpv-calendar-panel-header-title' },
+  groupContainer: { class: 'popover-body bpv-calendar-panel-group' },
+  group: { class: 'bpv-calendar-panel-group-item' },
   previousButton: ({ props }: any) => {
-    return sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled });
+    return buttonPTRoot({
+      rounded: true,
+      disabled: props.disabled
+    });
   },
   nextButton: ({ props }: any) => {
-    return sharedButtonPT({ class: 'bpv-btn-pill', disabled: props.disabled });
+    return buttonPTRoot({
+      rounded: true,
+      disabled: props.disabled
+    });
   },
-  monthTitle: () => sharedButtonPT({}),
-  yearTitle: () => sharedButtonPT({}),
-  decadeTitle: () => sharedButtonPT({}),
-  container: () => {
-    const classes = ['table-responsive'];
-
-    return { class: classes };
-  },
-  table: () => {
-    const classes = ['table bpv-calendar-panel-table'];
-
-    return { class: classes };
-  },
-  day: ({ context }) => {
-    const classes = ['bpv-calendar-panel-table-cell'];
-
-    return { class: classes };
-  },
+  monthTitle: buttonPTRoot({}),
+  yearTitle: buttonPTRoot({}),
+  decadeTitle: buttonPTRoot({}),
+  container: { class: 'table-responsive' },
+  table: { class: 'table bpv-calendar-panel-table' },
+  day: { class: 'bpv-calendar-panel-table-cell' },
   dayLabel: ({ context, props }) => {
+    const buttonPT = buttonPTRoot({
+      disabled: context.disabled || props.disabled
+    });
+
     const isSelected = context.selected && !context.disabled;
     const isExactSelected = context.exactSelected && !context.disabled;
 
-    return sharedButtonPT({
+    return {
+      ...buttonPT,
       class: [
+        buttonPT.class,
         'bpv-calendar-panel-label',
         isSelected && 'selected',
         isExactSelected && 'active',
-        context.date.today && !context.selected && 'today',
-        (context.disabled || props.disabled) && 'disabled'
+        context.date.today && !context.selected && 'today'
       ]
+    };
+  },
+  monthPicker: { class: 'bpv-calendar-panel-monthpicker' },
+  yearPicker: { class: 'bpv-calendar-panel-yearpicker' },
+  month: ({ context, props }) => {
+    const buttonPT = buttonPTRoot({
+      disabled: context.disabled || props.disabled
     });
-  },
-  monthPicker: () => {
-    const classes = ['bpv-calendar-panel-monthpicker'];
 
-    return { class: classes };
+    return {
+      ...buttonPT,
+      class: [buttonPT.class, 'bpv-calendar-panel-label']
+    };
   },
-  yearPicker: () => {
-    const classes = ['bpv-calendar-panel-yearpicker'];
+  year: ({ context, props }) => {
+    const buttonPT = buttonPTRoot({
+      disabled: context.disabled || props.disabled
+    });
 
-    return { class: classes };
+    return {
+      ...buttonPT,
+      class: [buttonPT.class, 'bpv-calendar-panel-label']
+    };
   },
-  month: () => sharedButtonPT({ class: 'bpv-calendar-panel-label' }),
-  year: () => sharedButtonPT({ class: 'bpv-calendar-panel-label' }),
-
+  buttonbar: { class: 'bpv-calendar-panel-buttonbar' },
+  todayButton: {
+    root: buttonPTRoot({ size: 'sm', severity: 'primary' })
+  },
+  clearButton: {
+    root: buttonPTRoot({ size: 'sm', severity: 'secondary', outlined: true })
+  },
   transition: {
     name: 'bpv-calendar'
   }

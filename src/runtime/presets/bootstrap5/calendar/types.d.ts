@@ -23,6 +23,7 @@ export interface BPVCalendarProps extends Omit<CalendarProps, 'invalid'> {
   monthsInitial?: Date[];
   weekdaysDayNamesLocaleKey?: 'dayNames' | 'dayNamesShort' | 'dayNamesMin';
   state?: 'valid' | 'invalid' | undefined;
+  inputMask?: boolean;
 }
 
 export interface BPVCalendarContext extends CalendarContext {

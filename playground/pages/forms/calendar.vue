@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const primeVue = usePrimeVue();
+
 const inputs = reactive({
   basic: undefined,
   format: undefined,
@@ -18,24 +20,40 @@ function dateForLocale(localeName: string = 'ru-RU', { weekday, month }: Intl.Da
   const { format } = new Intl.DateTimeFormat(localeName, { weekday, month });
 
   if (weekday) {
-    return [...Array(7).keys()].map((day) => format(new Date(Date.UTC(2021, 5, day))));
+    const weekdays = [...Array(7).keys()].map((day) => {
+      const val = format(new Date(Date.UTC(2021, 5, day)));
+
+      if (weekday === 'short') {
+        return val.slice(0, 1).toUpperCase() + val.slice(1);
+      }
+
+      return val;
+    });
+
+    return [weekdays.at(-1)!, ...weekdays.slice(0, -1)];
   }
 
   if (month) {
-    return [...Array(12).keys()].map(
-      (month) =>
-        format(new Date(Date.UTC(2021, month, 1)))
-          .slice(0, 1)
-          .toUpperCase() + format(new Date(Date.UTC(2021, month, 1))).slice(1)
-    );
+    return [...Array(12).keys()].map((month) => {
+      const formatted = format(new Date(Date.UTC(2021, month, 1)));
+
+      return `${formatted.slice(0, 1).toUpperCase()}${formatted.slice(1)}`;
+    });
   }
+
+  return [];
 }
 
-usePrimeVue().config.locale.dayNames = dateForLocale('ru-RU', { weekday: 'long' });
-usePrimeVue().config.locale.dayNamesMin = dateForLocale('ru-RU', { weekday: 'narrow' });
-usePrimeVue().config.locale.dayNamesShort = dateForLocale('ru-RU', { weekday: 'short' });
-usePrimeVue().config.locale.monthNames = dateForLocale('ru-RU', { month: 'long' });
-usePrimeVue().config.locale.monthNamesShort = dateForLocale('ru-RU', { month: 'short' });
+Object.assign(primeVue.config.locale, {
+  dayNames: dateForLocale('ru-RU', { weekday: 'long' }),
+  dayNamesMin: dateForLocale('ru-RU', { weekday: 'narrow' }),
+  dayNamesShort: dateForLocale('ru-RU', { weekday: 'short' }),
+  monthNames: dateForLocale('ru-RU', { month: 'long' }),
+  monthNamesShort: dateForLocale('ru-RU', { month: 'short' }),
+  firstDayOfWeek: 1,
+  clear: 'Очистить',
+  today: 'Сегодня'
+});
 </script>
 
 <template>
@@ -92,7 +110,9 @@ usePrimeVue().config.locale.monthNamesShort = dateForLocale('ru-RU', { month: 's
       </div>
     </div>
 
-    <h2>Диапозон дат</h2>
+    <PagesFormCalendarMask />
+
+    <h2>Диапазон дат</h2>
     <p>
       Диапазон дат можно выбрать, определив пропс <code>selectMode="range"</code>. В этом случае связанное значение
       будет массивом с двумя значениями, где первая дата — это начало диапазона, а вторая дата — конец.
@@ -107,6 +127,8 @@ usePrimeVue().config.locale.monthNamesShort = dateForLocale('ru-RU', { month: 's
         </div>
       </div>
     </div>
+
+    <PagesFormCalendarButtonBar />
 
     <h2>Inline</h2>
     <p>Calendar is used a controlled input component with <code>v-model</code> property.</p>

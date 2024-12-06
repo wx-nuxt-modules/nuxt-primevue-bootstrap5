@@ -1,8 +1,12 @@
 <script lang="ts">
+import type { PropType } from 'vue';
 import type { BPVCalendarProps } from '../../presets/bootstrap5/calendar/types';
 
+import { defineComponent } from 'vue';
+// @ts-expect-error
 import Calendar from 'primevue/calendar/Calendar.vue';
-import { defineComponent, type PropType } from 'vue';
+// @ts-expect-error
+import InputMask from 'primevue/inputmask/InputMask.vue';
 
 interface DateMeta {
   month: number;
@@ -14,6 +18,7 @@ interface DateMeta {
 export default defineComponent({
   name: 'Calendar',
   extends: Calendar,
+  components: { InputMask },
   props: {
     disableSync: {
       type: Boolean as PropType<NonNullable<BPVCalendarProps['disableSync']>>,
@@ -29,11 +34,19 @@ export default defineComponent({
       type: String,
       default: 'dayNamesMin',
       validator: (val: string) => ['dayNames', 'dayNamesShort', 'dayNamesMin'].includes(val)
+    },
+    inputMask: {
+      type: Boolean as PropType<NonNullable<BPVCalendarProps['inputMask']>>,
+      default: false
     }
   },
   data() {
     return {
-      monthsState: [] as Date[]
+      monthsState: [] as Date[],
+      maskToInputMask: null as string | null,
+
+      inputMaskValue: null as string | null,
+      inputMaskRef: null as InputMask | null
     };
   },
   computed: {
@@ -148,6 +161,10 @@ export default defineComponent({
       }
 
       return weekDays;
+    },
+
+    isInputMask() {
+      return !this.inline && this.manualInput && this.inputMask && this.isSingleSelection();
     }
   },
   methods: {
@@ -345,6 +362,51 @@ export default defineComponent({
       }
 
       this.monthsState[groupIndex] = newDate;
+    },
+
+    onUpdateValueInputMask(newVal: string | null) {
+      this.inputMaskValue = newVal;
+
+      if (!this.inputMaskRef?.isCompleted()) {
+        this.updateModel(null);
+      } else {
+        this.updateModel(this.parseValue(newVal));
+      }
+    },
+
+    initInputMask_() {
+      if (!this.isInputMask) return;
+
+      const replaceMap = new Map<string, string>([
+        ['dd', '99'],
+        ['oo', '99'],
+        ['mm', '99'],
+        ['yy', '9999'],
+        ['d', '9'],
+        ['o', '9'],
+        ['m', '9'],
+        ['y', '99']
+      ]);
+
+      let stack = this.datePattern;
+      replaceMap.forEach((value, key) => {
+        stack = stack.replace(key, value);
+      });
+
+      const vm = this;
+
+      this.maskToInputMask = stack;
+      this.input = {
+        selectionStart: null,
+        selectionEnd: null,
+
+        set value(newVal: string | null) {
+          vm.inputMaskValue = newVal;
+        },
+        focus() {
+          /* noop */
+        }
+      };
     }
   },
   watch: {
@@ -354,39 +416,73 @@ export default defineComponent({
       },
       immediate: true
     }
+  },
+  created() {
+    this.initInputMask_();
   }
 });
 </script>
 
 <template>
   <span ref="container" :id="d_id" :class="cx('root')" :style="sx('root')" v-bind="ptm('root')">
-    <input
-      v-if="!inline"
-      :ref="inputRef"
-      :id="inputId"
-      type="text"
-      role="combobox"
-      :class="[cx('input'), inputClass]"
-      :style="inputStyle"
-      :placeholder="placeholder"
-      autocomplete="off"
-      aria-autocomplete="none"
-      aria-haspopup="dialog"
-      :aria-expanded="overlayVisible"
-      :aria-controls="panelId"
-      :aria-labelledby="ariaLabelledby"
-      :aria-label="ariaLabel"
-      inputmode="none"
-      :disabled="disabled"
-      :readonly="!manualInput || readonly"
-      :tabindex="0"
-      @input="onInput"
-      @click="onInputClick"
-      @focus="onFocus"
-      @blur="onBlur"
-      @keydown="onKeyDown"
-      v-bind="{ ...inputProps, ...ptm('input') }"
-    />
+    <template v-if="!inline">
+      <InputMask
+        v-if="isInputMask && maskToInputMask"
+        :ref="(ref: unknown) => (inputMaskRef = ref)"
+        :model-value="inputMaskValue"
+        :mask="maskToInputMask"
+        :id="inputId"
+        :placeholder="placeholder"
+        :class="inputClass"
+        :style="inputStyle"
+        :pt="{
+          root: {
+            type: 'text',
+            role: 'combobox',
+            autocomplete: 'off',
+            'aria-autocomplete': 'none',
+            'aria-haspopup': 'dialog',
+            'aria-expanded': `${overlayVisible}`,
+            'aria-controls': `${panelId}`,
+            tabindex: 0,
+            'aria-labelledby': ariaLabelledby,
+            'aria-label': ariaLabel,
+            inputmode: 'none',
+            ...inputProps
+          }
+        }"
+        @focus="onFocus"
+        @blur="onBlur"
+        @update:model-value="onUpdateValueInputMask"
+      />
+      <input
+        v-else
+        :ref="inputRef"
+        :id="inputId"
+        type="text"
+        role="combobox"
+        :class="[cx('input'), inputClass]"
+        :style="inputStyle"
+        :placeholder="placeholder"
+        autocomplete="off"
+        aria-autocomplete="none"
+        aria-haspopup="dialog"
+        :aria-expanded="overlayVisible"
+        :aria-controls="panelId"
+        :aria-labelledby="ariaLabelledby"
+        :aria-label="ariaLabel"
+        inputmode="none"
+        :disabled="disabled"
+        :readonly="!manualInput || readonly"
+        :tabindex="0"
+        @input="onInput"
+        @click="onInputClick"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown="onKeyDown"
+        v-bind="{ ...inputProps, ...ptm('input') }"
+      />
+    </template>
     <CalendarButton
       v-if="showIcon && iconDisplay === 'button'"
       :class="cx('dropdownButton')"

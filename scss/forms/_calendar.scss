@@ -18,9 +18,6 @@
     --#{$prefix}btn-disabled-opacity: 1;
     --#{$prefix}btn-active-border-color: transparent;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding-bottom: $table-cell-padding-y;
     border-bottom: $table-border-width solid $table-border-color;
   }
@@ -82,5 +79,15 @@
       display: flex;
       flex-direction: column;
     }
+  }
+
+  .bpv-calendar-panel-buttonbar {
+    padding: 0 var(--#{$prefix}popover-body-padding-x) var(--#{$prefix}popover-body-padding-y) var(--#{$prefix}popover-body-padding-x);
+  }
+
+  .bpv-calendar-panel-header, .bpv-calendar-panel-buttonbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
