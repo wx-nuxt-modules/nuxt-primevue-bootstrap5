@@ -364,13 +364,15 @@ export default defineComponent({
       this.monthsState[groupIndex] = newDate;
     },
 
-    onUpdateValueInputMask(newVal: string | null) {
-      this.inputMaskValue = newVal;
+    onCompleteInputMask(event: KeyboardEvent & { target: HTMLInputElement }) {
+      this.inputMaskValue = event.target.value;
 
-      if (!this.inputMaskRef?.isCompleted()) {
-        this.updateModel(null);
-      } else {
-        this.updateModel(this.parseValue(newVal));
+      this.onInput(event);
+    },
+    onUpdateValueInputMask(newVal: string | null) {
+      if (!newVal) {
+        this.inputMaskValue = newVal;
+        this.updateModel(newVal);
       }
     },
 
@@ -453,6 +455,7 @@ export default defineComponent({
         }"
         @focus="onFocus"
         @blur="onBlur"
+        @complete="onCompleteInputMask"
         @update:model-value="onUpdateValueInputMask"
       />
       <input
