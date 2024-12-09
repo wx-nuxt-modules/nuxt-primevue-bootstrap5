@@ -4,10 +4,9 @@
 
 .bpv-calendar-panel {
   --p-anchor-gutter: var(--#{$prefix}popover-arrow-height);
-  --p-calendar-panel-min-width: #{$calendar-panel-min-width};
   --#{$prefix}popover-max-width: 100%;
 
-  min-width: var(--p-calendar-panel-min-width, 210px) !important;
+  width: $calendar-panel-min-width;
 
   &.bpv-calendar-enter-from, &.bpv-calendar-leave-to {
     opacity: 0;

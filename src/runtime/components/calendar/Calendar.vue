@@ -3,6 +3,8 @@ import type { PropType } from 'vue';
 import type { BPVCalendarProps } from '../../presets/bootstrap5/calendar/types';
 
 import { defineComponent } from 'vue';
+import { DomHandler } from 'primevue/utils';
+
 // @ts-expect-error
 import Calendar from 'primevue/calendar/Calendar.vue';
 // @ts-expect-error
@@ -38,6 +40,10 @@ export default defineComponent({
     inputMask: {
       type: Boolean as PropType<NonNullable<BPVCalendarProps['inputMask']>>,
       default: false
+    },
+    noFluidPanel: {
+      type: Boolean as PropType<NonNullable<BPVCalendarProps['noFluidPanel']>>,
+      default: false
     }
   },
   data() {
@@ -51,18 +57,282 @@ export default defineComponent({
   },
   computed: {
     months() {
-      if (!this.disableSync) return Calendar.computed!.months.call(this);
+      return !this.disableSync ? this.initMonths_() : this.initMonthsWithDisableSync_();
+    },
+    weekDays() {
+      let weekDays = [];
+      let dayIndex = this.$primevue.config.locale.firstDayOfWeek;
 
+      for (let i = 0; i < 7; i++) {
+        weekDays.push(this.$primevue.config.locale[this.weekdaysDayNamesLocaleKey][dayIndex]);
+        dayIndex = dayIndex == 6 ? 0 : ++dayIndex;
+      }
+
+      return weekDays;
+    },
+
+    isInputMask() {
+      return !this.inline && this.manualInput && this.inputMask && this.isSingleSelection();
+    }
+  },
+  methods: {
+    isShowPreviousButton(groupIndex: number): boolean {
+      if (this.disableSync) return true;
+
+      return this.showOtherMonths ? groupIndex === 0 : false;
+    },
+    isShowNextButton(groupIndex: number): boolean {
+      if (this.disableSync) return true;
+
+      if (!this.showOtherMonths) return false;
+
+      return this.numberOfMonths === 1 ? true : groupIndex === this.numberOfMonths - 1;
+    },
+    isExactSelected(dateMeta: DateMeta): boolean {
+      if (!this.isSelected(dateMeta)) return false;
+
+      if (this.isRangeSelection()) {
+        if (this.modelValue[1]) {
+          return this.isDateEquals(this.modelValue[0], dateMeta) || this.isDateEquals(this.modelValue[1], dateMeta);
+        }
+      }
+
+      return true;
+    },
+
+    /**
+     * @override
+     */
+    onPrevButtonClick(event: MouseEvent, groupIndex: number) {
+      if (this.showOtherMonths) {
+        this.navigationState = { backward: true, button: true };
+        this.navBackward(event, groupIndex);
+      }
+    },
+    /**
+     * @override
+     */
+    onNextButtonClick(event: MouseEvent, groupIndex: number) {
+      if (this.showOtherMonths) {
+        this.navigationState = { backward: false, button: true };
+        this.navForward(event, groupIndex);
+      }
+    },
+    /**
+     * @override
+     */
+    navBackward(event: MouseEvent, groupIndex: number) {
+      if (!this.disableSync || this.numberOfMonths === 1) return Calendar.methods!.navBackward.call(this, event);
+
+      event.preventDefault();
+
+      if (!this.isEnabled()) {
+        return;
+      }
+
+      // TODO: Доделать все варианты currentView
+      // if (this.currentView === 'month') {
+      //   this.decrementYear();
+      //   this.$emit('year-change', { month: this.currentMonth, year: this.currentYear, index: groupIndex });
+      // } else if (this.currentView === 'year') {
+      //   this.decrementDecade();
+      // } else {
+      //   if (event.shiftKey) {
+      //     this.decrementYear();
+      //   } else {
+      //     if (this.currentMonth === 0) {
+      //       this.currentMonth = 11;
+      //       this.decrementYear();
+      //     } else {
+      //       this.currentMonth--;
+      //     }
+      //
+      //     this.$emit('month-change', { month: this.currentMonth + 1, year: this.currentYear });
+      //   }
+      // }
+
+      if (['month', 'year'].includes(this.currentView)) return;
+
+      const newDate = new Date(this.monthsState[groupIndex]);
+      const prevDate = this.monthsState[groupIndex - 1] && {
+        initial: new Date(this.monthsState[groupIndex - 1]),
+        current: new Date(this.monthsState[groupIndex - 1]),
+        get isCompared() {
+          return this.initial.getTime() === this.current.getTime();
+        }
+      };
+
+      // TODO: Реализовать обновление года через shiftKey
+      // if (event.shiftKey) {
+      //   newDate.setFullYear(newDate.getFullYear() - 1);
+      // } else {
+      //   newDate.setMonth(newDate.getMonth() - 1);
+      // }
+
+      newDate.setMonth(newDate.getMonth() - 1);
+
+      if (prevDate) {
+        if (prevDate.initial.getFullYear() === newDate.getFullYear()) {
+          if (prevDate.initial.getMonth() >= newDate.getMonth()) {
+            prevDate.current.setMonth(newDate.getMonth() - 1);
+          }
+        }
+
+        if (!prevDate.isCompared) {
+          this.monthsState[groupIndex - 1] = prevDate.current;
+        }
+      }
+
+      this.monthsState[groupIndex] = newDate;
+    },
+    /**
+     * @override
+     */
+    navForward(event: MouseEvent, groupIndex: number) {
+      if (!this.disableSync || this.numberOfMonths === 1) return Calendar.methods!.navForward.call(this, event);
+
+      event.preventDefault();
+
+      if (!this.isEnabled()) {
+        return;
+      }
+
+      // TODO: Доделать все варианты currentView
+      // if (this.currentView === 'month') {
+      //   this.incrementYear();
+      //   this.$emit('year-change', { month: this.currentMonth, year: this.currentYear });
+      // } else if (this.currentView === 'year') {
+      //   this.incrementDecade();
+      // } else {
+      //   if (event.shiftKey) {
+      //     this.incrementYear();
+      //   } else {
+      //     if (this.currentMonth === 11) {
+      //       this.currentMonth = 0;
+      //       this.incrementYear();
+      //     } else {
+      //       this.currentMonth++;
+      //     }
+      //
+      //     this.$emit('month-change', { month: this.currentMonth + 1, year: this.currentYear });
+      //   }
+      // }
+
+      if (['month', 'year'].includes(this.currentView)) return;
+
+      const newDate = new Date(this.monthsState[groupIndex]);
+      const nextDate = this.monthsState[groupIndex + 1] && {
+        initial: new Date(this.monthsState[groupIndex + 1]),
+        current: new Date(this.monthsState[groupIndex + 1]),
+        get isCompared() {
+          return this.initial.getTime() === this.current.getTime();
+        }
+      };
+
+      // TODO: Реализовать обновление года через shiftKey
+      // if (event.shiftKey) {
+      //   newDate.setFullYear(newDate.getFullYear() + 1);
+      // } else {
+      //   newDate.setMonth(newDate.getMonth() + 1);
+      // }
+
+      newDate.setMonth(newDate.getMonth() + 1);
+
+      if (nextDate) {
+        if (nextDate.initial.getFullYear() === newDate.getFullYear()) {
+          if (nextDate.initial.getMonth() <= newDate.getMonth()) {
+            nextDate.current.setMonth(newDate.getMonth() + 1);
+          }
+        }
+
+        if (!nextDate.isCompared) {
+          this.monthsState[groupIndex + 1] = nextDate.current;
+        }
+      }
+
+      this.monthsState[groupIndex] = newDate;
+    },
+    /**
+     * @override
+     */
+    alignOverlay() {
+      if (this.touchUI) {
+        this.enableModality();
+      } else if (this.overlay) {
+        if (this.appendTo === 'self' || this.inline) {
+          if (!this.noFluidPanel || this.inline) {
+            this.overlay.style.width = '100%';
+          }
+
+          DomHandler.relativePosition(this.overlay, this.$el);
+        } else {
+          if (this.view === 'date') {
+            if (!this.noFluidPanel) {
+              this.overlay.style.minWidth = DomHandler.getOuterWidth(this.$el, false) + 'px';
+            }
+          } else {
+            if (!this.noFluidPanel) {
+              this.overlay.style.width = DomHandler.getOuterWidth(this.$el, false) + 'px';
+            }
+          }
+
+          DomHandler.absolutePosition(this.overlay, this.$el);
+        }
+      }
+    },
+
+    onCompleteInputMask(event: KeyboardEvent & { target: HTMLInputElement }) {
+      this.inputMaskValue = event.target.value;
+
+      this.onInput(event);
+    },
+    onUpdateValueInputMask(newVal: string | null) {
+      if (!newVal) {
+        this.inputMaskValue = newVal;
+        this.updateModel(newVal);
+      }
+    },
+
+    initInputMask_() {
+      if (!this.isInputMask) return;
+
+      const replaceMap = new Map<string, string>([
+        ['dd', '99'],
+        ['oo', '99'],
+        ['mm', '99'],
+        ['yy', '9999'],
+        ['d', '9'],
+        ['o', '9'],
+        ['m', '9'],
+        ['y', '99']
+      ]);
+
+      let stack = this.datePattern;
+      replaceMap.forEach((value, key) => {
+        stack = stack.replace(key, value);
+      });
+
+      const vm = this;
+
+      this.maskToInputMask = stack;
+      this.input = {
+        selectionStart: null,
+        selectionEnd: null,
+
+        set value(newVal: string | null) {
+          vm.inputMaskValue = newVal;
+        },
+        focus() {
+          /* noop */
+        }
+      };
+    },
+    initMonths_() {
       let months = [];
 
-      if (!Array.isArray(this.monthsState)) return [];
-      if (this.monthsState.length !== this.numberOfMonths) return [];
-
       for (let i = 0; i < this.numberOfMonths; i++) {
-        const dateFromState = this.monthsState[i];
-
-        let month = dateFromState.getMonth();
-        let year = dateFromState.getFullYear();
+        let month = this.currentMonth + i;
+        let year = this.currentYear;
 
         if (month > 11) {
           month = (month % 11) - 1;
@@ -76,7 +346,7 @@ export default defineComponent({
         let dayNo = 1;
         let today = new Date();
         let weekNumbers = [];
-        let monthRows = Math.ceil((daysLength + firstDay) / 7);
+        let monthRows = 6;
 
         for (let i = 0; i < monthRows; i++) {
           let week = [];
@@ -151,24 +421,106 @@ export default defineComponent({
 
       return months;
     },
-    weekDays() {
-      let weekDays = [];
-      let dayIndex = this.$primevue.config.locale.firstDayOfWeek;
+    initMonthsWithDisableSync_() {
+      let months = [];
 
-      for (let i = 0; i < 7; i++) {
-        weekDays.push(this.$primevue.config.locale[this.weekdaysDayNamesLocaleKey][dayIndex]);
-        dayIndex = dayIndex == 6 ? 0 : ++dayIndex;
+      if (!Array.isArray(this.monthsState)) return [];
+      if (this.monthsState.length !== this.numberOfMonths) return [];
+
+      for (let i = 0; i < this.numberOfMonths; i++) {
+        const dateFromState = this.monthsState[i];
+
+        let month = dateFromState.getMonth();
+        let year = dateFromState.getFullYear();
+
+        if (month > 11) {
+          month = (month % 11) - 1;
+          year = year + 1;
+        }
+
+        let dates = [];
+        let firstDay = this.getFirstDayOfMonthIndex(month, year);
+        let daysLength = this.getDaysCountInMonth(month, year);
+        let prevMonthDaysLength = this.getDaysCountInPrevMonth(month, year);
+        let dayNo = 1;
+        let today = new Date();
+        let weekNumbers = [];
+        let monthRows = 6;
+
+        for (let i = 0; i < monthRows; i++) {
+          let week = [];
+
+          if (i == 0) {
+            for (let j = prevMonthDaysLength - firstDay + 1; j <= prevMonthDaysLength; j++) {
+              let prev = this.getPreviousMonthAndYear(month, year);
+
+              week.push({
+                day: j,
+                month: prev.month,
+                year: prev.year,
+                otherMonth: true,
+                today: this.isToday(today, j, prev.month, prev.year),
+                selectable: this.isSelectable(j, prev.month, prev.year, true)
+              });
+            }
+
+            let remainingDaysLength = 7 - week.length;
+
+            for (let j = 0; j < remainingDaysLength; j++) {
+              week.push({
+                day: dayNo,
+                month: month,
+                year: year,
+                today: this.isToday(today, dayNo, month, year),
+                selectable: this.isSelectable(dayNo, month, year, false)
+              });
+              dayNo++;
+            }
+          } else {
+            for (let j = 0; j < 7; j++) {
+              if (dayNo > daysLength) {
+                let next = this.getNextMonthAndYear(month, year);
+
+                week.push({
+                  day: dayNo - daysLength,
+                  month: next.month,
+                  year: next.year,
+                  otherMonth: true,
+                  today: this.isToday(today, dayNo - daysLength, next.month, next.year),
+                  selectable: this.isSelectable(dayNo - daysLength, next.month, next.year, true)
+                });
+              } else {
+                week.push({
+                  day: dayNo,
+                  month: month,
+                  year: year,
+                  today: this.isToday(today, dayNo, month, year),
+                  selectable: this.isSelectable(dayNo, month, year, false)
+                });
+              }
+
+              dayNo++;
+            }
+          }
+
+          if (this.showWeek) {
+            weekNumbers.push(this.getWeekNumber(new Date(week[0].year, week[0].month, week[0].day)));
+          }
+
+          dates.push(week);
+        }
+
+        months.push({
+          month: month,
+          year: year,
+          dates: dates,
+          weekNumbers: weekNumbers
+        });
       }
 
-      return weekDays;
+      return months;
     },
-
-    isInputMask() {
-      return !this.inline && this.manualInput && this.inputMask && this.isSingleSelection();
-    }
-  },
-  methods: {
-    makeMonthsState(): void {
+    initMonthsState_() {
       if (!this.disableSync) return;
       if (this.numberOfMonths === 1) return;
 
@@ -197,224 +549,12 @@ export default defineComponent({
         if (a.getTime() < b.getTime()) return -1;
         return 0;
       });
-    },
-
-    isShowPreviousButton(groupIndex: number): boolean {
-      if (this.disableSync) return true;
-
-      return this.showOtherMonths ? groupIndex === 0 : false;
-    },
-    isShowNextButton(groupIndex: number): boolean {
-      if (this.disableSync) return true;
-
-      if (!this.showOtherMonths) return false;
-
-      return this.numberOfMonths === 1 ? true : groupIndex === this.numberOfMonths - 1;
-    },
-    isExactSelected(dateMeta: DateMeta): boolean {
-      if (!this.isSelected(dateMeta)) return false;
-
-      if (this.isRangeSelection()) {
-        if (this.modelValue[1]) {
-          return this.isDateEquals(this.modelValue[0], dateMeta) || this.isDateEquals(this.modelValue[1], dateMeta);
-        }
-      }
-
-      return true;
-    },
-
-    onPrevButtonClick(event: MouseEvent, groupIndex: number) {
-      if (this.showOtherMonths) {
-        this.navigationState = { backward: true, button: true };
-        this.navBackward(event, groupIndex);
-      }
-    },
-    onNextButtonClick(event: MouseEvent, groupIndex: number) {
-      if (this.showOtherMonths) {
-        this.navigationState = { backward: false, button: true };
-        this.navForward(event, groupIndex);
-      }
-    },
-    navBackward(event: MouseEvent, groupIndex: number) {
-      if (!this.disableSync || this.numberOfMonths === 1) return Calendar.methods!.navBackward.call(this, event);
-
-      event.preventDefault();
-
-      if (!this.isEnabled()) {
-        return;
-      }
-
-      // TODO: Доделать все варианты currentView
-      // if (this.currentView === 'month') {
-      //   this.decrementYear();
-      //   this.$emit('year-change', { month: this.currentMonth, year: this.currentYear, index: groupIndex });
-      // } else if (this.currentView === 'year') {
-      //   this.decrementDecade();
-      // } else {
-      //   if (event.shiftKey) {
-      //     this.decrementYear();
-      //   } else {
-      //     if (this.currentMonth === 0) {
-      //       this.currentMonth = 11;
-      //       this.decrementYear();
-      //     } else {
-      //       this.currentMonth--;
-      //     }
-      //
-      //     this.$emit('month-change', { month: this.currentMonth + 1, year: this.currentYear });
-      //   }
-      // }
-
-      if (['month', 'year'].includes(this.currentView)) return;
-
-      const newDate = new Date(this.monthsState[groupIndex]);
-      const prevDate = this.monthsState[groupIndex - 1] && {
-        initial: new Date(this.monthsState[groupIndex - 1]),
-        current: new Date(this.monthsState[groupIndex - 1]),
-        get isCompared() {
-          return this.initial.getTime() === this.current.getTime();
-        }
-      };
-
-      // TODO: Реализовать обновление года через shiftKey
-      // if (event.shiftKey) {
-      //   newDate.setFullYear(newDate.getFullYear() - 1);
-      // } else {
-      //   newDate.setMonth(newDate.getMonth() - 1);
-      // }
-
-      newDate.setMonth(newDate.getMonth() - 1);
-
-      if (prevDate) {
-        if (prevDate.initial.getFullYear() === newDate.getFullYear()) {
-          if (prevDate.initial.getMonth() >= newDate.getMonth()) {
-            prevDate.current.setMonth(newDate.getMonth() - 1);
-          }
-        }
-
-        if (!prevDate.isCompared) {
-          this.monthsState[groupIndex - 1] = prevDate.current;
-        }
-      }
-
-      this.monthsState[groupIndex] = newDate;
-    },
-    navForward(event: MouseEvent, groupIndex: number) {
-      if (!this.disableSync || this.numberOfMonths === 1) return Calendar.methods!.navForward.call(this, event);
-
-      event.preventDefault();
-
-      if (!this.isEnabled()) {
-        return;
-      }
-
-      // TODO: Доделать все варианты currentView
-      // if (this.currentView === 'month') {
-      //   this.incrementYear();
-      //   this.$emit('year-change', { month: this.currentMonth, year: this.currentYear });
-      // } else if (this.currentView === 'year') {
-      //   this.incrementDecade();
-      // } else {
-      //   if (event.shiftKey) {
-      //     this.incrementYear();
-      //   } else {
-      //     if (this.currentMonth === 11) {
-      //       this.currentMonth = 0;
-      //       this.incrementYear();
-      //     } else {
-      //       this.currentMonth++;
-      //     }
-      //
-      //     this.$emit('month-change', { month: this.currentMonth + 1, year: this.currentYear });
-      //   }
-      // }
-
-      if (['month', 'year'].includes(this.currentView)) return;
-
-      const newDate = new Date(this.monthsState[groupIndex]);
-      const nextDate = this.monthsState[groupIndex + 1] && {
-        initial: new Date(this.monthsState[groupIndex + 1]),
-        current: new Date(this.monthsState[groupIndex + 1]),
-        get isCompared() {
-          return this.initial.getTime() === this.current.getTime();
-        }
-      };
-
-      // TODO: Реализовать обновление года через shiftKey
-      // if (event.shiftKey) {
-      //   newDate.setFullYear(newDate.getFullYear() + 1);
-      // } else {
-      //   newDate.setMonth(newDate.getMonth() + 1);
-      // }
-
-      newDate.setMonth(newDate.getMonth() + 1);
-
-      if (nextDate) {
-        if (nextDate.initial.getFullYear() === newDate.getFullYear()) {
-          if (nextDate.initial.getMonth() <= newDate.getMonth()) {
-            nextDate.current.setMonth(newDate.getMonth() + 1);
-          }
-        }
-
-        if (!nextDate.isCompared) {
-          this.monthsState[groupIndex + 1] = nextDate.current;
-        }
-      }
-
-      this.monthsState[groupIndex] = newDate;
-    },
-
-    onCompleteInputMask(event: KeyboardEvent & { target: HTMLInputElement }) {
-      this.inputMaskValue = event.target.value;
-
-      this.onInput(event);
-    },
-    onUpdateValueInputMask(newVal: string | null) {
-      if (!newVal) {
-        this.inputMaskValue = newVal;
-        this.updateModel(newVal);
-      }
-    },
-
-    initInputMask_() {
-      if (!this.isInputMask) return;
-
-      const replaceMap = new Map<string, string>([
-        ['dd', '99'],
-        ['oo', '99'],
-        ['mm', '99'],
-        ['yy', '9999'],
-        ['d', '9'],
-        ['o', '9'],
-        ['m', '9'],
-        ['y', '99']
-      ]);
-
-      let stack = this.datePattern;
-      replaceMap.forEach((value, key) => {
-        stack = stack.replace(key, value);
-      });
-
-      const vm = this;
-
-      this.maskToInputMask = stack;
-      this.input = {
-        selectionStart: null,
-        selectionEnd: null,
-
-        set value(newVal: string | null) {
-          vm.inputMaskValue = newVal;
-        },
-        focus() {
-          /* noop */
-        }
-      };
     }
   },
   watch: {
     monthsInitial: {
       handler() {
-        this.makeMonthsState();
+        this.initMonthsState_();
       },
       immediate: true
     }

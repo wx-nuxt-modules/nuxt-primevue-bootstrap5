@@ -24,6 +24,7 @@ export interface BPVCalendarProps extends Omit<CalendarProps, 'invalid'> {
   weekdaysDayNamesLocaleKey?: 'dayNames' | 'dayNamesShort' | 'dayNamesMin';
   state?: 'valid' | 'invalid' | undefined;
   inputMask?: boolean;
+  noFluidPanel?: boolean;
 }
 
 export interface BPVCalendarContext extends CalendarContext {
