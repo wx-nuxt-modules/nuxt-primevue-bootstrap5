@@ -12,6 +12,10 @@
     opacity: 0;
   }
 
+  &.bpv-calendar-panel-inline {
+    width: 100%;
+  }
+
   .bpv-calendar-panel-header {
     --#{$prefix}btn-disabled-border-color: transparent;
     --#{$prefix}btn-disabled-opacity: 1;

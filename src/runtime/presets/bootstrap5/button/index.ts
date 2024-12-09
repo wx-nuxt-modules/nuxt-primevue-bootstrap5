@@ -1,7 +1,7 @@
 import type { ButtonPassThroughOptions, BPVButtonProps } from './types';
 
-import { BPV_BUTTON_SIZE, BPV_SEVERITY } from '../../../constants';
-import { inArrayValidator, isUndefined } from '../../../utils/validators';
+import { BPV_BUTTON_SIZE } from '../../../constants';
+import { inArrayValidator, isUndefined, isVueTruthy } from '../../../utils/validators';
 import type { BPVSeverity } from '../../../types';
 
 export const buttonPTRoot = ({
@@ -25,8 +25,6 @@ export const buttonPTRoot = ({
   size?: BPVButtonProps['size'];
   disabled?: BPVButtonProps['disabled'];
 }) => {
-  const isDisabled = !isUndefined(disabled) && [true, 'true', ''].includes(disabled);
-
   return {
     class: [
       'btn',
@@ -35,11 +33,11 @@ export const buttonPTRoot = ({
       severity && text && `bpv-btn-text-${severity}`,
       severity && outlined && `btn-outline-${severity}`,
       link && !severity && 'btn-link',
-      !isUndefined(block) && block && 'bpv-btn-block',
+      isVueTruthy(block) && 'bpv-btn-block',
       raised && 'bpv-btn-shadow',
       rounded && 'bpv-btn-pill',
       size && `btn-${size}`,
-      isDisabled && 'disabled'
+      isVueTruthy(disabled) && 'disabled'
     ]
   };
 };

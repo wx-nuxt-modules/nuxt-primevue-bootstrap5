@@ -2,6 +2,7 @@ import type { BPVCalendarPassThroughOptions } from './types';
 
 import { createRootClasses } from '../inputtext';
 import { buttonPTRoot } from '../button';
+import { isVueTruthy, isVueFalsy } from '../../../utils/validators';
 
 // @ts-ignore
 export const calendarPT = <BPVCalendarPassThroughOptions>{
@@ -13,7 +14,13 @@ export const calendarPT = <BPVCalendarPassThroughOptions>{
   },
   header: { class: 'bpv-calendar-panel-header' },
   panel: ({ props }) => {
-    return { class: ['bpv-calendar-panel', !props.inline && 'popover fade show'] };
+    return {
+      class: [
+        'bpv-calendar-panel',
+        isVueFalsy(props.inline) && 'popover fade show',
+        isVueTruthy(props.inline) && 'bpv-calendar-panel-inline'
+      ]
+    };
   },
   title: { class: 'bpv-calendar-panel-header-title' },
   groupContainer: { class: 'popover-body bpv-calendar-panel-group' },

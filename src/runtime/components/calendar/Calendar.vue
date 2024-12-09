@@ -260,7 +260,7 @@ export default defineComponent({
         this.enableModality();
       } else if (this.overlay) {
         if (this.appendTo === 'self' || this.inline) {
-          if (!this.noFluidPanel || this.inline) {
+          if (!this.noFluidPanel) {
             this.overlay.style.width = '100%';
           }
 
