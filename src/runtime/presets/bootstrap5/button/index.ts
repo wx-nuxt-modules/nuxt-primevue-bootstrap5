@@ -2,6 +2,7 @@ import type { ButtonPassThroughOptions, BPVButtonProps } from './types';
 
 import { BPV_BUTTON_SIZE, BPV_SEVERITY } from '../../../constants';
 import { inArrayValidator, isUndefined } from '../../../utils/validators';
+import type { BPVSeverity } from '../../../types';
 
 export const buttonPTRoot = ({
   block,
@@ -61,7 +62,7 @@ export const buttonPT = <ButtonPassThroughOptions>{
   root: ({ instance, props }) => {
     return buttonPTRoot({
       block: !isUndefined(instance.$params.attrs.block),
-      severity: inArrayValidator(props.severity, BPV_SEVERITY, undefined),
+      severity: props.severity as BPVSeverity,
       link: props.link,
       raised: props.raised,
       rounded: props.rounded,
