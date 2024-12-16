@@ -577,6 +577,7 @@ export default defineComponent({
         :placeholder="placeholder"
         :class="inputClass"
         :style="inputStyle"
+        :state="$attrs.state"
         :pt="{
           root: {
             type: 'text',
