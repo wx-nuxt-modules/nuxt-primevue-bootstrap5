@@ -140,6 +140,9 @@ export default defineNuxtModule<ModuleOptions>({
       overrideItems = components
         .filter((component) => {
           if (component.filePath.startsWith('primevue/')) return true;
+
+          if (!component.filePath.includes(resolve())) return false;
+
           return customComponents.includes(getShortName(component));
         })
         .map((component) => {
