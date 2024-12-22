@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="cx('root')" role="group" v-bind="ptm('root')">
+  <div :class="[cx('root'), $attrs.class]" role="group" v-bind="ptm('root')">
     <slot />
   </div>
 </template>
