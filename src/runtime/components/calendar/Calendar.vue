@@ -315,6 +315,8 @@ export default defineComponent({
       const vm = this;
 
       this.maskToInputMask = stack;
+      this.inputMaskValue = this.formatValue(this.modelValue);
+
       this.input = {
         selectionStart: null,
         selectionEnd: null,
