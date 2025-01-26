@@ -35,6 +35,7 @@ import { inputmaskPT } from './inputmask';
 import { dialogPT } from './dialog';
 import { colorpickerPT } from './colorpicker';
 import { radiobuttonPT } from './radiobutton';
+import { progressbarPT } from './progressbar';
 
 export default {
   button: buttonPT,
@@ -73,6 +74,7 @@ export default {
   dialog: dialogPT,
   colorpicker: colorpickerPT,
   radiobutton: radiobuttonPT,
+  progressbar: progressbarPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT

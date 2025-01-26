@@ -29,7 +29,8 @@ const menu = reactive<MenuItem[]>([
       { title: 'Вне холста (макет)', to: '/components/offcanvas-layout' },
       { title: 'Пагинация', to: '/components/pagination' },
       { title: 'Панель поверх', to: '/components/overlaypanel' },
-      { title: 'Табы', to: '/components/tabs' }
+      { title: 'Табы', to: '/components/tabs' },
+      { title: 'Прогрессбар', to: '/components/progress' }
     ]
   },
   {
