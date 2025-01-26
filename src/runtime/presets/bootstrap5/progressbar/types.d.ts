@@ -2,7 +2,7 @@ import { ProgressBarProps, ProgressBarEmits, ProgressBarSlots } from 'primevue/p
 import { ClassComponent } from 'primevue/ts-helpers';
 import { BPVSeverity } from '../../../types';
 
-export interface BPVColorPickerProps extends ProgressBarProps {
+export interface BPVProgressBarProps extends ProgressBarProps {
   severity?: BPVSeverity;
   label?: string | undefined;
   striped?: boolean | undefined;
@@ -10,4 +10,4 @@ export interface BPVColorPickerProps extends ProgressBarProps {
 }
 
 export * from 'primevue/progressbar';
-export default class BPVProgressBar extends ClassComponent<BPVColorPickerProps, ProgressBarSlots, ProgressBarEmits> {}
+export default class BPVProgressBar extends ClassComponent<BPVProgressBarProps, ProgressBarSlots, ProgressBarEmits> {}
