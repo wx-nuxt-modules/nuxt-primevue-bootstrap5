@@ -6,10 +6,10 @@
     </p>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <BProgressBar :value="25" severity="success" />
-        <BProgressBar :value="50" severity="info" />
-        <BProgressBar :value="75" severity="warning" />
-        <BProgressBar :value="100" severity="danger" />
+        <BProgressBar :value="25" severity="success" label="Success progress bar" />
+        <BProgressBar :value="50" severity="info" label="Info progress bar" />
+        <BProgressBar :value="75" severity="warning" label="Warning progress bar" />
+        <BProgressBar :value="100" severity="danger" label="Danger progress bar" />
       </div>
     </div>
   </div>

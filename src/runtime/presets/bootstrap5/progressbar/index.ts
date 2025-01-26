@@ -4,7 +4,17 @@ import { inArrayValidator } from '../../../utils/validators';
 import { BPV_SEVERITY } from '../../../constants';
 
 export const progressbarPT: Partial<ProgressBarPassThroughOptions> = {
-  root: { class: 'progress' },
+  root: ({
+    attrs
+  }: ProgressBarPassThroughOptionType & {
+    attrs: { label?: string };
+  }) => {
+    return {
+      class: 'progress',
+      'aria-label': attrs.label,
+      label: undefined
+    };
+  },
   value: ({
     attrs
   }: ProgressBarPassThroughOptionType & {
