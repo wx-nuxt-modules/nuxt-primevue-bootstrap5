@@ -2,7 +2,7 @@ import type { ButtonGroupPassThroughOptions } from '../../../components/buttongr
 
 export const sharedButtongroupPT = {
   root: () => ({
-    class: 'btn-group'
+    class: 'btn-group bpv-btn-group'
   })
 };
 

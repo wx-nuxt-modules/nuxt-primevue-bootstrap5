@@ -1,0 +1,30 @@
+.bpv-btn-group {
+  > a {
+    position: relative;
+    flex: 1 1 auto;
+  }
+
+  // Bring the hover, focused, and "active" buttons to the front to overlay
+  // the borders properly
+  > a > .btn-check:checked + .btn,
+  > a > .btn-check:focus + .btn,
+  > a > .btn:hover,
+  > a > .btn:focus,
+  > a > .btn:active,
+  > a > .btn.active {
+    z-index: 1;
+  }
+
+  // Reset rounded corners
+  > a:not(:last-child) {
+    > .btn:not(.dropdown-toggle) {
+      @include border-end-radius(0);
+    }
+
+    + a {
+      > .btn:not(.dropdown-toggle) {
+        @include border-start-radius(0);
+      }
+    }
+  }
+}

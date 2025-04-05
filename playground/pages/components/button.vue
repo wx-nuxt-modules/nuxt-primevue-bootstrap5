@@ -29,7 +29,7 @@ const emulateLoad = async () => {
           <BButton severity="primary" label="Внешняя" />
         </NuxtLink>
         <NuxtLink to="/">
-          <BButton severity="primary" type="submit" label="Внутренняя" />
+          <BButton severity="primary" label="Внутренняя" />
         </NuxtLink>
       </div>
     </div>
@@ -205,6 +205,15 @@ const emulateLoad = async () => {
           <BButton label="Save" icon="pi pi-check" severity="primary" />
           <BButton label="Delete" icon="pi pi-trash" severity="primary" />
           <BButton label="Cancel" icon="pi pi-times" severity="primary" />
+        </BButtonGroup>
+
+        <BButtonGroup>
+          <NuxtLink to="https://example.org" target="_blank">
+            <BButton severity="primary" label="Внешняя" />
+          </NuxtLink>
+          <NuxtLink to="/">
+            <BButton severity="primary" label="Внутренняя" />
+          </NuxtLink>
         </BButtonGroup>
       </div>
     </div>
