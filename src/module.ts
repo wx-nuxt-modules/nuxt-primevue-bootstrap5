@@ -42,7 +42,7 @@ const generateComponentTypes = async (nuxt: Nuxt, globPath: string) => {
       filename: `nuxt-primevue-bootstrap5/bootstrap5/${name}.d.ts`,
       getContents: () => {
         const currentPath = pathe.relative(resolve(nuxt.options.buildDir, 'nuxt-primevue-bootstrap5/bootstrap5'), path);
-        return [`export type * from '${currentPath}'`, `export type { default } from '${currentPath}'`].join('\n');
+        return [`export type * from '${currentPath}'`, `export { default } from '${currentPath}'`].join('\n');
       }
     });
   });
@@ -126,7 +126,7 @@ export default defineNuxtModule<ModuleOptions>({
       const { name } = pathe.parse(component);
 
       if (!ignoreComponents.includes(name)) {
-        await addComponent({
+        addComponent({
           name: `${options.prefix}${name}`,
           filePath: component,
           priority: 10
@@ -152,7 +152,7 @@ export default defineNuxtModule<ModuleOptions>({
 
           const shortName = getShortName(component);
 
-          const oldImport = RegExp(`import\\(["']${filePath}["']\\).*`, 'g');
+          const oldImport = RegExp(`import\\(["']${filePath}["']\\)\\['default']`, 'g');
 
           return [oldImport, `import("#nuxt-primevue-bootstrap5/bootstrap5/${shortName}")['default']`];
         });
