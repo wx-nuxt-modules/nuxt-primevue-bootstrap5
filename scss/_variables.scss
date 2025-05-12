@@ -35,6 +35,10 @@ $table-column-filter-overlay-body-gap: $card-body-gap * 0.5 !default;
 $table-column-filter-overlay-padding-x: $card-spacer-x * 0.5 !default;
 $table-column-filter-overlay-padding-y: $card-spacer-y * 0.5 !default;
 $table-column-filter-overlay-min-width: 200px !default;
+$table-column-filter-menu-button-bg: null !default;
+$table-column-filter-menu-button-color: null !default;
+$table-column-filter-menu-button-active-bg: $primary !default;
+$table-column-filter-menu-button-active-color: $white !default;
 $table-resize-helper-width: $table-border-width;
 $table-resize-helper-color: var(--#{$prefix}secondary);
 

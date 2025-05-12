@@ -60,7 +60,7 @@ export const columnPT = <ColumnPassThroughOptions>{
 
     return { class: classes };
   },
-  filterMenuButton: () => {
+  filterMenuButton: ({ column }: any) => {
     const { class: buttonClasses } = buttonPTRoot({
       block: false,
       size: 'sm',
@@ -72,7 +72,11 @@ export const columnPT = <ColumnPassThroughOptions>{
       outlined: undefined
     });
 
-    const classes = [...buttonClasses, 'bpv-table-column-filter-menu-button'];
+    const classes = [
+      ...buttonClasses,
+      'bpv-table-column-filter-menu-button',
+      column && column.context.active && 'active'
+    ];
 
     return { class: classes };
   },

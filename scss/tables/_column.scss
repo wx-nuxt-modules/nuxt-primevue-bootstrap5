@@ -58,6 +58,16 @@
   .bpv-table-column-reorderablerow-handle {
     cursor: move;
   }
+
+  .bpv-table-column-filter-menu-button {
+    background-color: $table-column-filter-menu-button-bg;
+    color: $table-column-filter-menu-button-color;
+
+    &.active {
+      background-color: $table-column-filter-menu-button-active-bg;
+      color: $table-column-filter-menu-button-active-color;
+    }
+  }
 }
 
 .bpv-table-column-filter-overlay {

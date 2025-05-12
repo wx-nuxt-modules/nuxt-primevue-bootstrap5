@@ -85,7 +85,8 @@
   }
 
   .bpv-datatable-header {
-    padding: $table-cell-padding-y $table-cell-padding-x;
+    padding-bottom: $table-cell-padding-y;
+    padding-top: $table-cell-padding-y;
   }
 
   .table {
