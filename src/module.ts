@@ -42,7 +42,7 @@ const generateComponentTypes = async (nuxt: Nuxt, globPath: string) => {
       filename: `nuxt-primevue-bootstrap5/bootstrap5/${name}.d.ts`,
       getContents: () => {
         const currentPath = pathe.relative(resolve(nuxt.options.buildDir, 'nuxt-primevue-bootstrap5/bootstrap5'), path);
-        return [`export type * from '${currentPath}'`, `export { default } from '${currentPath}'`].join('\n');
+        return [`export type * from '${currentPath}'`, `export type { default } from '${currentPath}'`].join('\n');
       }
     });
   });
