@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config';
-import { fileURLToPath } from 'node:url';
+import DocMacroPlugin from './vite-plugins/docMacro';
 
 export default defineNuxtConfig({
   modules: ['../src/module'],
@@ -9,12 +9,15 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      link: [{ rel: 'stylesheet', href: '/css/bootstrap-docs.min.css' }]
+      link: [{ rel: 'stylesheet', href: `${import.meta.env.NUXT_APP_BASE_URL || '/'}css/bootstrap-docs.min.css` }]
     }
   },
   css: ['primeicons/primeicons.css', '../assets/scss/app.scss'],
   imports: {
     autoImport: true
+  },
+  vite: {
+    plugins: [DocMacroPlugin()]
   },
   compatibilityDate: '2024-08-01'
 });

@@ -6,3 +6,17 @@ $offcanvas-layout-width-sm: 80px;
 
 @import "../../../scss/bootstrap-primevue";
 @import "flags";
+
+.shiki-container {
+  margin-left: calc(var(--bd-example-padding) * -1);
+  margin-right: calc(var(--bd-example-padding) * -1);
+  margin-bottom: calc(var(--bd-example-padding) * -1) !important;
+  margin-top: var(--bd-example-padding);
+
+  .shiki {
+    background-color: var(--bd-pre-bg) !important;
+    padding: .75rem 1.25rem;
+    border-radius: calc(var(--bs-border-radius) - 1px);
+    margin-bottom: 0 !important;
+  }
+}

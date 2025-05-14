@@ -336,8 +336,6 @@ export default defineComponent({
         }
       }
 
-      console.log(stack);
-
       const vm = this;
 
       this.maskToInputMask = stack;

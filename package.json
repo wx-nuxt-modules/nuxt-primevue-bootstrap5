@@ -12,7 +12,9 @@
     "prepare": "nuxi prepare playground",
     "build": "nuxt-build-module build",
     "dev:build": "nuxt-build-module build --stub",
-    "prepack": "pnpm build"
+    "prepack": "pnpm build",
+    "docs:build": "NUXT_APP_BASE_URL=/nuxt-primevue-bootstrap5/ nuxi build playground --preset github_pages",
+    "docs:deploy": "gh-pages --dotfiles -d playground/.output/public"
   },
   "exports": {
     ".": {
@@ -54,12 +56,15 @@
     "changelogen": "^0.5.1",
     "eslint": "^8.56.0",
     "execa": "^9.3.0",
+    "gh-pages": "^6.3.0",
     "nuxt": "^3.0.0",
     "prettier": "^3.2.5",
     "primeicons": "^6.0.1",
     "rc9": "^2.1.1",
     "sass": "1.77.6",
-    "typescript": "^5.3.3"
+    "shiki": "^3.4.1",
+    "typescript": "^5.3.3",
+    "unplugin": "^2.3.4"
   },
   "packageManager": "pnpm@9.7.0+sha256.b35018fbfa8f583668b2649e407922a721355cd81f61beeb4ac1d4258e585559"
 }

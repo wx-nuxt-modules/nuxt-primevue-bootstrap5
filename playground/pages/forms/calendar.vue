@@ -110,7 +110,17 @@ Object.assign(primeVue.config.locale, {
       </div>
     </div>
 
-    <PagesFormCalendarMask />
+    <h2>Ввод с маской ввода</h2>
+    <p>
+      Маска ввода будет строиться по типу даты переданному в пропсе <code>date-format</code> или будет браться
+      стандартное его значение <code>mm/dd/yy</code>. Так же стоит отметить, что <code>manual-input</code> пропс должен
+      быть пропущен или не быть <code>falsy</code>.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesFormCalendarMask />
+      </div>
+    </div>
 
     <h2>Диапазон дат</h2>
     <p>
@@ -129,7 +139,18 @@ Object.assign(primeVue.config.locale, {
     </div>
 
     <PagesFormCalendarButtonBar />
-    <PagesFormCalendarTime />
+
+    <h2>Время</h2>
+    <p>
+      Сборщик времени отображается если задан пропс <code>showTime</code>, где формат 12/24 часа настроен пропсом
+      <code>hourFormat</code>. В случае, если нужно выбрать только время, объявите пропс <code>timeOnly</code>, чтобы
+      скрыть раздел даты.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesFormCalendarTime />
+      </div>
+    </div>
 
     <h2>Inline</h2>
     <p>Calendar is used a controlled input component with <code>v-model</code> property.</p>
