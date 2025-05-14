@@ -307,10 +307,36 @@ export default defineComponent({
         ['y', '99']
       ]);
 
-      let stack = this.datePattern;
-      replaceMap.forEach((value, key) => {
-        stack = stack.replace(key, value);
-      });
+      let stack = '';
+
+      if (!this.timeOnly) {
+        stack = this.datePattern;
+        replaceMap.forEach((value, key) => {
+          stack = stack.replace(key, value);
+        });
+      }
+
+      if (this.showTime || this.timeOnly) {
+        let timeStack = ['99', '99'];
+
+        if (this.showSeconds) {
+          timeStack.push('99');
+        }
+
+        if (this.hourFormat === '12') {
+          let latest = timeStack.splice(-1, 1)[0];
+
+          timeStack.push(`${latest} aa`);
+        }
+
+        if (this.timeOnly) {
+          stack = timeStack.join(':');
+        } else {
+          stack += ` ${timeStack.join(':')}`;
+        }
+      }
+
+      console.log(stack);
 
       const vm = this;
 
@@ -1002,248 +1028,250 @@ export default defineComponent({
               </span>
             </div>
           </template>
-          <div
+          <slot
             v-if="(showTime || timeOnly) && currentView === 'date'"
-            :class="cx('timePicker')"
-            v-bind="ptm('timePicker')"
+            name="timepicker"
+            :attrs="{ class: cx('timePicker'), ...ptm('timePicker') }"
           >
-            <div :class="cx('hourPicker')" v-bind="ptm('hourPicker')" data-pc-group-section="timepickerContainer">
-              <button
-                v-ripple
-                :class="cx('incrementButton')"
-                :aria-label="$primevue.config.locale.nextHour"
-                @mousedown="onTimePickerElementMouseDown($event, 0, 1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 0, 1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 0, 1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('incrementButton')"
-                data-pc-group-section="timepickerbutton"
+            <div :class="cx('timePicker')" v-bind="ptm('timePicker')">
+              <div :class="cx('hourPicker')" v-bind="ptm('hourPicker')" data-pc-group-section="timepickerContainer">
+                <button
+                  v-ripple
+                  :class="cx('incrementButton')"
+                  :aria-label="$primevue.config.locale.nextHour"
+                  @mousedown="onTimePickerElementMouseDown($event, 0, 1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 0, 1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 0, 1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('incrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="incrementicon">
+                    <component
+                      :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
+                      :class="incrementIcon"
+                      v-bind="ptm('incrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+                <span v-bind="ptm('hour')" data-pc-group-section="timepickerlabel">{{ formattedCurrentHour }}</span>
+                <button
+                  v-ripple
+                  :class="cx('decrementButton')"
+                  :aria-label="$primevue.config.locale.prevHour"
+                  @mousedown="onTimePickerElementMouseDown($event, 0, -1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 0, -1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 0, -1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('decrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="decrementicon">
+                    <component
+                      :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
+                      :class="decrementIcon"
+                      v-bind="ptm('decrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+              </div>
+              <div
+                :class="cx('separatorContainer')"
+                v-bind="ptm('separatorContainer')"
+                data-pc-group-section="timepickerContainer"
               >
-                <slot name="incrementicon">
-                  <component
-                    :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
-                    :class="incrementIcon"
-                    v-bind="ptm('incrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-              <span v-bind="ptm('hour')" data-pc-group-section="timepickerlabel">{{ formattedCurrentHour }}</span>
-              <button
-                v-ripple
-                :class="cx('decrementButton')"
-                :aria-label="$primevue.config.locale.prevHour"
-                @mousedown="onTimePickerElementMouseDown($event, 0, -1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 0, -1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 0, -1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('decrementButton')"
-                data-pc-group-section="timepickerbutton"
+                <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+              </div>
+              <div :class="cx('minutePicker')" v-bind="ptm('minutePicker')" data-pc-group-section="timepickerContainer">
+                <button
+                  v-ripple
+                  :class="cx('incrementButton')"
+                  :aria-label="$primevue.config.locale.nextMinute"
+                  @mousedown="onTimePickerElementMouseDown($event, 1, 1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  :disabled="disabled"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 1, 1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 1, 1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('incrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="incrementicon">
+                    <component
+                      :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
+                      :class="incrementIcon"
+                      v-bind="ptm('incrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+                <span v-bind="ptm('minute')" data-pc-group-section="timepickerlabel">{{ formattedCurrentMinute }}</span>
+                <button
+                  v-ripple
+                  :class="cx('decrementButton')"
+                  :aria-label="$primevue.config.locale.prevMinute"
+                  @mousedown="onTimePickerElementMouseDown($event, 1, -1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  :disabled="disabled"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 1, -1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 1, -1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('decrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="decrementicon">
+                    <component
+                      :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
+                      :class="decrementIcon"
+                      v-bind="ptm('decrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+              </div>
+              <div
+                v-if="showSeconds"
+                :class="cx('separatorContainer')"
+                v-bind="ptm('separatorContainer')"
+                data-pc-group-section="timepickerContainer"
               >
-                <slot name="decrementicon">
-                  <component
-                    :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
-                    :class="decrementIcon"
-                    v-bind="ptm('decrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
+                <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+              </div>
+              <div
+                v-if="showSeconds"
+                :class="cx('secondPicker')"
+                v-bind="ptm('secondPicker')"
+                data-pc-group-section="timepickerContainer"
+              >
+                <button
+                  v-ripple
+                  :class="cx('incrementButton')"
+                  :aria-label="$primevue.config.locale.nextSecond"
+                  @mousedown="onTimePickerElementMouseDown($event, 2, 1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  :disabled="disabled"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 2, 1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 2, 1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('incrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="incrementicon">
+                    <component
+                      :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
+                      :class="incrementIcon"
+                      v-bind="ptm('incrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+                <span v-bind="ptm('second')" data-pc-group-section="timepickerlabel">{{ formattedCurrentSecond }}</span>
+                <button
+                  v-ripple
+                  :class="cx('decrementButton')"
+                  :aria-label="$primevue.config.locale.prevSecond"
+                  @mousedown="onTimePickerElementMouseDown($event, 2, -1)"
+                  @mouseup="onTimePickerElementMouseUp($event)"
+                  @keydown="onContainerButtonKeydown"
+                  :disabled="disabled"
+                  @mouseleave="onTimePickerElementMouseLeave()"
+                  @keydown.enter="onTimePickerElementMouseDown($event, 2, -1)"
+                  @keydown.space="onTimePickerElementMouseDown($event, 2, -1)"
+                  @keyup.enter="onTimePickerElementMouseUp($event)"
+                  @keyup.space="onTimePickerElementMouseUp($event)"
+                  type="button"
+                  v-bind="ptm('decrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="decrementicon">
+                    <component
+                      :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
+                      :class="decrementIcon"
+                      v-bind="ptm('decrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+              </div>
+              <div
+                v-if="hourFormat == '12'"
+                :class="cx('separatorContainer')"
+                v-bind="ptm('separatorContainer')"
+                data-pc-group-section="timepickerContainer"
+              >
+                <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+              </div>
+              <div v-if="hourFormat == '12'" :class="cx('ampmPicker')" v-bind="ptm('ampmPicker')">
+                <button
+                  v-ripple
+                  :class="cx('incrementButton')"
+                  :aria-label="$primevue.config.locale.am"
+                  @click="toggleAMPM($event)"
+                  @keydown="onContainerButtonKeydown"
+                  type="button"
+                  :disabled="disabled"
+                  v-bind="ptm('incrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="incrementicon" :class="cx('incrementIcon')">
+                    <component
+                      :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
+                      :class="cx('incrementIcon')"
+                      v-bind="ptm('incrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+                <span v-bind="ptm('ampm')" data-pc-group-section="timepickerlabel">{{
+                  pm ? $primevue.config.locale.pm : $primevue.config.locale.am
+                }}</span>
+                <button
+                  v-ripple
+                  :class="cx('decrementButton')"
+                  :aria-label="$primevue.config.locale.pm"
+                  @click="toggleAMPM($event)"
+                  @keydown="onContainerButtonKeydown"
+                  type="button"
+                  :disabled="disabled"
+                  v-bind="ptm('decrementButton')"
+                  data-pc-group-section="timepickerbutton"
+                >
+                  <slot name="decrementicon" :class="cx('decrementIcon')">
+                    <component
+                      :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
+                      :class="cx('decrementIcon')"
+                      v-bind="ptm('decrementIcon')"
+                      data-pc-group-section="timepickerlabel"
+                    />
+                  </slot>
+                </button>
+              </div>
             </div>
-            <div
-              :class="cx('separatorContainer')"
-              v-bind="ptm('separatorContainer')"
-              data-pc-group-section="timepickerContainer"
-            >
-              <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-            </div>
-            <div :class="cx('minutePicker')" v-bind="ptm('minutePicker')" data-pc-group-section="timepickerContainer">
-              <button
-                v-ripple
-                :class="cx('incrementButton')"
-                :aria-label="$primevue.config.locale.nextMinute"
-                @mousedown="onTimePickerElementMouseDown($event, 1, 1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                :disabled="disabled"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 1, 1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 1, 1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('incrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="incrementicon">
-                  <component
-                    :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
-                    :class="incrementIcon"
-                    v-bind="ptm('incrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-              <span v-bind="ptm('minute')" data-pc-group-section="timepickerlabel">{{ formattedCurrentMinute }}</span>
-              <button
-                v-ripple
-                :class="cx('decrementButton')"
-                :aria-label="$primevue.config.locale.prevMinute"
-                @mousedown="onTimePickerElementMouseDown($event, 1, -1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                :disabled="disabled"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 1, -1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 1, -1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('decrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="decrementicon">
-                  <component
-                    :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
-                    :class="decrementIcon"
-                    v-bind="ptm('decrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-            </div>
-            <div
-              v-if="showSeconds"
-              :class="cx('separatorContainer')"
-              v-bind="ptm('separatorContainer')"
-              data-pc-group-section="timepickerContainer"
-            >
-              <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-            </div>
-            <div
-              v-if="showSeconds"
-              :class="cx('secondPicker')"
-              v-bind="ptm('secondPicker')"
-              data-pc-group-section="timepickerContainer"
-            >
-              <button
-                v-ripple
-                :class="cx('incrementButton')"
-                :aria-label="$primevue.config.locale.nextSecond"
-                @mousedown="onTimePickerElementMouseDown($event, 2, 1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                :disabled="disabled"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 2, 1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 2, 1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('incrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="incrementicon">
-                  <component
-                    :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
-                    :class="incrementIcon"
-                    v-bind="ptm('incrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-              <span v-bind="ptm('second')" data-pc-group-section="timepickerlabel">{{ formattedCurrentSecond }}</span>
-              <button
-                v-ripple
-                :class="cx('decrementButton')"
-                :aria-label="$primevue.config.locale.prevSecond"
-                @mousedown="onTimePickerElementMouseDown($event, 2, -1)"
-                @mouseup="onTimePickerElementMouseUp($event)"
-                @keydown="onContainerButtonKeydown"
-                :disabled="disabled"
-                @mouseleave="onTimePickerElementMouseLeave()"
-                @keydown.enter="onTimePickerElementMouseDown($event, 2, -1)"
-                @keydown.space="onTimePickerElementMouseDown($event, 2, -1)"
-                @keyup.enter="onTimePickerElementMouseUp($event)"
-                @keyup.space="onTimePickerElementMouseUp($event)"
-                type="button"
-                v-bind="ptm('decrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="decrementicon">
-                  <component
-                    :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
-                    :class="decrementIcon"
-                    v-bind="ptm('decrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-            </div>
-            <div
-              v-if="hourFormat == '12'"
-              :class="cx('separatorContainer')"
-              v-bind="ptm('separatorContainer')"
-              data-pc-group-section="timepickerContainer"
-            >
-              <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-            </div>
-            <div v-if="hourFormat == '12'" :class="cx('ampmPicker')" v-bind="ptm('ampmPicker')">
-              <button
-                v-ripple
-                :class="cx('incrementButton')"
-                :aria-label="$primevue.config.locale.am"
-                @click="toggleAMPM($event)"
-                @keydown="onContainerButtonKeydown"
-                type="button"
-                :disabled="disabled"
-                v-bind="ptm('incrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="incrementicon" :class="cx('incrementIcon')">
-                  <component
-                    :is="incrementIcon ? 'span' : 'ChevronUpIcon'"
-                    :class="cx('incrementIcon')"
-                    v-bind="ptm('incrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-              <span v-bind="ptm('ampm')" data-pc-group-section="timepickerlabel">{{
-                pm ? $primevue.config.locale.pm : $primevue.config.locale.am
-              }}</span>
-              <button
-                v-ripple
-                :class="cx('decrementButton')"
-                :aria-label="$primevue.config.locale.pm"
-                @click="toggleAMPM($event)"
-                @keydown="onContainerButtonKeydown"
-                type="button"
-                :disabled="disabled"
-                v-bind="ptm('decrementButton')"
-                data-pc-group-section="timepickerbutton"
-              >
-                <slot name="decrementicon" :class="cx('decrementIcon')">
-                  <component
-                    :is="decrementIcon ? 'span' : 'ChevronDownIcon'"
-                    :class="cx('decrementIcon')"
-                    v-bind="ptm('decrementIcon')"
-                    data-pc-group-section="timepickerlabel"
-                  />
-                </slot>
-              </button>
-            </div>
-          </div>
+          </slot>
           <div v-if="showButtonBar" :class="cx('buttonbar')" v-bind="ptm('buttonbar')">
             <CalendarButton
               type="button"

@@ -129,6 +129,7 @@ Object.assign(primeVue.config.locale, {
     </div>
 
     <PagesFormCalendarButtonBar />
+    <PagesFormCalendarTime />
 
     <h2>Inline</h2>
     <p>Calendar is used a controlled input component with <code>v-model</code> property.</p>

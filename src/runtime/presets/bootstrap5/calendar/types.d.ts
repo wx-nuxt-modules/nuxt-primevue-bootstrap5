@@ -8,6 +8,7 @@ import type {
   CalendarPassThroughAttributes
 } from 'primevue/calendar';
 import { ClassComponent } from 'primevue/ts-helpers';
+import { VNode } from 'vue';
 
 export * from 'primevue/calendar';
 
@@ -39,4 +40,8 @@ export interface BPVCalendarPassThroughOptions extends CalendarPassThroughOption
   dayLabel?: BPVCalendarPassThroughOptionType;
 }
 
-export default class BPVCalendar extends ClassComponent<BPVCalendarProps, CalendarSlots, CalendarEmits> {}
+export interface BPVCalendarSlots extends CalendarSlots {
+  timepicker(slotProps: { attrs: { class: any; [k: string]: any } }): VNode[];
+}
+
+export default class BPVCalendar extends ClassComponent<BPVCalendarProps, BPVCalendarSlots, CalendarEmits> {}

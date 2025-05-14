@@ -85,6 +85,21 @@ export const calendarPT = <BPVCalendarPassThroughOptions>{
     };
   },
   buttonbar: { class: 'bpv-calendar-panel-buttonbar' },
+  timePicker: {
+    class: 'popover-body bpv-calendar-timepicker'
+  },
+  hourPicker: {
+    class: 'bpv-calendar-timepicker-item bpv-calendar-timepicker-hourpicker'
+  },
+  minutePicker: {
+    class: 'bpv-calendar-timepicker-item bpv-calendar-timepicker-minutepicker'
+  },
+  ampmPicker: {
+    class: 'bpv-calendar-timepicker-item bpv-calendar-timepicker-ampmpicker'
+  },
+  secondPicker: {
+    class: 'bpv-calendar-timepicker-item bpv-calendar-timepicker-secondpicker'
+  },
   todayButton: {
     root: buttonPTRoot({ size: 'sm', severity: 'primary' })
   },
