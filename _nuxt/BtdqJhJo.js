@@ -1,1 +1,0 @@
-import{L as n}from"./86M2qNke.js";var e={root:function(a){var t=a.props,i=a.instance;return["p-inputmask p-inputtext p-component",{"p-filled":i.filled,"p-invalid":t.invalid,"p-variant-filled":t.variant?t.variant==="filled":i.$primevue.config.inputStyle==="filled"}]}},s=n.extend({name:"inputmask",classes:e});export{s as I};
