@@ -110,6 +110,17 @@ Object.assign(primeVue.config.locale, {
       </div>
     </div>
 
+    <h2>Минимум/Максимум</h2>
+    <p>
+      Границы для разрешенных дат, которые могут быть введены, определены пропсами <code>minDate</code> и
+      <code>maxDate</code>.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesFormCalendarMinMax />
+      </div>
+    </div>
+
     <h2>Ввод с маской ввода</h2>
     <p>
       Маска ввода будет строиться по типу даты переданному в пропсе <code>date-format</code> или будет браться
