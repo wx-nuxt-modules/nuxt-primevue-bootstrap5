@@ -8,8 +8,18 @@ import DataTable from 'primevue/datatable/DataTable.vue';
 import { DomHandler } from 'primevue/utils';
 
 export default defineComponent({
-  name: 'DataTable',
   extends: DataTable,
+  name: 'DataTable',
+  props: {
+    rowClass: {
+      type: Function,
+      required: false
+    },
+    rowStyle: {
+      type: Function,
+      required: false
+    }
+  },
   computed: {
     columns() {
       const cols: any[] = this.d_columns.get(this) || [];

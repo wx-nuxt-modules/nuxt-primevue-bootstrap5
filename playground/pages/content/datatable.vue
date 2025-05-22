@@ -298,6 +298,18 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
     <!--<PagesContentDatatableFilter />-->
     <PagesContentDatatableFilterAdvanced />
 
+    <h2>Условные стили</h2>
+    <p>
+      Особые строки и ячейки могут быть стилизованы на основе условий. Пропс <code>rowClass</code> получает данные
+      текущей строки в таблице в качестве параметра для возврата класса стиля для строки, тогда как ячейки настроены с
+      использованием шаблона тела.
+    </p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesContentDatatableConditionalStyle />
+      </div>
+    </div>
+
     <!--<h2>Ленивая загрузка</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
