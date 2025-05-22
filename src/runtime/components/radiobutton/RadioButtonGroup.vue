@@ -59,7 +59,6 @@ function getBindOption(option: Props['options'][number], idx: number) {
 }
 
 function onUpdateModelValue(newVal: Parameters<RadioButtonEmits['update:modelValue']>[0]) {
-  console.log(newVal);
   emits('update:model-value', newVal);
 }
 </script>
