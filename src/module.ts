@@ -1,10 +1,11 @@
 import type { Nuxt } from '@nuxt/schema';
+import type { AddComponentOptions } from '@nuxt/kit';
 import {
   defineNuxtModule,
   installModule,
   createResolver,
   useLogger,
-  addComponent,
+  addComponent as baseAddComponent,
   addImportsDir,
   addTemplate
 } from '@nuxt/kit';
@@ -12,6 +13,7 @@ import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
 import * as pathe from 'pathe';
 import { defu } from 'defu';
+import { isPromise } from '@windx-foobar/shared';
 
 import pkg from '../package.json';
 
@@ -46,6 +48,15 @@ const generateComponentTypes = async (nuxt: Nuxt, globPath: string) => {
       }
     });
   });
+};
+
+// compat old versions nuxt
+const addComponent = async (opts: AddComponentOptions): Promise<void> => {
+  const result = baseAddComponent(opts) as void | Promise<void>;
+
+  if (isPromise(result)) {
+    await result;
+  }
 };
 
 export default defineNuxtModule<ModuleOptions>({
@@ -126,7 +137,7 @@ export default defineNuxtModule<ModuleOptions>({
       const { name } = pathe.parse(component);
 
       if (!ignoreComponents.includes(name)) {
-        addComponent({
+        await addComponent({
           name: `${options.prefix}${name}`,
           filePath: component,
           priority: 10
