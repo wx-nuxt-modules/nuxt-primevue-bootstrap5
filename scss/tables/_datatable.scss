@@ -104,6 +104,27 @@
         box-shadow: inset 0 -2px 0 0 var(--#{$prefix}primary);
       }
     }
+
+    &.bpv-datatable-row-selected {
+      $color: color-contrast(opaque($body-bg, $table-row-selected-bg));
+      $hover-bg: mix($color, $table-row-selected-bg, percentage($table-hover-bg-factor));
+      $striped-bg: mix($color, $table-row-selected-bg, percentage($table-striped-bg-factor));
+      $active-bg: mix($color, $table-row-selected-bg, percentage($table-active-bg-factor));
+      $table-border-color: mix($color, $table-row-selected-bg, percentage($table-border-factor));
+
+      --#{$prefix}table-color: #{$color};
+      --#{$prefix}table-bg: #{$table-row-selected-bg};
+      --#{$prefix}table-border-color: #{$table-border-color};
+      --#{$prefix}table-striped-bg: #{$striped-bg};
+      --#{$prefix}table-striped-color: #{color-contrast($striped-bg)};
+      --#{$prefix}table-active-bg: #{$active-bg};
+      --#{$prefix}table-active-color: #{color-contrast($active-bg)};
+      --#{$prefix}table-hover-bg: #{$hover-bg};
+      --#{$prefix}table-hover-color: #{color-contrast($hover-bg)};
+
+      color: var(--#{$prefix}table-color);
+      border-color: var(--#{$prefix}table-border-color);
+    }
   }
 }
 

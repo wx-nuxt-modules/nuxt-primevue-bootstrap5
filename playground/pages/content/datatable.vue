@@ -298,6 +298,32 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
     <!--<PagesContentDatatableFilter />-->
     <PagesContentDatatableFilterAdvanced />
 
+    <h2>Row Selection</h2>
+    <div>
+      <h4>Single</h4>
+      <p>
+        Single row selection is enabled by defining <code>selectionMode</code> as <code>single</code> along with a value
+        binding using <code>selection</code> property. When available, it is suggested to provide a unique identifier of
+        a row with <code>dataKey</code> to optimize performance.
+      </p>
+      <p>
+        By default, metaKey press (e.g. <code>⌘</code>) is necessary to unselect a row however this can be configured
+        with disabling the <code>metaKeySelection</code> property. In touch enabled devices this option has no effect
+        and behavior is same as setting it to false.
+      </p>
+      <PagesContentDatatableRowSelectionSingle />
+    </div>
+    <div>
+      <h4>Multiple</h4>
+      <p>
+        More than one row is selectable by setting <code>selectionMode</code> to <code>multiple</code>. By default in
+        multiple selection mode, metaKey press (e.g. <code>⌘</code>) is not necessary to add to existing selections.
+        When the optional <code>metaKeySelection</code> is present, behavior is changed in a way that selecting a new
+        row requires meta key to be present. Note that in touch enabled devices, DataTable always ignores metaKey.
+      </p>
+      <PagesContentDatatableRowSelectionMultiple />
+    </div>
+
     <h2>Условные стили</h2>
     <p>
       Особые строки и ячейки могут быть стилизованы на основе условий. Пропс <code>rowClass</code> получает данные

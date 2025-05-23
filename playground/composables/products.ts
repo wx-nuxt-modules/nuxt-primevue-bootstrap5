@@ -21,7 +21,7 @@ let products: ProductItem[] = Array(20)
   .fill(null)
   .map((_, idx) => {
     return {
-      id: Date.now(),
+      id: Date.now() + idx,
       code: faker.commerce.isbn(10),
       name: faker.commerce.product(),
       description: faker.commerce.productDescription(),

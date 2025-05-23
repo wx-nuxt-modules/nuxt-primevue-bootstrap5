@@ -53,9 +53,9 @@ export const datatablePT = <DataTablePassThroughOptions>{
 
     return { class: classes };
   },
-  bodyRow: (ctx) => {
+  bodyRow: ({ context }) => {
     return {
-      class: ['bpv-datatable-row']
+      class: ['bpv-datatable-row', context.selected && 'bpv-datatable-row-selected']
     };
   },
   paginator: {

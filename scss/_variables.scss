@@ -39,6 +39,7 @@ $table-column-filter-menu-button-bg: null !default;
 $table-column-filter-menu-button-color: null !default;
 $table-column-filter-menu-button-active-bg: $primary !default;
 $table-column-filter-menu-button-active-color: $white !default;
+$table-row-selected-bg: $primary !default;
 $table-resize-helper-width: $table-border-width;
 $table-resize-helper-color: var(--#{$prefix}secondary);
 
