@@ -50,6 +50,7 @@ export const calendarPT = <BPVCalendarPassThroughOptions>{
 
     const isSelected = context.selected && !context.disabled;
     const isExactSelected = context.exactSelected && !context.disabled;
+    const isOtherMonth = context.date.otherMonth && !context.disabled;
 
     return {
       ...buttonPT,
@@ -58,7 +59,8 @@ export const calendarPT = <BPVCalendarPassThroughOptions>{
         'bpv-calendar-panel-label',
         isSelected && 'selected',
         isExactSelected && 'active',
-        context.date.today && !context.selected && 'today'
+        context.date.today && !context.selected && 'today',
+        isOtherMonth && 'other-month'
       ]
     };
   },

@@ -51,6 +51,10 @@
       --#{$prefix}btn-disabled-border-color: #{$calendar-panel-label-disabled-border-color};
     }
 
+    &.other-month {
+      --#{$prefix}btn-color: #{$calendar-panel-label-disabled-color};
+    }
+
     &.selected, &.active {
       --#{$prefix}btn-disabled-opacity: 1;
     }

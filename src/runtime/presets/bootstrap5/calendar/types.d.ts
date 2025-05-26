@@ -5,7 +5,8 @@ import type {
   CalendarContext,
   CalendarPassThroughOptions,
   CalendarPassThroughMethodOptions,
-  CalendarPassThroughAttributes
+  CalendarPassThroughAttributes,
+  CalendarDateContext
 } from 'primevue/calendar';
 import { ClassComponent } from 'primevue/ts-helpers';
 import { VNode } from 'vue';
@@ -28,8 +29,13 @@ export interface BPVCalendarProps extends Omit<CalendarProps, 'invalid'> {
   noFluidPanel?: boolean;
 }
 
-export interface BPVCalendarContext extends CalendarContext {
+export interface BPVCalendarDateContext extends CalendarDateContext {
+  otherMonth?: true;
+}
+
+export interface BPVCalendarContext extends Omit<CalendarContext, 'date'> {
   exactSelected: boolean;
+  date: BPVCalendarDateContext;
 }
 
 export interface BPVCalendarPassThroughMethodOptions extends CalendarPassThroughMethodOptions {

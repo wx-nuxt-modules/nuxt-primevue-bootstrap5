@@ -22,6 +22,18 @@ export default defineComponent({
   extends: Calendar,
   components: { InputMask },
   props: {
+    /**
+     * Original default is `false`
+     *
+     * @override
+     *
+     * @link https://v3.primevue.org/calendar/#api.calendar.props.selectOtherMonths
+     */
+    selectOtherMonths: {
+      type: Boolean as PropType<NonNullable<BPVCalendarProps['selectOtherMonths']>>,
+      default: true,
+      required: false
+    },
     disableSync: {
       type: Boolean as PropType<NonNullable<BPVCalendarProps['disableSync']>>,
       default: false,
