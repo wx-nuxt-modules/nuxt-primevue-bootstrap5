@@ -22,6 +22,11 @@ export default defineComponent({
   extends: Calendar,
   components: { InputMask },
   props: {
+    selectOtherMonths: {
+      type: Boolean as PropType<NonNullable<BPVCalendarProps['selectOtherMonths']>>,
+      default: true,
+      required: false
+    },
     disableSync: {
       type: Boolean as PropType<NonNullable<BPVCalendarProps['disableSync']>>,
       default: false,
