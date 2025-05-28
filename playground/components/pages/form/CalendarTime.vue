@@ -1,16 +1,16 @@
 <script lang="ts" setup documentation>
 const customCalendarRef = ref();
 
-const customCalendarTime = useCalendarTime(customCalendarRef);
+const customCalendarTime = reactive(useCalendarTime(customCalendarRef, new Date(2025, 5, 28, 19, 18, 15)));
+const customCalendarTimeInputMask = reactive(
+  customCalendarTime.createInputMask({
+    mask: '99:99'
+  })
+);
 
 const value12h = ref();
 const value24h = ref();
 const valueTime = ref();
-const customValueTime = ref();
-
-function onClickCustomCalendar(literal: 'hour' | 'minute' | 'second', action: 'increment' | 'decrement') {
-  customCalendarTime.doAction(literal, action);
-}
 </script>
 
 <template>
@@ -32,55 +32,40 @@ function onClickCustomCalendar(literal: 'hour' | 'minute' | 'second', action: 'i
     </div>
     <div class="col-6">
       <BFormLabel>Кастомный timepicker</BFormLabel>
-      <BCalendar ref="customCalendarRef" class="mb-3" v-model="customValueTime" time-only show-seconds>
+      <BCalendar
+        ref="customCalendarRef"
+        class="mb-3"
+        v-model="customCalendarTime.modelValue"
+        date-format="dd.mm.yy"
+        hour-format="24"
+        show-time
+      >
         <template #timepicker="{ attrs }">
           <div class="flex-column gap-2" v-bind="attrs">
+            <div>
+              <BInputMask placeholder="Время" v-bind="customCalendarTimeInputMask" />
+            </div>
             <BButtonGroup>
+              <BButton size="sm" label="+5 мин" severity="primary" @click="customCalendarTime.doAction('minute', 5)" />
               <BButton
-                severity="primary"
-                label="-1 час"
                 size="sm"
-                @click="onClickCustomCalendar('hour', 'decrement')"
+                label="+10 мин"
+                severity="primary"
+                @click="customCalendarTime.doAction('minute', 10)"
               />
               <BButton
-                severity="primary"
-                label="+1 час"
                 size="sm"
-                @click="onClickCustomCalendar('hour', 'increment')"
-              />
-            </BButtonGroup>
-            <BButtonGroup>
-              <BButton
+                label="+30 мин"
                 severity="primary"
-                label="-1 мин"
-                size="sm"
-                @click="onClickCustomCalendar('minute', 'decrement')"
+                @click="customCalendarTime.doAction('minute', 30)"
               />
-              <BButton
-                severity="primary"
-                label="+1 мин"
-                size="sm"
-                @click="onClickCustomCalendar('minute', 'increment')"
-              />
-            </BButtonGroup>
-            <BButtonGroup>
-              <BButton
-                severity="primary"
-                label="-1 сек"
-                size="sm"
-                @click="onClickCustomCalendar('second', 'decrement')"
-              />
-              <BButton
-                severity="primary"
-                label="+1 сек"
-                size="sm"
-                @click="onClickCustomCalendar('second', 'increment')"
-              />
+              <BButton size="sm" label="+1 час" severity="primary" @click="customCalendarTime.doAction('hour', 1)" />
+              <BButton size="sm" label="+1 сутки" severity="primary" @click="customCalendarTime.doAction('date', 1)" />
             </BButtonGroup>
           </div>
         </template>
       </BCalendar>
-      <pre class="mb-0">value: {{ customValueTime }}</pre>
+      <pre class="mb-0">value: {{ customCalendarTime.modelValue }}</pre>
     </div>
   </div>
 </template>
