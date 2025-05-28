@@ -1,8 +1,8 @@
-import type { MaybeRef, Ref } from 'vue';
+import type { MaybeRef, MaybeRefOrGetter, Ref } from 'vue';
 import type { BPVInputMaskProps } from '../presets/bootstrap5/inputmask/types';
 import { toRef } from 'vue';
 
-export function useCalendarTime(target: MaybeRef, modelValue?: MaybeRefOrGetter<Date | null | undefined>) {
+export function useCalendarTime(target: MaybeRefOrGetter, modelValue?: MaybeRef<Date | null | undefined>) {
   type ActionLiteral = 'date' | 'hour' | 'minute' | 'second';
 
   const targetRef = toRef(target);
