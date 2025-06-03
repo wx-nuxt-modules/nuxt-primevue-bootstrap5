@@ -616,6 +616,7 @@ export default defineComponent({
         :class="inputClass"
         :style="inputStyle"
         :state="$attrs.state"
+        :disabled="disabled"
         :pt="{
           root: {
             type: 'text',
