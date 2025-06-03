@@ -207,6 +207,14 @@ Object.assign(primeVue.config.locale, {
         </div>
       </div>
     </div>
+
+    <h2>Выключенное состояние</h2>
+    <p>Calendar is used a controlled input component with <code>v-model</code> property.</p>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesFormCalendarDisabled />
+      </div>
+    </div>
   </div>
 </template>
 
