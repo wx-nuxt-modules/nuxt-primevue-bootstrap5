@@ -1,15 +1,21 @@
 <script lang="ts">
+import type { PropType } from 'vue';
 import type { ColumnProps } from '../../presets/bootstrap5/column/types';
+import type { BPVPaginatorProps } from '../../presets/bootstrap5/paginator/types';
 
 import { defineComponent } from 'vue';
+import { BPV_DROPDOWN_POSITION } from '../../constants';
 
+// @ts-ignore
 import DataTable from 'primevue/datatable/DataTable.vue';
+import Paginator from '../paginator/Paginator.vue';
 
 import { DomHandler } from 'primevue/utils';
 
 export default defineComponent({
-  extends: DataTable,
   name: 'DataTable',
+  extends: DataTable,
+  components: { DTPaginator: Paginator },
   props: {
     rowClass: {
       type: Function,
@@ -18,6 +24,12 @@ export default defineComponent({
     rowStyle: {
       type: Function,
       required: false
+    },
+    rowsPerPageDropdownPosition: {
+      type: String as PropType<BPVPaginatorProps['rowsPerPageDropdownPosition']>,
+      required: false,
+      validator: (val: NonNullable<BPVPaginatorProps['rowsPerPageDropdownPosition']>) =>
+        BPV_DROPDOWN_POSITION.includes(val)
     }
   },
   computed: {
@@ -390,6 +402,7 @@ export default defineComponent({
       :pageLinkSize="pageLinkSize"
       :template="paginatorTemplate"
       :rowsPerPageOptions="rowsPerPageOptions"
+      :rowsPerPageDropdownPosition="rowsPerPageDropdownPosition"
       :currentPageReportTemplate="currentPageReportTemplate"
       :class="cx('paginator')"
       @page="onPage($event)"

@@ -8,7 +8,8 @@ import {
   BPV_DROPDOWN_SIZE,
   BPV_PAGINATOR_ALIGNMENT,
   BPV_SIDEBAR_POSITION,
-  BPV_DIALOG_SIZE
+  BPV_DIALOG_SIZE,
+  BPV_DROPDOWN_POSITION
 } from '../constants';
 
 export type BPVSeverity = (typeof BPV_SEVERITY)[number];
@@ -21,3 +22,4 @@ export type BPVDialogSize = (typeof BPV_DIALOG_SIZE)[number];
 export type BPVPaginatorAlignment = (typeof BPV_PAGINATOR_ALIGNMENT)[number];
 export type BPVSidebarPosition = (typeof BPV_SIDEBAR_POSITION)[number];
 export type BPVDropdownSize = (typeof BPV_DROPDOWN_SIZE)[number];
+export type BPVDropdownPosition = (typeof BPV_DROPDOWN_POSITION)[number];

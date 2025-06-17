@@ -8,6 +8,7 @@ export interface BPVDataTableProps extends Omit<DataTableProps, 'size' | 'rowCla
   paginatorAlignment?: BPVPaginatorProps['alignment'];
   rowClass?: (data: any) => any;
   rowStyle?: (data: any) => any;
+  rowsPerPageDropdownPosition?: BPVPaginatorProps['rowsPerPageDropdownPosition'];
 }
 
 export * from 'primevue/datatable';

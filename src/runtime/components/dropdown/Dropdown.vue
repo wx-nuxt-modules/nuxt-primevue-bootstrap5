@@ -4,6 +4,7 @@ import type { BPVDropdownProps } from '../../presets/bootstrap5/dropdown/types';
 
 import { defineComponent } from 'vue';
 import { DomHandler } from 'primevue/utils';
+import { BPV_DROPDOWN_POSITION } from '../../constants';
 
 // @ts-expect-error
 import Dropdown from 'primevue/dropdown/Dropdown.vue';
@@ -15,7 +16,7 @@ export default defineComponent({
     position: {
       type: String as PropType<BPVDropdownProps['position']>,
       required: false,
-      validator: (val: NonNullable<BPVDropdownProps['position']>) => ['top', 'bottom', 'auto'].includes(val)
+      validator: (val: NonNullable<BPVDropdownProps['position']>) => BPV_DROPDOWN_POSITION.includes(val)
     }
   },
   methods: {

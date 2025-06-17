@@ -240,6 +240,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
           :loading="products2Pending"
           :rows="5"
           :rows-per-page-options="[5, 10, 20, 50]"
+          rows-per-page-dropdown-position="bottom"
           paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           current-page-report-template="Показаны с {first} по {last} из {totalRecords}"
           paginator-alignment="center"

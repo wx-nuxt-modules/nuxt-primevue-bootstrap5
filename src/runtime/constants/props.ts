@@ -7,3 +7,4 @@ export const BPV_DROPDOWN_SIZE = BPV_TABLE_SIZE;
 export const BPV_FORM_STATE = <const>['valid', 'invalid'];
 export const BPV_PAGINATOR_ALIGNMENT = <const>['start', 'center', 'end'];
 export const BPV_SIDEBAR_POSITION = <const>['left', 'right', 'top', 'bottom'];
+export const BPV_DROPDOWN_POSITION = <const>['top', 'bottom', 'auto'];
