@@ -1,1 +1,0 @@
-import{_ as t,c as s,a as o,o as n}from"./Dj8DYnuq.js";const c={},r={class:"bd-intro pt-2 ps-lg-2"};function a(d,e){return n(),s("div",r,e[0]||(e[0]=[o("h1",{class:"bd-title mb-0",id:"content"},"Домашняя страница",-1)]))}const _=t(c,[["render",a]]);export{_ as default};
