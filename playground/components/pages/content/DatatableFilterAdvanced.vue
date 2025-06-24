@@ -84,6 +84,32 @@ const getSeverity = (status) => {
       return null;
   }
 };
+
+const opened = new Set();
+let timeoutId: NodeJS.Timeout | undefined = undefined;
+const test = (action: string, event: { field: string; applyFilter: () => void }) => {
+  switch (action) {
+    case 'show':
+      opened.add(event.field);
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => {
+        event.applyFilter();
+      }, 5e3);
+      break;
+    case 'hide':
+      opened.delete(event.field);
+
+      if (!opened.size) {
+        clearTimeout(timeoutId);
+        timeoutId = undefined;
+      }
+      break;
+  }
+};
 </script>
 
 <template>
@@ -106,6 +132,8 @@ const getSeverity = (status) => {
           filterDisplay="menu"
           :loading="loading"
           :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']"
+          @column-filter-overlay-show="test('show', $event)"
+          @column-filter-overlay-hide="test('hide', $event)"
         >
           <template #header>
             <div class="row justify-content-between">

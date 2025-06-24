@@ -126,7 +126,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
   </div>
 
   <div v-if="!products1Pending && !products2Pending && !products3Pending" class="bd-content ps-lg-2">
-    <h2>Базовый</h2>
+    <!--<h2>Базовый</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable :value="products1.products" :loading="products1Pending">
@@ -268,14 +268,14 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
       </div>
     </div>
 
-    <!--<h2>Сортировка (несколько колонок)</h2>
+    &lt;!&ndash;<h2>Сортировка (несколько колонок)</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
         <BDataTable :value="products1.products" :loading="products1Pending" sort-mode="multiple">
           <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
         </BDataTable>
       </div>
-    </div>-->
+    </div>&ndash;&gt;
 
     <h2>Сортировка (по умолчанию)</h2>
     <div class="bd-example-snippet bd-code-snippet">
@@ -293,13 +293,13 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
           <BColumn v-for="col of props.sortOneColumn.cols" v-bind="col" />
         </BDataTable>
       </div>
-    </div>
+    </div>-->
 
     <h2>Фильтрация</h2>
     <!--<PagesContentDatatableFilter />-->
     <PagesContentDatatableFilterAdvanced />
 
-    <h2>Row Selection</h2>
+    <!--<h2>Row Selection</h2>
     <div>
       <h4>Single</h4>
       <p>
@@ -335,7 +335,7 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
       <div class="bd-example m-0 border-0">
         <PagesContentDatatableConditionalStyle />
       </div>
-    </div>
+    </div>-->
 
     <!--<h2>Ленивая загрузка</h2>
     <div class="bd-example-snippet bd-code-snippet">
@@ -373,6 +373,6 @@ function onChangePageLazy(event: Parameters<DataTableEmits['page']>[0]) {
       <BColumn v-for="col of props.dynamic.cols" v-bind="col" />
     </BDataTable>-->
 
-    <PagesContentDatatableReorder />
+    <!--<PagesContentDatatableReorder />-->
   </div>
 </template>

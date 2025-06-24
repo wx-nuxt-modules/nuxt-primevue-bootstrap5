@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { ColumnFilerOverlayShowOrHideEvent } from '../../presets/bootstrap5/datatable/types';
 import { defineComponent } from 'vue';
 
 // @ts-ignore
@@ -12,10 +13,17 @@ export default defineComponent({
   watch: {
     overlayVisible: {
       handler(newVal) {
+        const event: ColumnFilerOverlayShowOrHideEvent = {
+          field: this.field,
+          filterModel: this.filters[this.field],
+          applyFilter: this.applyFilter,
+          clearFilter: this.clearFilter
+        };
+
         if (newVal) {
-          this.$emit('overlay-show');
+          this.$emit('overlay-show', event);
         } else {
-          this.$emit('overlay-hide');
+          this.$emit('overlay-hide', event);
         }
       },
       immediate: false

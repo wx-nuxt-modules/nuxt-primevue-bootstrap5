@@ -264,8 +264,8 @@ export default defineComponent({
               @column-drop="onColumnHeaderDrop($event)"
               @column-resizestart="onColumnResizeStart($event)"
               @checkbox-change="toggleRowsWithCheckbox($event)"
-              @filter-overlay-show="$emit('column-filter-overlay-show')"
-              @filter-overlay-hide="$emit('column-filter-overlay-hide')"
+              @filter-overlay-show="$emit('column-filter-overlay-show', $event)"
+              @filter-overlay-hide="$emit('column-filter-overlay-hide', $event)"
               :unstyled="unstyled"
               :pt="pt"
             />
