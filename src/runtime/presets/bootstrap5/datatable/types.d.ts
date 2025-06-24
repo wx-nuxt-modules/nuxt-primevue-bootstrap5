@@ -11,5 +11,10 @@ export interface BPVDataTableProps extends Omit<DataTableProps, 'size' | 'rowCla
   rowsPerPageDropdownPosition?: BPVPaginatorProps['rowsPerPageDropdownPosition'];
 }
 
+export interface BPVDataTableEmits extends DataTableEmits {
+  'column-filter-overlay-show'(): void;
+  'column-filter-overlay-hide'(): void;
+}
+
 export * from 'primevue/datatable';
-export default class BPVDataTable extends ClassComponent<BPVDataTableProps, DataTableSlots, DataTableEmits> {}
+export default class BPVDataTable extends ClassComponent<BPVDataTableProps, DataTableSlots, BPVDataTableEmits> {}

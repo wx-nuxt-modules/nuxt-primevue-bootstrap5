@@ -9,13 +9,14 @@ import { BPV_DROPDOWN_POSITION } from '../../constants';
 // @ts-ignore
 import DataTable from 'primevue/datatable/DataTable.vue';
 import Paginator from '../paginator/Paginator.vue';
+import TableHeader from './TableHeader.vue';
 
 import { DomHandler } from 'primevue/utils';
 
 export default defineComponent({
   name: 'DataTable',
   extends: DataTable,
-  components: { DTPaginator: Paginator },
+  components: { DTPaginator: Paginator, DTTableHeader: TableHeader },
   props: {
     rowClass: {
       type: Function,
@@ -32,6 +33,7 @@ export default defineComponent({
         BPV_DROPDOWN_POSITION.includes(val)
     }
   },
+  emits: ['column-filter-overlay-show', 'column-filter-overlay-hide'],
   computed: {
     columns() {
       const cols: any[] = this.d_columns.get(this) || [];
@@ -262,6 +264,8 @@ export default defineComponent({
               @column-drop="onColumnHeaderDrop($event)"
               @column-resizestart="onColumnResizeStart($event)"
               @checkbox-change="toggleRowsWithCheckbox($event)"
+              @filter-overlay-show="$emit('column-filter-overlay-show')"
+              @filter-overlay-hide="$emit('column-filter-overlay-hide')"
               :unstyled="unstyled"
               :pt="pt"
             />
