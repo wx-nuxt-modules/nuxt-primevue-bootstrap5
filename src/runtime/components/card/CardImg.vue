@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { CardImgProps } from './types';
 import { tryOmit } from '@windx-foobar/shared';
+import { computed } from '#imports';
 
 const props = withDefaults(defineProps<CardImgProps>(), {
   position: 'top'
