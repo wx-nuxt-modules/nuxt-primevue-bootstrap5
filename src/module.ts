@@ -44,7 +44,7 @@ const generateComponentTypes = async (nuxt: Nuxt, globPath: string) => {
       filename: `nuxt-primevue-bootstrap5/bootstrap5/${name}.d.ts`,
       getContents: () => {
         const currentPath = pathe.relative(resolve(nuxt.options.buildDir, 'nuxt-primevue-bootstrap5/bootstrap5'), path);
-        return [`export type * from '${currentPath}'`, `export type { default } from '${currentPath}'`].join('\n');
+        return [`export * from '${currentPath}'`, `export { default } from '${currentPath}'`].join('\n');
       }
     });
   });
@@ -106,7 +106,10 @@ export default defineNuxtModule<ModuleOptions>({
     const ignoreComponents = ['ToastMessage'];
     const customComponents = ['buttongroup', 'calendar', 'panelmenu', 'toast', 'datatable', 'dropdown', 'paginator'];
 
-    const typesDir = resolve(nuxt.options.buildDir, 'components.d.ts');
+    const typesDir = [
+      resolve(nuxt.options.buildDir, 'components.d.ts'),
+      resolve(nuxt.options.buildDir, 'types', 'components.d.ts')
+    ];
 
     let overrideItems: any[];
 
@@ -115,7 +118,7 @@ export default defineNuxtModule<ModuleOptions>({
       getContents: () => `export * from '../${pathe.relative(nuxt.options.buildDir, resolve('runtime/types'))}'`
     });
 
-    await generateComponentTypes(nuxt, `runtime/presets/bootstrap5/**/types.d.ts`);
+    await generateComponentTypes(nuxt, 'runtime/presets/bootstrap5/**/types.d.ts');
 
     // Bug: not visible toast when cached vite
     Object.assign(
@@ -169,13 +172,19 @@ export default defineNuxtModule<ModuleOptions>({
         });
     });
 
-    nuxt.hook('app:templatesGenerated', async (app) => {
-      let content = await fsp.readFile(typesDir).then((b) => b.toString());
-      overrideItems.forEach(([oldImport, newImport]) => {
-        content = content.replace(oldImport, newImport);
-      });
+    nuxt.hook('app:templatesGenerated', async (_app) => {
+      for (const dir of typesDir) {
+        try {
+          let content = await fsp.readFile(dir, { encoding: 'utf8' });
+          overrideItems.forEach(([oldImport, newImport]) => {
+            content = content.replace(oldImport, newImport);
+          });
 
-      await fsp.writeFile(typesDir, content);
+          await fsp.writeFile(dir, content);
+        } catch {
+          continue;
+        }
+      }
     });
 
     addImportsDir(resolve('runtime/composables'));
