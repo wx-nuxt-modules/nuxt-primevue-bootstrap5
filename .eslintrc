@@ -12,6 +12,15 @@
     "space-before-function-paren": [
       "off"
     ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "import/order": [
+      "error", {
+        "groups": ["type", "builtin", "external", "parent", "sibling", "index"]
+      }
+    ],
     "vue/html-self-closing": ["off"],
     "vue/no-v-html": ["off"],
     "vue/singleline-html-element-content-newline": ["off"]
