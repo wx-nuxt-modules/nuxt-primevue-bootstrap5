@@ -1,5 +1,6 @@
 import type { Nuxt } from '@nuxt/schema';
 import type { AddComponentOptions } from '@nuxt/kit';
+import { promises as fsp } from 'node:fs';
 import {
   defineNuxtModule,
   installModule,
@@ -9,7 +10,6 @@ import {
   addImportsDir,
   addTemplate
 } from '@nuxt/kit';
-import { promises as fsp } from 'node:fs';
 import { globby } from 'globby';
 import * as pathe from 'pathe';
 import { defu } from 'defu';
@@ -74,7 +74,7 @@ export default defineNuxtModule<ModuleOptions>({
     const logger = useLogger(PACKAGE_NAME);
     const { resolve } = createResolver(import.meta.url);
 
-    let exclude = ['Editor'];
+    const exclude = ['Editor'];
 
     try {
       logger.info('Check `chart.js` installation');
@@ -145,7 +145,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    nuxt.hook('components:extend', async (components) => {
+    nuxt.hook('components:extend', (components) => {
       const getShortName = (component: (typeof components)[number]) => component.kebabName.split('-').slice(1).join('');
 
       overrideItems = components
