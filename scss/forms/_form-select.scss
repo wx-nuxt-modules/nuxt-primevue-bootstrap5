@@ -208,6 +208,14 @@ $sizes: ('sm', 'lg');
           @include gradient-bg(var(--#{$prefix}dropdown-link-hover-bg));
         }
 
+        &.disabled {
+          .bpv-form-select-menu-item-label {
+            cursor: default;
+            color: var(--#{$prefix}dropdown-link-disabled-color);
+            @include gradient-bg(var(--#{$prefix}dropdown-bg));
+          }
+        }
+
         &.bpv-form-select-menu-item-group {
           .bpv-form-select-menu-item-label {
             font-weight: $font-weight-bold;

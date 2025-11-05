@@ -354,6 +354,13 @@ const inputs = reactive({
       </div>
     </div>
 
+    <h2>Блокирование конкретных значений списка</h2>
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <PagesFormDropdownDisableItem />
+      </div>
+    </div>
+
     <h2>Состояние поля</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">

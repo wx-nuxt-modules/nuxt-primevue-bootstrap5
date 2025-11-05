@@ -31,6 +31,12 @@ export default defineComponent({
 
       Dropdown.methods.alignOverlay.call(this);
       DomHandler.getViewport = savedGetViewport;
+    },
+    onOptionSelect(event: MouseEvent, option: Record<string, unknown> | unknown, isHide = true) {
+      const isDisabled = this.isOptionDisabled(option);
+      if (isDisabled) return;
+
+      Dropdown.methods.onOptionSelect.call(this, event, option, isHide);
     }
   }
 });
