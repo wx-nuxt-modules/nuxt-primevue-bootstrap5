@@ -2,7 +2,7 @@ import { MultiSelectProps, MultiSelectSlots, MultiSelectEmits } from 'primevue/m
 import { ClassComponent } from 'primevue/ts-helpers';
 import { BPVDropdownSize } from '../../../types';
 
-export interface BPVMultiSelectProps extends Omit<MultiSelectProps, 'invalid'> {
+export interface BPVMultiSelectProps extends Omit<MultiSelectProps, 'invalid' | 'optionDisabled'> {
   maxSelectedLabels?: number;
   selectedItemsLabel?: string;
   size?: BPVDropdownSize | undefined;
