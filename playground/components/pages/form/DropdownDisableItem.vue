@@ -24,7 +24,6 @@ const value = ref();
         class="mb-3"
         option-label="text"
         placeholder="Выберите из списка"
-        position="top"
         option-value="value"
         :options="cityLst"
         :option-disabled="checkOptionDisabled"
