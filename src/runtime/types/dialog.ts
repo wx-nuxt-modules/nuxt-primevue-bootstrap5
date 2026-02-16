@@ -12,7 +12,10 @@ export interface BPVDynamicDialogServiceMethods {
 }
 
 export interface BPVConfirmationOptions
-  extends Pick<ConfirmationOptions, 'header' | 'message' | 'rejectLabel' | 'acceptLabel' | 'accept' | 'reject'> {
+  extends Pick<
+    ConfirmationOptions,
+    'header' | 'message' | 'rejectLabel' | 'acceptLabel' | 'accept' | 'reject' | 'group' | 'onShow' | 'onHide'
+  > {
   acceptSeverity?: BPVButtonProps['severity'];
   rejectSeverity?: BPVButtonProps['severity'];
 }
