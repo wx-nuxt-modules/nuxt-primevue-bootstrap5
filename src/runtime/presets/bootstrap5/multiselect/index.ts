@@ -30,7 +30,7 @@ export const multiselectPT = <MultiSelectPassThroughOptions>{
   itemGroup: dropdownPT.itemGroup,
   item: ({ context }) => {
     const base = sharedDropdownPT.item({ focused: context.focused, selected: context.selected });
-    const classes = [base.class, 'bpv-form-multiselect-menu-item'];
+    const classes = [base.class, 'bpv-form-multiselect-menu-item', context.focused && context.selected && 'focus'];
 
     return { ...base, class: classes };
   },
