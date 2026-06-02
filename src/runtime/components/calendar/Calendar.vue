@@ -294,9 +294,13 @@ export default defineComponent({
     },
 
     onCompleteInputMask(event: KeyboardEvent & { target: HTMLInputElement }) {
-      this.inputMaskValue = event.target.value;
-
       this.onInput(event);
+
+      const value = this.parseValue(event.target.value);
+
+      if (this.isValidSelection(value)) {
+        this.inputMaskValue = event.target.value;
+      }
     },
     onUpdateValueInputMask(newVal: string | null) {
       if (!newVal) {
