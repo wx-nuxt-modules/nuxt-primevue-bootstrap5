@@ -30,7 +30,8 @@ const menu = reactive<MenuItem[]>([
       { title: 'Пагинация', to: '/components/pagination' },
       { title: 'Панель поверх', to: '/components/overlaypanel' },
       { title: 'Табы', to: '/components/tabs' },
-      { title: 'Прогрессбар', to: '/components/progress' }
+      { title: 'Прогрессбар', to: '/components/progress' },
+      { title: 'Разделитель карточек', to: '/components/splitter' }
     ]
   },
   {

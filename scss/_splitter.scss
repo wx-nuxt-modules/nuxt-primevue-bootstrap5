@@ -1,0 +1,21 @@
+.bpv-splitter {
+  display: flex;
+  flex-wrap: nowrap;
+  border: $splitter-border-width solid $splitter-border-color;
+  border-radius: $splitter-border-radius;
+}
+
+.bpv-splitter-gutter {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  background-color: $splitter-gutter-bg;
+}
+
+.bpv-splitter-panel {
+  flex-grow: 1;
+  overflow: hidden;
+}

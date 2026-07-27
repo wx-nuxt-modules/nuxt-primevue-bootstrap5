@@ -28,8 +28,8 @@ $offcanvas-layout-menu-separator-color: $menu-separator-color !default;
 $offcanvas-layout-menu-separator-width: $menu-separator-width !default;
 $offcanvas-layout-menu-separator-offset: $menu-separator-offset !default;
 
-$table-cell-padding-y-lg: .75rem !default;
-$table-cell-padding-x-lg: .75rem !default;
+$table-cell-padding-y-lg: 0.75rem !default;
+$table-cell-padding-x-lg: 0.75rem !default;
 $table-column-resizer-width: 6px !default;
 $table-column-filter-overlay-body-gap: $card-body-gap * 0.5 !default;
 $table-column-filter-overlay-padding-x: $card-spacer-x * 0.5 !default;
@@ -100,3 +100,8 @@ $colorpicker-width-lg: calc($input-height-inner-half * 1.5) !default;
 $colorpicker-height-lg: calc($input-height-inner-half * 1.5) !default;
 $colorpicker-width-sm: $input-height-inner-half !default;
 $colorpicker-height-sm: $input-height-inner-half !default;
+
+$splitter-border-color: $border-color !default;
+$splitter-border-width: $border-width !default;
+$splitter-border-radius: 0;
+$splitter-gutter-bg: $gray-400 !default;
