@@ -14,14 +14,14 @@ const activeIndex = ref(0);
 
 <template>
   <div class="bd-intro pt-2 ps-lg-2">
-    <h1 class="bd-title mb-0" id="content">Аккордеон</h1>
+    <h1 id="content" class="bd-title mb-0">Аккордеон</h1>
   </div>
 
   <div class="bd-content ps-lg-2">
     <h2>Базовый</h2>
     <div class="bd-example-snippet bd-code-snippet">
       <div class="bd-example m-0 border-0">
-        <BAccordion :activeIndex="0">
+        <BAccordion :active-index="0">
           <BAccordionTab header="Header I">
             <p class="m-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
