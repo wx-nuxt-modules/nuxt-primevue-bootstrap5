@@ -38,7 +38,7 @@ import { radiobuttonPT } from './radiobutton';
 import { progressbarPT } from './progressbar';
 import { confirmdialogPT } from './confirmdialog';
 import { splitterPT } from './splitter';
-import { splitterPanelPT } from './splitterPanel';
+import { splitterpanelPT } from './splitterpanel';
 
 export default {
   button: buttonPT,
@@ -80,7 +80,7 @@ export default {
   progressbar: progressbarPT,
   confirmdialog: confirmdialogPT,
   splitter: splitterPT,
-  splitterpanel: splitterPanelPT,
+  splitterpanel: splitterpanelPT,
   directives: {
     badge: badgeDirectivePT,
     tooltip: tooltipPT
