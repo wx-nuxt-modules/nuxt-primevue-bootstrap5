@@ -1,0 +1,1 @@
+import{_ as t,c as s,a as o,o as n}from"./CVN-_A09.js";const c={},r={class:"bd-intro pt-2 ps-lg-2"};function a(d,e){return n(),s("div",r,e[0]||(e[0]=[o("h1",{id:"content",class:"bd-title mb-0"},"Домашняя страница",-1)]))}const _=t(c,[["render",a]]);export{_ as default};
